@@ -15,7 +15,7 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         db_instance.save()
         return db_instance
     
-class UserLoginSerializer(serializers.ModelSerializer):
+class UserLoginSerializer(serializers.Serializer):
     username = serializers.CharField(max_length = 200, read_only=True)
     email = serializers.CharField(max_length = 200)
     password = serializers.CharField(max_length = 200, min_length=10, style={'input_type': 'password'})
