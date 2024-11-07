@@ -248,9 +248,7 @@ db.sqlite3-journal
 media/
 staticfiles/
 
-# Django migrations
-*/migrations/*.pyc
-*/migrations/*.pyo
+
 
 # Flask stuff:
 instance/
