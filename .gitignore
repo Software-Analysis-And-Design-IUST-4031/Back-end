@@ -90,6 +90,8 @@ celerybeat-schedule
 *.sage.py
 
 # Environments
+.venv/
+venv
 .env
 .venv
 env/
@@ -234,6 +236,7 @@ celerybeat-schedule
 *.sage.py
 
 # Environments
+venv
 .env
 .venv
 env/
@@ -241,6 +244,8 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+
+
 
 # Spyder project settings
 .spyderproject
