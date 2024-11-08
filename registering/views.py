@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from sign.serializers import UserRegistrationSerializer, UserLoginSerializer
+from registering.serializers import UserRegistrationSerializer, UserLoginSerializer
 from rest_framework.views import APIView
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import AllowAny, IsAuthenticated
@@ -16,24 +16,31 @@ import jwt
 
 class UserRegistrationAPIView(APIView):
 	serializer_class = UserRegistrationSerializer
-	authentication_classes = (TokenAuthentication,)
 	permission_classes = (AllowAny,)
 
-	def get(self, request):
-		content = { 'message': 'Hello!' }
-		return Response(content)
-
 	def post(self, request):
+	
 		serializer = self.serializer_class(data=request.data)
+		
 		if serializer.is_valid(raise_exception=True):
 			new_user = serializer.save()
+			
 			if new_user:
+				
 				access_token = generate_access_token(new_user)
-				data = { 'access_token': access_token }
+				data = {
+					'message': 'User registered successfully.',
+					'access_token': access_token
+				}
+				
+				
 				response = Response(data, status=status.HTTP_201_CREATED)
 				response.set_cookie(key='access_token', value=access_token, httponly=True)
 				return response
+		
+		
 		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 
 
