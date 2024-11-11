@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 
+
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
         if not email:
@@ -28,6 +29,9 @@ class CustomUserManager(BaseUserManager):
         
         return self.create_user(email, password, **extra_fields)
 
+
+
+
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     user_id = models.AutoField(primary_key=True)
     email = models.EmailField(max_length=200, unique=True)
@@ -45,3 +49,34 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
+
+
+
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    bio = models.TextField(max_length=500, blank=True, null=True)
+    profile_image = models.ImageField(upload_to='profile_images/', null=True, blank=True)
+    location = models.CharField(max_length=100, blank=True, null=True)
+    birth_date = models.DateField(null=True, blank=True)
+
+    def __str__(self):
+        return f"Profile of {self.user.username}"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

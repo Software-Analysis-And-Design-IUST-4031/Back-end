@@ -1,5 +1,7 @@
 from rest_framework import serializers
-from .models import CustomUser
+from .models import CustomUser , Profile
+
+
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
     confirm_password = serializers.CharField(write_only=True, required=True)
@@ -36,4 +38,20 @@ class UserLoginSerializer(serializers.Serializer):
     username = serializers.CharField(max_length = 200, read_only=True)
     password = serializers.CharField(max_length = 200, min_length=10, style={'input_type': 'password'})
     token = serializers.CharField(max_length=255, read_only=True)
+
+
+
+
+
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = ['bio', 'profile_image', 'location', 'birth_date']
+
+
+
+
+
+
+
 
