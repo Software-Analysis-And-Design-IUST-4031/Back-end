@@ -15,9 +15,9 @@ urlpatterns = [
 	path('user/login/', UserLoginAPIView.as_view()),
 	path('user/', UserViewAPI.as_view()),
 	path('user/logout/', UserLogoutViewAPI.as_view()),
-    path('user/profile/', UserProfileDetailAPIView.as_view(), name='user-profile-edit-detail'),
-    path('user/profile/detail', UserDetailAPI.as_view(), name='user-profile-detail'),
-    path('user/profile/edit/', UserEditAPI.as_view(), name='user-profile-edit'),
+    path('user/profile/', UserProfileDetailAPIView.as_view()),
+    path('user/profile/detail', UserDetailAPI.as_view()),
+    path('user/profile/edit/', UserEditAPI.as_view() ),
 ]
 
 
