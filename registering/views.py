@@ -98,7 +98,8 @@ class UserLogoutViewAPI(APIView):
 class UserDetailAPIView(RetrieveAPIView):
     queryset = CustomUser.objects.all()
     serializer_class = UserDetailSerializer
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     def get_object(self):
         user_id = self.kwargs['user_id']  
@@ -110,7 +111,8 @@ class UserDetailAPIView(RetrieveAPIView):
 class UserUpdateAPIView(RetrieveUpdateAPIView):
     queryset = CustomUser.objects.all()
     serializer_class = UserUpdateSerializer
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     def get_object(self):
         user_id = self.kwargs['user_id']  
