@@ -37,3 +37,32 @@ class UserLoginSerializer(serializers.Serializer):
     password = serializers.CharField(max_length = 200, min_length=10, style={'input_type': 'password'})
     token = serializers.CharField(max_length=255, read_only=True)
 
+
+
+
+
+
+
+class UserDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ['user_id', 'email', 'firstname', 'lastname', 'username', 'is_active', 'is_admin','date_joined']
+
+ 
+
+
+class UserUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ['firstname', 'lastname', 'username']
+        extra_kwargs = {
+            'firstname': {'required': True},
+            'lastname': {'required': True},
+            'username': {'required': True}
+        }
+
+
+
+
+
+

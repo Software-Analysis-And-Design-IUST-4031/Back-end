@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from registering.serializers import UserRegistrationSerializer, UserLoginSerializer
+from registering.serializers import UserRegistrationSerializer, UserLoginSerializer , UserDetailSerializer ,  UserUpdateSerializer
 from rest_framework.views import APIView
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import AllowAny, IsAuthenticated
@@ -12,6 +12,12 @@ from django.contrib.auth import get_user_model
 from .utils import generate_access_token
 import jwt
 from rest_framework.authtoken.models import Token
+from django.shortcuts import get_object_or_404
+from registering.models import CustomUser
+from rest_framework.generics import RetrieveAPIView, RetrieveUpdateAPIView
+
+
+
 
 
 class UserRegistrationAPIView(APIView):
@@ -84,3 +90,31 @@ class UserLogoutViewAPI(APIView):
         else:
             response.data = {'message': 'User is already logged out.'}
         return response
+    
+
+
+
+
+class UserDetailAPIView(RetrieveAPIView):
+    queryset = CustomUser.objects.all()
+    serializer_class = UserDetailSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_object(self):
+        user_id = self.kwargs['user_id']  
+        return get_object_or_404(CustomUser, user_id=user_id)
+
+
+
+
+class UserUpdateAPIView(RetrieveUpdateAPIView):
+    queryset = CustomUser.objects.all()
+    serializer_class = UserUpdateSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_object(self):
+        user_id = self.kwargs['user_id']  
+        return get_object_or_404(CustomUser, user_id=user_id)
+    
+
+
