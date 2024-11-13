@@ -6,7 +6,7 @@ from django.shortcuts import get_object_or_404
 from .models import Painting
 from .serializers import PaintingDetailSerializer, PaintingListSerializer
 from registering.models import CustomUser
-
+from rest_framework.views import APIView
 
 
 
