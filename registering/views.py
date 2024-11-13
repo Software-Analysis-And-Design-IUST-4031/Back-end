@@ -94,29 +94,120 @@ class UserLogoutViewAPI(APIView):
 
 
 
-class UserDetailAPIView(RetrieveAPIView):
-    queryset = CustomUser.objects.all()
+
+
+
+
+class UserDetailAPIView(APIView):
     serializer_class = UserDetailSerializer
     permission_classes = [IsAuthenticated]
-    # permission_classes = [AllowAny]
 
-    def get_object(self):
-        user_id = self.kwargs['user_id']  
-        return get_object_or_404(CustomUser, user_id=user_id)
+    def get(self, request, user_id):
+        try:
+            user = get_object_or_404(CustomUser, user_id=user_id)
+            serializer = self.serializer_class(user)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except CustomUser.DoesNotExist:
+            return Response(
+                {"error": "User not found"},
+                status=status.HTTP_404_NOT_FOUND
+            )
+        except Exception as e:
+            return Response(
+                {"error": "Internal server error", "details": str(e)},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
 
 
 
 
-class UserUpdateAPIView(RetrieveUpdateAPIView):
-    queryset = CustomUser.objects.all()
+
+
+
+
+
+
+class UserUpdateAPIView(APIView):
     serializer_class = UserUpdateSerializer
     permission_classes = [IsAuthenticated]
-    # permission_classes = [AllowAny]
 
-    def get_object(self):
-        user_id = self.kwargs['user_id']  
-        return get_object_or_404(CustomUser, user_id=user_id)
+    def put(self, request, user_id):
+        try:
+            user = get_object_or_404(CustomUser, user_id=user_id)
+            
+            # بررسی اعتبار درخواست و به‌روزرسانی اطلاعات کاربر
+            serializer = self.serializer_class(user, data=request.data, partial=True)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(
+                    {"message": "User profile updated successfully.", "user": serializer.data},
+                    status=status.HTTP_200_OK
+                )
+            else:
+                return Response(
+                    {"error": "Invalid data", "details": serializer.errors},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+        except CustomUser.DoesNotExist:
+            return Response(
+                {"error": "User not found"},
+                status=status.HTTP_404_NOT_FOUND
+            )
+        except Exception as e:
+            return Response(
+                {"error": "Internal server error", "details": str(e)},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
+
+
+
+
+
+
+
+
+
+
+
+
+# class UserDetailAPIView(RetrieveAPIView):
+#     queryset = CustomUser.objects.all()
+#     serializer_class = UserDetailSerializer
+#     permission_classes = [IsAuthenticated]
+#     # permission_classes = [AllowAny]
+
+#     def get_object(self):
+#         user_id = self.kwargs['user_id']  
+#         return get_object_or_404(CustomUser, user_id=user_id)
+
+
+
+
+# class UserUpdateAPIView(RetrieveUpdateAPIView):
+#     queryset = CustomUser.objects.all()
+#     serializer_class = UserUpdateSerializer
+#     permission_classes = [IsAuthenticated]
+#     # permission_classes = [AllowAny]
+
+#     def get_object(self):
+#         user_id = self.kwargs['user_id']  
+#         return get_object_or_404(CustomUser, user_id=user_id)
     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
