@@ -100,7 +100,7 @@ class UserLogoutViewAPI(APIView):
 
 class UserDetailAPIView(APIView):
     serializer_class = UserDetailSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     def get(self, request, user_id):
         try:
@@ -129,7 +129,7 @@ class UserDetailAPIView(APIView):
 
 class UserUpdateAPIView(APIView):
     serializer_class = UserUpdateSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     def put(self, request, user_id):
         try:
