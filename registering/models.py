@@ -33,15 +33,15 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=200, unique=True)
     firstname = models.CharField(max_length=200, blank=False, null=False)  
     lastname = models.CharField(max_length=200, blank=False, null=False)   
-    username = models.CharField(max_length=200, blank=False, null=False)   
+    username = models.CharField(max_length=200, blank=False, null=False, unique=True)   
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     date_joined = models.DateField(auto_now_add=True)
     
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['firstname', 'lastname', 'username']  
+    USERNAME_FIELD = 'username'
+    REQUIRED_FIELDS = ['email']  
 
     objects = CustomUserManager()
 
     def __str__(self):
-        return self.email
+        return self.username
