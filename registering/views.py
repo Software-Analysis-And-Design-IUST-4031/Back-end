@@ -35,7 +35,6 @@ class UserRegistrationAPIView(APIView):
 
 class UserLoginAPIView(APIView):
     serializer_class = UserLoginSerializer
-    authentication_classes = (TokenAuthentication,)
     permission_classes = (AllowAny,)
 
     def post(self, request):
@@ -43,7 +42,7 @@ class UserLoginAPIView(APIView):
         if serializer.is_valid(raise_exception=True):
             username = serializer.validated_data.get('username')
             password = serializer.validated_data.get('password')
-
+            CustomUser = get_user_model()
             user_instance = authenticate(username=username, password=password)
             if not user_instance:
                 raise AuthenticationFailed('Invalid username or password.')
