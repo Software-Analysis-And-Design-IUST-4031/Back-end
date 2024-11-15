@@ -21,4 +21,5 @@ urlpatterns = [
     # path('admin/', admin.site.urls),
     # path('api/', include('sign.urls')),
     path('api/', include('registering.urls')),
+    path('api/painting/',include('painting.urls')),
 ]

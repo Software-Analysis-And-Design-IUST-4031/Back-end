@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from registering.serializers import UserRegistrationSerializer, UserLoginSerializer
+from registering.serializers import UserRegistrationSerializer, UserLoginSerializer , UserDetailSerializer ,  UserUpdateSerializer
 from rest_framework.views import APIView
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import AllowAny, IsAuthenticated
@@ -12,6 +12,13 @@ from django.contrib.auth import get_user_model
 from .utils import generate_access_token
 import jwt
 from rest_framework.authtoken.models import Token
+from django.shortcuts import get_object_or_404
+from registering.models import CustomUser
+from rest_framework.generics import RetrieveAPIView, RetrieveUpdateAPIView
+
+
+
+
 
 
 class UserRegistrationAPIView(APIView):
@@ -84,3 +91,75 @@ class UserLogoutViewAPI(APIView):
         else:
             response.data = {'message': 'User is already logged out.'}
         return response
+
+
+
+
+
+
+class UserDetailAPIView(APIView):
+    serializer_class = UserDetailSerializer
+    permission_classes = [AllowAny]
+
+    def get(self, request, user_id):
+        try:
+            user = get_object_or_404(CustomUser, user_id=user_id)
+            serializer = self.serializer_class(user)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except CustomUser.DoesNotExist:
+            return Response(
+                {"error": "User not found"},
+                status=status.HTTP_404_NOT_FOUND
+            )
+        except Exception as e:
+            return Response(
+                {"error": "Internal server error", "details": str(e)},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
+
+
+
+
+
+
+
+
+
+
+class UserUpdateAPIView(APIView):
+    serializer_class = UserUpdateSerializer
+    permission_classes = [AllowAny]
+
+    def put(self, request, user_id):
+        try:
+            user = get_object_or_404(CustomUser, user_id=user_id)
+            
+            # بررسی اعتبار درخواست و به‌روزرسانی اطلاعات کاربر
+            serializer = self.serializer_class(user, data=request.data, partial=True)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(
+                    {"message": "User profile updated successfully.", "user": serializer.data},
+                    status=status.HTTP_200_OK
+                )
+            else:
+                return Response(
+                    {"error": "Invalid data", "details": serializer.errors},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+        except CustomUser.DoesNotExist:
+            return Response(
+                {"error": "User not found"},
+                status=status.HTTP_404_NOT_FOUND
+            )
+        except Exception as e:
+            return Response(
+                {"error": "Internal server error", "details": str(e)},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
+
+
+
+
+
+
