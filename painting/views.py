@@ -74,6 +74,7 @@ class UserPaintingsView(ListAPIView):
 
 
 
+
 class AddPaintingView(CreateAPIView):
     """
     View to add a new painting.
