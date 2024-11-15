@@ -20,7 +20,6 @@ from rest_framework.generics import RetrieveAPIView, RetrieveUpdateAPIView
 
 
 
-
 class UserRegistrationAPIView(APIView):
     serializer_class = UserRegistrationSerializer
     permission_classes = (AllowAny,)
@@ -40,9 +39,11 @@ class UserRegistrationAPIView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+
+
+
 class UserLoginAPIView(APIView):
     serializer_class = UserLoginSerializer
-    authentication_classes = (TokenAuthentication,)
     permission_classes = (AllowAny,)
 
     def post(self, request):
@@ -50,7 +51,7 @@ class UserLoginAPIView(APIView):
         if serializer.is_valid(raise_exception=True):
             username = serializer.validated_data.get('username')
             password = serializer.validated_data.get('password')
-
+            CustomUser = get_user_model()
             user_instance = authenticate(username=username, password=password)
             if not user_instance:
                 raise AuthenticationFailed('Invalid username or password.')
@@ -60,6 +61,10 @@ class UserLoginAPIView(APIView):
             token, created = Token.objects.get_or_create(user=user_instance)
             return Response({'token': token.key})
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+
 
 
 class UserViewAPI(APIView):
@@ -76,6 +81,10 @@ class UserViewAPI(APIView):
         user = user_model.objects.filter(user_id=payload['user_id']).first()
         user_serializer = UserRegistrationSerializer(user)
         return Response(user_serializer.data)
+
+
+
+
 
 
 class UserLogoutViewAPI(APIView):
@@ -116,9 +125,6 @@ class UserDetailAPIView(APIView):
                 {"error": "Internal server error", "details": str(e)},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
-
-
-
 
 
 
