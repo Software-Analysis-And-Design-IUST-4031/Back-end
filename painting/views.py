@@ -74,7 +74,6 @@ class UserPaintingsView(ListAPIView):
 
 
 
-
 class AddPaintingView(CreateAPIView):
     """
     View to add a new painting.
@@ -84,7 +83,12 @@ class AddPaintingView(CreateAPIView):
 
     def post(self, request, user_id):
         user = get_object_or_404(CustomUser, user_id=user_id)
-        serializer = self.serializer_class(data=request.data, files=request.FILES)  # Handle image files
+        
+        # Merge the request data and files into a single dictionary
+        data = request.data.copy()
+        data.update(request.FILES)
+
+        serializer = self.serializer_class(data=data)
         if serializer.is_valid():
             painting = serializer.save(artist=user)
             response_data = {
@@ -93,6 +97,44 @@ class AddPaintingView(CreateAPIView):
             }
             return Response(response_data, status=status.HTTP_201_CREATED)
         return Response({"error": "Invalid request body", "details": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# class AddPaintingView(CreateAPIView):
+#     """
+#     View to add a new painting.
+#     """
+#     serializer_class = PaintingDetailSerializer
+#     permission_classes = [AllowAny]
+
+#     def post(self, request, user_id):
+#         user = get_object_or_404(CustomUser, user_id=user_id)
+#         serializer = self.serializer_class(data=request.data, files=request.FILES)  # Handle image files
+#         if serializer.is_valid():
+#             painting = serializer.save(artist=user)
+#             response_data = {
+#                 "message": "Painting added successfully.",
+#                 "painting": self.serializer_class(painting).data
+#             }
+#             return Response(response_data, status=status.HTTP_201_CREATED)
+#         return Response({"error": "Invalid request body", "details": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
 
 

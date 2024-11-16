@@ -49,7 +49,7 @@ class UserLoginSerializer(serializers.Serializer):
 class UserDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['user_id', 'email', 'firstname', 'lastname', 'username', 'is_active', 'is_admin','date_joined', 'nickname' 'phone_number' , 'date_of_birth' ,'region' ,'gender', 'national_id ' ,'address', 'profile_picture'   ]
+        fields = ['user_id', 'email', 'firstname', 'lastname', 'username', 'is_active', 'is_admin','date_joined', 'nickname', 'phone_number' , 'date_of_birth' ,'region' ,'gender', 'national_id' ,'address', 'profile_picture'   ]
 
  
 
@@ -57,7 +57,7 @@ class UserDetailSerializer(serializers.ModelSerializer):
 class UserUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['firstname', 'lastname', 'username', 'nickname' 'phone_number' , 'date_of_birth' ,'region' ,'gender', 'national_id ' ,'address', 'profile_picture' ]
+        fields = ['firstname', 'lastname', 'username', 'nickname' ,'phone_number' , 'date_of_birth' ,'region' ,'gender', 'national_id' ,'address', 'profile_picture' ]
 
 
 

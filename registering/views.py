@@ -15,7 +15,7 @@ from rest_framework.authtoken.models import Token
 from django.shortcuts import get_object_or_404
 from registering.models import CustomUser
 from rest_framework.generics import RetrieveAPIView, RetrieveUpdateAPIView
-
+from rest_framework.authtoken.models import Token
 
 
 
