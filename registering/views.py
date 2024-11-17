@@ -12,12 +12,16 @@ from django.contrib.auth import get_user_model
 from .utils import generate_access_token
 import jwt
 from rest_framework.authtoken.models import Token
+<<<<<<< HEAD
 from django.shortcuts import get_object_or_404
 from registering.models import CustomUser
 from rest_framework.generics import RetrieveAPIView, RetrieveUpdateAPIView
 from rest_framework.authtoken.models import Token
 
 
+=======
+from rest_framework_simplejwt.tokens import RefreshToken
+>>>>>>> dev
 
 
 class UserRegistrationAPIView(APIView):
@@ -27,14 +31,11 @@ class UserRegistrationAPIView(APIView):
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid(raise_exception=True):
-            new_user = serializer.save()
-            access_token = generate_access_token(new_user)
+            serializer.save()
             data = {
                 'message': 'User registered successfully.',
-                'access_token': access_token
             }
             response = Response(data, status=status.HTTP_201_CREATED)
-            response.set_cookie(key='access_token', value=access_token, httponly=True)
             return response
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -51,15 +52,25 @@ class UserLoginAPIView(APIView):
         if serializer.is_valid(raise_exception=True):
             username = serializer.validated_data.get('username')
             password = serializer.validated_data.get('password')
+<<<<<<< HEAD
             CustomUser = get_user_model()
+=======
+            user_model = get_user_model()
+
+>>>>>>> dev
             user_instance = authenticate(username=username, password=password)
             if not user_instance:
                 raise AuthenticationFailed('Invalid username or password.')
             if not user_instance.is_active:
                 raise AuthenticationFailed('This account is inactive.')
 
-            token, created = Token.objects.get_or_create(user=user_instance)
-            return Response({'token': token.key})
+            refresh = RefreshToken.for_user(user_instance)
+            access_token = str(refresh.access_token)
+            return Response({
+                'message': 'Login successful.',
+                'access': access_token,
+                'refresh': str(refresh),
+            }, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
