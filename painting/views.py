@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404
 from rest_framework.generics import RetrieveAPIView, ListAPIView, CreateAPIView
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny ,  IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
@@ -35,7 +35,7 @@ class UserPaintingsView(ListAPIView):
     View to list all paintings of a specific user.
     """
     serializer_class = PaintingListSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         user_id = self.kwargs['user_id']
@@ -79,7 +79,7 @@ class AddPaintingView(CreateAPIView):
     View to add a new painting.
     """
     serializer_class = PaintingDetailSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
     def post(self, request, user_id):
         user = get_object_or_404(CustomUser, user_id=user_id)

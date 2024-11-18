@@ -141,7 +141,7 @@ class UserDetailAPIView(APIView):
 
 class UserUpdateAPIView(APIView):
     serializer_class = UserUpdateSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
     def put(self, request, user_id):
         try:
