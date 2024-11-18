@@ -10,6 +10,6 @@ class PaintingDetailSerializer(serializers.ModelSerializer):
 class PaintingListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Painting
-        fields = ['painting_id', 'title', 'image' , 'creation_date']
+        fields = ['painting_id', 'title', 'description' ,'image' , 'creation_date']
 
 
