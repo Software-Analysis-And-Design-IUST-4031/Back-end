@@ -11,17 +11,14 @@ from django.conf import settings
 from django.contrib.auth import get_user_model
 from .utils import generate_access_token
 import jwt
-from rest_framework.authtoken.models import Token
-<<<<<<< HEAD
 from django.shortcuts import get_object_or_404
 from registering.models import CustomUser
 from rest_framework.generics import RetrieveAPIView, RetrieveUpdateAPIView
 from rest_framework.authtoken.models import Token
-
-
-=======
 from rest_framework_simplejwt.tokens import RefreshToken
->>>>>>> dev
+
+
+
 
 
 class UserRegistrationAPIView(APIView):
@@ -52,12 +49,11 @@ class UserLoginAPIView(APIView):
         if serializer.is_valid(raise_exception=True):
             username = serializer.validated_data.get('username')
             password = serializer.validated_data.get('password')
-<<<<<<< HEAD
-            CustomUser = get_user_model()
-=======
+
+            # CustomUser = get_user_model()
+
             user_model = get_user_model()
 
->>>>>>> dev
             user_instance = authenticate(username=username, password=password)
             if not user_instance:
                 raise AuthenticationFailed('Invalid username or password.')

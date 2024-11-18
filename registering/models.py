@@ -37,7 +37,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     date_joined = models.DateField(auto_now_add=True)
-<<<<<<< HEAD
+
     nickname = models.CharField(max_length=50, null=True, blank=True)
     phone_number = models.CharField(max_length=15, null=True, blank=True)
     date_of_birth = models.DateField(null=True, blank=True)
@@ -49,9 +49,8 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
 
 
-=======
     
->>>>>>> dev
+
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']  
 
@@ -59,10 +58,9 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.username
-<<<<<<< HEAD
+
 
 
 
         
-=======
->>>>>>> dev
+
