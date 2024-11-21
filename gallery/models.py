@@ -11,7 +11,13 @@ class Gallery(models.Model):
     )
     name = models.CharField(max_length=255)
     description = models.TextField()
-    image_url = models.URLField(max_length=500, null=True, blank=True)  
+    cover_painting = models.ForeignKey(
+        Painting,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='galleries_as_cover'
+    ) 
     def __str__(self):
         return self.name
 

@@ -14,14 +14,14 @@ class GalleryListView(APIView):
         galleries = Gallery.objects.all()
         
         gallery_data = [
-            (
-                gallery.name,
-                gallery.description,
-                gallery.image_url,
-                gallery.number_of_paintings(),
-                gallery.number_of_artists(),
-                gallery.owner.id  
-            )
+            {
+                "gallery_name": gallery.name,
+                "description": gallery.description,
+                "image_url": gallery.image_url,
+                "number_of_paintings": gallery.number_of_paintings(),
+                "number_of_artists": gallery.number_of_artists(),
+                "owner_id": gallery.owner.id  
+            }
             for gallery in galleries
         ]
         return Response(gallery_data)
