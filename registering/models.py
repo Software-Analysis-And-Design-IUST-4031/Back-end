@@ -38,14 +38,14 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     is_admin = models.BooleanField(default=False)
     date_joined = models.DateField(auto_now_add=True)
 
-    nickname = models.CharField(max_length=50, null=True, blank=True)
-    phone_number = models.CharField(max_length=15, null=True, blank=True)
-    date_of_birth = models.DateField(null=True, blank=True)
-    region = models.CharField(max_length=100, null=True, blank=True)
-    gender = models.CharField(max_length=10, choices=[('M', 'Male'), ('F', 'Female')], null=True, blank=True)
-    national_id = models.CharField(max_length=10, null=True, blank=True)
-    address = models.TextField(null=True, blank=True)
-    profile_picture = models.ImageField(upload_to='profile_pictures/', null=True, blank=True)
+    # nickname = models.CharField(max_length=50, null=True, blank=True)
+    # phone_number = models.CharField(max_length=15, null=True, blank=True)
+    # date_of_birth = models.DateField(null=True, blank=True)
+    # region = models.CharField(max_length=100, null=True, blank=True)
+    # gender = models.CharField(max_length=10, choices=[('M', 'Male'), ('F', 'Female')], null=True, blank=True)
+    # national_id = models.CharField(max_length=10, null=True, blank=True)
+    
+    # profile_picture = models.ImageField(upload_to='profile_pictures/', null=True, blank=True)
 
     is_gallery = models.BooleanField(default=False)
 
