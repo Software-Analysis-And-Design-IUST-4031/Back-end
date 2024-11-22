@@ -7,7 +7,8 @@ class Gallery(models.Model):
     owner = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
-        related_name='galleries'  
+        related_name='galleries',
+        null=False 
     )
     name = models.CharField(max_length=255)
     description = models.TextField()
