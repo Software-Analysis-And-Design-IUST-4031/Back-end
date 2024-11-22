@@ -46,18 +46,32 @@ class UserLoginSerializer(serializers.Serializer):
 
 
 
+
+
+
+
 class UserDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['user_id', 'email', 'firstname', 'lastname', 'username', 'is_active', 'is_admin','date_joined', 'nickname', 'phone_number' , 'date_of_birth' ,'region' ,'gender', 'national_id' ,'address', 'profile_picture'   ]
+        fields = ['user_id', 'email', 'firstname', 'lastname', 'username', 'is_active', 'is_admin','date_joined', 'nickname', 'phone_number' , 'date_of_birth' ,'gender', 'nationality' , 'profile_picture' , 'nickname' , 'country', 'city' ,'favorite_painter' , 'favorite_painting' , 'favorite_painting_style', 'favorite_painting_technique' ,'favorite_painting_to_own','biography','is_gallery ']
 
  
 
 
-class UserUpdateSerializer(serializers.ModelSerializer):
+class UserUpdateSerializerEditProfile(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['firstname', 'lastname', 'username', 'nickname' ,'phone_number' , 'date_of_birth' ,'region' ,'gender', 'national_id' ,'address', 'profile_picture' ]
+        fields = ['firstname', 'lastname', 'nickname' ,'email' , 'phone_number' ,'date_of_birth' ,'country', 'city' ,'gender', 'nationality','is_gallery','profile_picture' ]
+
+
+
+
+
+
+class UserUpdateSerializerFavorites(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ['favorite_painter', 'favorite_painting', 'favorite_painting_style', 'favorite_painting_technique' ,'favorite_painting_to_own' , 'biography' ]
 
 
 
@@ -67,15 +81,22 @@ class UserUpdateSerializer(serializers.ModelSerializer):
 
 
 
+class UserDetailSerializerEditProfile(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ['firstname', 'lastname', 'nickname' ,'email' , 'phone_number' ,'date_of_birth' ,'country', 'city' ,'gender', 'nationality','is_gallery','profile_picture' ]
+
+ 
 
 
 
 
 
-
-
-
-
+class UserDetailSerializerFavorites(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ['favorite_painter', 'favorite_painting', 'favorite_painting_style', 'favorite_painting_technique' ,'favorite_painting_to_own' , 'biography' ]
+ 
 
 
 
