@@ -6,7 +6,9 @@ from registering.views import (
     UserLogoutViewAPI,
     UserDetailAPIView,
     UserUpdateAPIViewEditProfile,
-    UserUpdateAPIViewFavorites
+    UserUpdateAPIViewFavorites,
+    UserDetailAPIViewEditProfile,
+    UserDetailAPIViewFavorites
 
 )
 
@@ -24,6 +26,8 @@ urlpatterns = [
     path('user/<int:user_id>/detail/', UserDetailAPIView.as_view()), 
     path('user/<int:user_id>/updateEditProfile/', UserUpdateAPIViewEditProfile.as_view()),
     path('user/<int:user_id>/updateFavorites/',  UserUpdateAPIViewFavorites.as_view()),
+    path('user/<int:user_id>/detailEditProfile/',  UserDetailAPIViewEditProfile.as_view()), 
+    path('user/<int:user_id>/detailFavorites/', UserDetailAPIViewFavorites.as_view()), 
 ]
 
 

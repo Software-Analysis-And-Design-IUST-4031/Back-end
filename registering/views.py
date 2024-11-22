@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from registering.serializers import UserRegistrationSerializer, UserLoginSerializer , UserDetailSerializer , UserUpdateSerializerEditProfile,UserUpdateSerializerFavorites
+from registering.serializers import UserRegistrationSerializer, UserLoginSerializer , UserDetailSerializer , UserUpdateSerializerEditProfile,UserUpdateSerializerFavorites,UserDetailSerializerEditProfile,UserDetailSerializerFavorites
 from rest_framework.views import APIView
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import AllowAny, IsAuthenticated
@@ -227,5 +227,57 @@ class UserUpdateAPIViewFavorites(APIView):
 
 
 
+
+
+
+
+
+class UserDetailAPIViewEditProfile(APIView):
+    serializer_class = UserDetailSerializerEditProfile
+    permission_classes = [AllowAny]
+
+    def get(self, request, user_id):
+        try:
+            user = get_object_or_404(CustomUser, user_id=user_id)
+            serializer = self.serializer_class(user)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except CustomUser.DoesNotExist:
+            return Response(
+                {"error": "User not found"},
+                status=status.HTTP_404_NOT_FOUND
+            )
+        except Exception as e:
+            return Response(
+                {"error": "Internal server error", "details": str(e)},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
+
+
+
+
+
+
+
+
+
+class UserDetailAPIViewFavorites(APIView):
+    serializer_class = UserDetailSerializerFavorites
+    permission_classes = [AllowAny]
+
+    def get(self, request, user_id):
+        try:
+            user = get_object_or_404(CustomUser, user_id=user_id)
+            serializer = self.serializer_class(user)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except CustomUser.DoesNotExist:
+            return Response(
+                {"error": "User not found"},
+                status=status.HTTP_404_NOT_FOUND
+            )
+        except Exception as e:
+            return Response(
+                {"error": "Internal server error", "details": str(e)},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
 
 

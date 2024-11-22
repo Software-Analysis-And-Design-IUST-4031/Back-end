@@ -81,11 +81,22 @@ class UserUpdateSerializerFavorites(serializers.ModelSerializer):
 
 
 
+class UserDetailSerializerEditProfile(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ['firstname', 'lastname', 'nickname' ,'email' , 'phone_number' ,'date_of_birth' ,'country', 'city' ,'gender', 'nationality','is_gallery','profile_picture' ]
+
+ 
 
 
 
 
 
+class UserDetailSerializerFavorites(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ['favorite_painter', 'favorite_painting', 'favorite_painting_style', 'favorite_painting_technique' ,'favorite_painting_to_own' , 'biography' ]
+ 
 
 
 
