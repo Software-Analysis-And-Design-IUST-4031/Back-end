@@ -2,6 +2,9 @@ from django.db import models
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 
+
+
+
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
         if not email:
@@ -28,26 +31,66 @@ class CustomUserManager(BaseUserManager):
         
         return self.create_user(email, password, **extra_fields)
 
+
+
+
+
 class CustomUser(AbstractBaseUser, PermissionsMixin):
+
+
+
+    
+
+
+
+
     user_id = models.AutoField(primary_key=True)
-    email = models.EmailField(max_length=200, unique=True)
-    firstname = models.CharField(max_length=200, blank=False, null=False)  
-    lastname = models.CharField(max_length=200, blank=False, null=False)   
-    username = models.CharField(max_length=200, blank=False, null=False, unique=True)   
+    username = models.CharField(max_length=200, blank=False, null=False, unique=True)  
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     date_joined = models.DateField(auto_now_add=True)
 
-    # nickname = models.CharField(max_length=50, null=True, blank=True)
-    # phone_number = models.CharField(max_length=15, null=True, blank=True)
-    # date_of_birth = models.DateField(null=True, blank=True)
-    # region = models.CharField(max_length=100, null=True, blank=True)
-    # gender = models.CharField(max_length=10, choices=[('M', 'Male'), ('F', 'Female')], null=True, blank=True)
-    # national_id = models.CharField(max_length=10, null=True, blank=True)
-    
-    # profile_picture = models.ImageField(upload_to='profile_pictures/', null=True, blank=True)
 
+
+
+
+
+    firstname = models.CharField(max_length=200, blank=False, null=False)  
+    lastname = models.CharField(max_length=200, blank=False, null=False)    
+    nickname = models.CharField(max_length=50, null=True, blank=True)
+    email = models.EmailField(max_length=200, unique=True)
+    phone_number = models.CharField(max_length=15, null=True, blank=True)
+    date_of_birth = models.DateField(null=True, blank=True)
+    country = models.CharField(max_length=100, null=True, blank=True)
+    city = models.CharField(max_length=100, null=True, blank=True)
+    gender = models.CharField(max_length=10, choices=[('M', 'Male'), ('F', 'Female')], null=True, blank=True)
+    nationality = models.CharField(max_length=10, null=True, blank=True)
     is_gallery = models.BooleanField(default=False)
+    profile_picture = models.ImageField(upload_to='profile_pictures/', null=True, blank=True)
+
+
+
+
+
+
+
+    favorite_painter = models.CharField(max_length=255 , null=True , blank=True)
+    favorite_painting = models.CharField(max_length=255, null=True , blank=True)
+    favorite_painting_style = models.CharField(max_length=255, null=True , blank=True)
+    favorite_painting_technique = models.CharField(max_length=255, null=True , blank=True)
+    favorite_painting_to_own = models.CharField(max_length=255, null=True , blank=True)
+    biography = models.TextField(null=True, blank=True)
+
+
+
+    
+
+    
+
+
+
+
+
 
     
 
