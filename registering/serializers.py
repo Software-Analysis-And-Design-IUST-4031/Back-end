@@ -1,5 +1,7 @@
 from rest_framework import serializers
 from .models import CustomUser
+from painting.models import Painting
+from django.db.models import Count
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
     confirm_password = serializers.CharField(write_only=True, required=True)
@@ -41,15 +43,6 @@ class UserLoginSerializer(serializers.Serializer):
 
 
 
-
-
-
-
-
-
-
-
-
 class UserDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
@@ -61,10 +54,7 @@ class UserDetailSerializer(serializers.ModelSerializer):
 class UserUpdateSerializerEditProfile(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['firstname', 'lastname', 'nickname' ,'email' , 'phone_number' ,'date_of_birth' ,'country', 'city' ,'gender', 'nationality','is_gallery','profile_picture' ]
-
-
-
+        fields = ['firstname', 'lastname', 'nickname' ,'email' , 'phone_number' ,'date_of_birth' ,'country', 'city' ,'gender', 'nationality','is_gallery','profile_picture_path' ]
 
 
 
@@ -75,22 +65,12 @@ class UserUpdateSerializerFavorites(serializers.ModelSerializer):
 
 
 
-
-
-
-
-
-
 class UserDetailSerializerEditProfile(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['firstname', 'lastname', 'nickname' ,'email' , 'phone_number' ,'date_of_birth' ,'country', 'city' ,'gender', 'nationality','is_gallery','profile_picture' ]
+        fields = ['firstname', 'lastname', 'nickname' ,'email' , 'phone_number' ,'date_of_birth' ,'country', 'city' ,'gender', 'nationality','is_gallery','profile_picture_path' ]
 
  
-
-
-
-
 
 class UserDetailSerializerFavorites(serializers.ModelSerializer):
     class Meta:
@@ -98,104 +78,32 @@ class UserDetailSerializerFavorites(serializers.ModelSerializer):
         fields = ['favorite_painter', 'favorite_painting', 'favorite_painting_style', 'favorite_painting_technique' ,'favorite_painting_to_own' , 'biography' ]
  
 
+class GallerySerializer(serializers.ModelSerializer):
+    cover_image = serializers.SerializerMethodField()
+    number_of_paintings = serializers.SerializerMethodField()
+    number_of_artists = serializers.SerializerMethodField()
+    owner_id = serializers.IntegerField(source='user_id')
+    
+    class Meta:
+        model = CustomUser
+        fields = ['gallery_name', 'description', 'cover_image', 'number_of_paintings', 'number_of_artists', 'owner_id']
 
+    def get_cover_image(self, obj):
+        if obj.cover_painting:
+            return obj.cover_painting.image.url
+        return None
+    
+    def get_number_of_paintings(self, obj):
 
+        return Painting.objects.filter(artist=obj).count()
+    
+    def get_number_of_artists(self, obj):
+        
+        return Painting.objects.filter(artist=obj).values('artist').distinct().count()
 
-
-
-
-
-
-
-
-
-
-# class UserDetailSerializer(serializers.ModelSerializer):
-#     phone_number = serializers.CharField(source='profile.phone_number', read_only=True)
-#     date_of_birth = serializers.DateField(source='profile.date_of_birth', read_only=True)
-#     region = serializers.CharField(source='profile.region', read_only=True)
-#     gender = serializers.CharField(source='profile.gender', read_only=True)
-#     national_id = serializers.CharField(source='profile.national_id', read_only=True)
-#     address = serializers.CharField(source='profile.address', read_only=True)
-#     profile_picture = serializers.ImageField(source='profile.profile_picture', read_only=True)
-
-#     class Meta:
-#         model = CustomUser
-#         fields = [
-#             'id', 'email', 'first_name', 'last_name', 'username', 'is_active', 
-#             'is_superuser', 'date_joined', 'phone_number', 'date_of_birth', 
-#             'region', 'gender', 'national_id', 'address', 'profile_picture'
-#         ]
-
-
-
-
-
-
-
-
-
-
-
-
-
-# class UserUpdateSerializer(serializers.ModelSerializer):
-#     phone_number = serializers.CharField(source='profile.phone_number', required=False)
-#     date_of_birth = serializers.DateField(source='profile.date_of_birth', required=False)
-#     region = serializers.CharField(source='profile.region', required=False)
-#     gender = serializers.CharField(source='profile.gender', required=False)
-#     national_id = serializers.CharField(source='profile.national_id', required=False)
-#     address = serializers.CharField(source='profile.address', required=False)
-#     profile_picture = serializers.ImageField(source='profile.profile_picture', required=False)
-
-#     class Meta:
-#         model = CustomUser
-#         fields = [
-#             'first_name', 'last_name', 'username', 'phone_number', 'date_of_birth', 
-#             'region', 'gender', 'national_id', 'address', 'profile_picture'
-#         ]
-#         extra_kwargs = {
-#             'first_name': {'required': True},
-#             'last_name': {'required': True},
-#             'username': {'required': True}
-#         }
-
-#     def update(self, instance, validated_data):
-#         # به‌روزرسانی فیلدهای CustomUser
-#         profile_data = validated_data.pop('profile', {})
-#         for attr, value in validated_data.items():
-#             setattr(instance, attr, value)
-#         instance.save()
-
-#         # به‌روزرسانی فیلدهای پروفایل
-#         profile = instance.profile
-#         for attr, value in profile_data.items():
-#             setattr(profile, attr, value)
-#         profile.save()
-
-#         return instance
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+class GalleryCreationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ['gallery_name', 'description']
 
 

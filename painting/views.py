@@ -84,7 +84,6 @@ class AddPaintingView(CreateAPIView):
     def post(self, request, user_id):
         user = get_object_or_404(CustomUser, user_id=user_id)
         
-        # Merge the request data and files into a single dictionary
         data = request.data.copy()
         data.update(request.FILES)
 
