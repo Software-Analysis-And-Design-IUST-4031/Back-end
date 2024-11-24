@@ -42,18 +42,17 @@ class UserLoginSerializer(serializers.Serializer):
 
 
 
-
-
-
-
-
-
-
-
 class UserDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['user_id', 'email', 'firstname', 'lastname', 'username', 'is_active', 'is_admin','date_joined', 'nickname', 'phone_number' , 'date_of_birth' ,'gender', 'nationality' , 'profile_picture' , 'nickname' , 'country', 'city' ,'favorite_painter' , 'favorite_painting' , 'favorite_painting_style', 'favorite_painting_technique' ,'favorite_painting_to_own','biography','is_gallery ']
+        fields = ['user_id', 'email', 'firstname',
+                   'lastname', 'username', 'is_active',
+                     'is_admin','date_joined', 'nickname',
+                       'phone_number' , 'date_of_birth' ,'gender',
+                         'nationality' , 'profile_picture' , 'nickname' ,
+                          'country', 'city' ,'favorite_painter' , 'favorite_painting' ,
+                            'favorite_painting_style', 'favorite_painting_technique' ,
+                            'favorite_painting_to_own','biography','is_gallery ']
 
  
 
@@ -61,7 +60,7 @@ class UserDetailSerializer(serializers.ModelSerializer):
 class UserUpdateSerializerEditProfile(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['firstname', 'lastname', 'nickname' ,'email' , 'phone_number' ,'date_of_birth' ,'country', 'city' ,'gender', 'nationality','is_gallery','profile_picture' ]
+        fields = ['firstname', 'lastname', 'nickname' ,'email' , 'phone_number' ,'date_of_birth' ,'country', 'city' ,'gender', 'nationality','is_gallery','profile_picture_path' ]
 
 
 

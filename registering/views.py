@@ -59,13 +59,15 @@ class UserLoginAPIView(APIView):
                 raise AuthenticationFailed('Invalid username or password.')
             if not user_instance.is_active:
                 raise AuthenticationFailed('This account is inactive.')
-
+            
+            user_id = user_instance.user_id
             refresh = RefreshToken.for_user(user_instance)
             access_token = str(refresh.access_token)
             return Response({
                 'message': 'Login successful.',
                 'access': access_token,
                 'refresh': str(refresh),
+                'user_id': user_id,
             }, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -111,17 +113,6 @@ class UserLogoutViewAPI(APIView):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 class UserDetailAPIView(APIView):
     serializer_class = UserDetailSerializer
     permission_classes = [AllowAny]
@@ -145,11 +136,6 @@ class UserDetailAPIView(APIView):
 
 
 
-
-
-
-
-
 class UserUpdateAPIViewEditProfile(APIView):
     serializer_class = UserUpdateSerializerEditProfile
     permission_classes = [IsAuthenticated]
@@ -157,8 +143,7 @@ class UserUpdateAPIViewEditProfile(APIView):
     def put(self, request, user_id):
         try:
             user = get_object_or_404(CustomUser, user_id=user_id)
-            
-            # بررسی اعتبار درخواست و به‌روزرسانی اطلاعات کاربر
+        
             serializer = self.serializer_class(user, data=request.data, partial=True)
             if serializer.is_valid():
                 serializer.save()
@@ -181,13 +166,6 @@ class UserUpdateAPIViewEditProfile(APIView):
                 {"error": "Internal server error", "details": str(e)},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
-
-
-
-
-
-
-
 
 
 
@@ -199,7 +177,6 @@ class UserUpdateAPIViewFavorites(APIView):
         try:
             user = get_object_or_404(CustomUser, user_id=user_id)
             
-            # بررسی اعتبار درخواست و به‌روزرسانی اطلاعات کاربر
             serializer = self.serializer_class(user, data=request.data, partial=True)
             if serializer.is_valid():
                 serializer.save()
@@ -222,10 +199,6 @@ class UserUpdateAPIViewFavorites(APIView):
                 {"error": "Internal server error", "details": str(e)},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
-
-
-
-
 
 
 

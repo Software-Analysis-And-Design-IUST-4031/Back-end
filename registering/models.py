@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
-
+from painting.models import Painting
 
 
 
@@ -38,27 +38,15 @@ class CustomUserManager(BaseUserManager):
 class CustomUser(AbstractBaseUser, PermissionsMixin):
 
 
-
-    
-
-
-
-
     user_id = models.AutoField(primary_key=True)
+    email = models.EmailField(max_length=200, unique=True)
+    firstname = models.CharField(max_length=200, blank=False, null=False)  
+    lastname = models.CharField(max_length=200, blank=False, null=False)    
     username = models.CharField(max_length=200, blank=False, null=False, unique=True)  
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     date_joined = models.DateField(auto_now_add=True)
-
-
-
-
-
-
-    firstname = models.CharField(max_length=200, blank=False, null=False)  
-    lastname = models.CharField(max_length=200, blank=False, null=False)    
     nickname = models.CharField(max_length=50, null=True, blank=True)
-    email = models.EmailField(max_length=200, unique=True)
     phone_number = models.CharField(max_length=15, null=True, blank=True)
     date_of_birth = models.DateField(null=True, blank=True)
     country = models.CharField(max_length=100, null=True, blank=True)
@@ -66,14 +54,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     gender = models.CharField(max_length=10, choices=[('M', 'Male'), ('F', 'Female')], null=True, blank=True)
     nationality = models.CharField(max_length=10, null=True, blank=True)
     is_gallery = models.BooleanField(default=False)
-    profile_picture = models.ImageField(upload_to='profile_pictures/', null=True, blank=True)
-
-
-
-
-
-
-
+    profile_picture_path = models.CharField(max_length=255, null=True, blank=True, default=None)  
     favorite_painter = models.CharField(max_length=255 , null=True , blank=True)
     favorite_painting = models.CharField(max_length=255, null=True , blank=True)
     favorite_painting_style = models.CharField(max_length=255, null=True , blank=True)
@@ -81,18 +62,22 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     favorite_painting_to_own = models.CharField(max_length=255, null=True , blank=True)
     biography = models.TextField(null=True, blank=True)
 
+    gallery_name = models.CharField(max_length=255)
+    description = models.TextField()
+    cover_painting = models.ForeignKey(
+        Painting,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='galleries_as_cover'
+    ) 
 
+    def number_of_paintings(self):
+        return Painting.objects.filter(gallery=self).count()
 
-    
+    def number_of_artists(self):
+        return Painting.objects.filter(gallery=self).values('artist').distinct().count()
 
-    
-
-
-
-
-
-
-    
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']  
@@ -104,6 +89,4 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
 
 
-
-        
 

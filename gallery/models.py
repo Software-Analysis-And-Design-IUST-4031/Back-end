@@ -8,7 +8,8 @@ class Gallery(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name='galleries',
-        null=False 
+        null=False,
+        default=None,
     )
     name = models.CharField(max_length=255)
     description = models.TextField()
@@ -23,8 +24,8 @@ class Gallery(models.Model):
         return self.name
 
     def number_of_paintings(self):
-        return Painting.objects.filter(artist__gallery=self).count()
+        return Painting.objects.filter(gallery=self).count()
 
     def number_of_artists(self):
-        return Painting.objects.filter(artist__gallery=self).values('artist').distinct().count()
+        return Painting.objects.filter(gallery=self).values('artist').distinct().count()
 
