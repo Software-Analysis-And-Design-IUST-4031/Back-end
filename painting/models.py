@@ -10,18 +10,14 @@ class Painting(models.Model):
     description = models.TextField()
     image = models.ImageField(upload_to='paintings/', null=True, blank=True)
     creation_date = models.DateField(auto_now_add=True)
-    artist = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='paintings')
-<<<<<<< HEAD
-    gallery = models.ForeignKey(
-    'gallery.Gallery', 
-    on_delete=models.CASCADE, 
-    related_name='paintings',
-    default=None
-)
+    artist = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='paintings',default=None)
+#     gallery = models.ForeignKey(
+#     'gallery.Gallery', 
+#     on_delete=models.CASCADE, 
+#     related_name='paintings',
+#     default=None
+# )
 
-=======
-    # gallery = models.ForeignKey('Gallery', on_delete=models.SET_NULL, null=True, blank=True, related_name='gallery')
->>>>>>> e185d6152f32c0678fa6f38c75f1cb5bebde6217
     def __str__(self):
         return self.title
 

@@ -25,7 +25,7 @@ urlpatterns = [
     # path('api/', include('sign.urls')),
     path('api/', include('registering.urls')),
     path('api/painting/',include('painting.urls')),
-    path('api/gallery/', include('gallery.urls')),
+    # path('api/gallery/', include('gallery.urls')),
 ]
 
 

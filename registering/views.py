@@ -16,7 +16,7 @@ from registering.models import CustomUser
 from rest_framework.generics import RetrieveAPIView, RetrieveUpdateAPIView
 from rest_framework.authtoken.models import Token
 from rest_framework_simplejwt.tokens import RefreshToken
-
+from .serializers import GalleryCreationSerializer , GallerySerializer
 
 
 
@@ -110,18 +110,6 @@ class UserLogoutViewAPI(APIView):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 class UserDetailAPIView(APIView):
     serializer_class = UserDetailSerializer
     permission_classes = [AllowAny]
@@ -144,12 +132,6 @@ class UserDetailAPIView(APIView):
 
 
 
-
-
-
-
-
-
 class UserUpdateAPIViewEditProfile(APIView):
     serializer_class = UserUpdateSerializerEditProfile
     permission_classes = [IsAuthenticated]
@@ -158,7 +140,7 @@ class UserUpdateAPIViewEditProfile(APIView):
         try:
             user = get_object_or_404(CustomUser, user_id=user_id)
             
-            # بررسی اعتبار درخواست و به‌روزرسانی اطلاعات کاربر
+            
             serializer = self.serializer_class(user, data=request.data, partial=True)
             if serializer.is_valid():
                 serializer.save()
@@ -181,13 +163,6 @@ class UserUpdateAPIViewEditProfile(APIView):
                 {"error": "Internal server error", "details": str(e)},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
-
-
-
-
-
-
-
 
 
 
@@ -225,13 +200,6 @@ class UserUpdateAPIViewFavorites(APIView):
 
 
 
-
-
-
-
-
-
-
 class UserDetailAPIViewEditProfile(APIView):
     serializer_class = UserDetailSerializerEditProfile
     permission_classes = [AllowAny]
@@ -251,12 +219,6 @@ class UserDetailAPIViewEditProfile(APIView):
                 {"error": "Internal server error", "details": str(e)},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
-
-
-
-
-
-
 
 
 
@@ -281,3 +243,31 @@ class UserDetailAPIViewFavorites(APIView):
             )
 
 
+class CreateGalleryAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+    
+    def post(self, request):
+        user = request.user
+        
+        if not user.is_gallery:
+            return Response({"error": "Only gallery users can create a gallery."}, status=status.HTTP_403_FORBIDDEN)
+        
+        serializer = GalleryCreationSerializer(data=request.data)
+        if serializer.is_valid():
+            gallery_name = serializer.validated_data['gallery_name']
+            description = serializer.validated_data['description']
+            user.gallery_name = gallery_name
+            user.description = description
+            user.save()
+            return Response({"message": "Gallery created successfully."}, status=status.HTTP_201_CREATED)
+        return Response({"error": "Invalid data", "details": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+    
+
+
+class ListGalleriesAPIView(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request):
+        galleries = CustomUser.objects.filter(is_gallery=True)
+        serializer = GallerySerializer(galleries, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
