@@ -54,7 +54,7 @@ class UserDetailSerializer(serializers.ModelSerializer):
 class UserUpdateSerializerEditProfile(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['firstname', 'lastname', 'nickname' ,'email' , 'phone_number' ,'date_of_birth' ,'country', 'city' ,'gender', 'nationality','is_gallery','profile_picture' ]
+        fields = ['firstname', 'lastname', 'nickname' ,'email' , 'phone_number' ,'date_of_birth' ,'country', 'city' ,'gender', 'nationality','is_gallery','profile_picture_path' ]
 
 
 
@@ -68,7 +68,7 @@ class UserUpdateSerializerFavorites(serializers.ModelSerializer):
 class UserDetailSerializerEditProfile(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['firstname', 'lastname', 'nickname' ,'email' , 'phone_number' ,'date_of_birth' ,'country', 'city' ,'gender', 'nationality','is_gallery','profile_picture' ]
+        fields = ['firstname', 'lastname', 'nickname' ,'email' , 'phone_number' ,'date_of_birth' ,'country', 'city' ,'gender', 'nationality','is_gallery','profile_picture_path' ]
 
  
 
