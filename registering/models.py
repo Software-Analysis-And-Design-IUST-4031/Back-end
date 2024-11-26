@@ -56,7 +56,9 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     gender = models.CharField(max_length=10, choices=[('M', 'Male'), ('F', 'Female')], null=True, blank=True)
     nationality = models.CharField(max_length=10, null=True, blank=True)
     is_gallery = models.BooleanField(default=False)
-    profile_picture_path = models.CharField(max_length=255, null=True, blank=True, default=None)
+    # profile_picture_path = models.CharField(max_length=255, null=True, blank=True, default=None)
+    profile_picture_path = models.ImageField(upload_to='profile_pictures/', null=True, blank=True)
+    
 
     favorite_painter = models.CharField(max_length=255 , null=True , blank=True)
     favorite_painting = models.CharField(max_length=255, null=True , blank=True)
