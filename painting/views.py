@@ -8,6 +8,9 @@ from rest_framework.views import APIView
 from .models import Painting
 from .serializers import PaintingDetailSerializer, PaintingListSerializer
 from registering.models import CustomUser
+from rest_framework.exceptions import PermissionDenied
+
+
 
 
 class PaintingDetailView(APIView):
@@ -40,6 +43,11 @@ class UserPaintingsView(ListAPIView):
     def get_queryset(self):
         user_id = self.kwargs['user_id']
         user = get_object_or_404(CustomUser, user_id=user_id)
+        
+        # Check if the requesting user is the same as the user in the URL
+        if self.request.user != user:
+            raise PermissionDenied("You do not have permission to view this user's paintings.")
+        
         return Painting.objects.filter(artist=user)
 
     def list(self, request, *args, **kwargs):
@@ -72,8 +80,6 @@ class UserPaintingsView(ListAPIView):
 
 
 
-
-
 class AddPaintingView(CreateAPIView):
     """
     View to add a new painting.
@@ -83,6 +89,10 @@ class AddPaintingView(CreateAPIView):
 
     def post(self, request, user_id):
         user = get_object_or_404(CustomUser, user_id=user_id)
+        
+        # Check if the requesting user is the same as the user in the URL
+        if self.request.user != user:
+            raise PermissionDenied("You do not have permission to add a painting for this user.")
         
         data = request.data.copy()
         data.update(request.FILES)
@@ -96,9 +106,6 @@ class AddPaintingView(CreateAPIView):
             }
             return Response(response_data, status=status.HTTP_201_CREATED)
         return Response({"error": "Invalid request body", "details": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
-
-
-
 
 
 
