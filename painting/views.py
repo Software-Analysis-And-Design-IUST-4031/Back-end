@@ -45,8 +45,8 @@ class UserPaintingsView(ListAPIView):
         user = get_object_or_404(CustomUser, user_id=user_id)
         
         # Check if the requesting user is the same as the user in the URL
-        if self.request.user != user:
-            raise PermissionDenied("You do not have permission to view this user's paintings.")
+        # if self.request.user != user:
+        #     raise PermissionDenied("You do not have permission to view this user's paintings.")
         
         return Painting.objects.filter(artist=user)
 
