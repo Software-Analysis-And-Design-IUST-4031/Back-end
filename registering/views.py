@@ -17,7 +17,7 @@ from rest_framework.generics import RetrieveAPIView, RetrieveUpdateAPIView
 from rest_framework.authtoken.models import Token
 from rest_framework_simplejwt.tokens import RefreshToken
 from .serializers import GalleryCreationSerializer , GallerySerializer
-
+from rest_framework.exceptions import PermissionDenied
 
 
 
@@ -132,6 +132,7 @@ class UserDetailAPIView(APIView):
 
 
 
+
 class UserUpdateAPIViewEditProfile(APIView):
     serializer_class = UserUpdateSerializerEditProfile
     permission_classes = [IsAuthenticated]
@@ -140,6 +141,9 @@ class UserUpdateAPIViewEditProfile(APIView):
         try:
             user = get_object_or_404(CustomUser, user_id=user_id)
             
+            # Check if the requesting user is the same as the user in the URL
+            if self.request.user != user:
+                raise PermissionDenied("You do not have permission to update this user's profile.")
             
             serializer = self.serializer_class(user, data=request.data, partial=True)
             if serializer.is_valid():
@@ -166,6 +170,7 @@ class UserUpdateAPIViewEditProfile(APIView):
 
 
 
+
 class UserUpdateAPIViewFavorites(APIView):
     serializer_class = UserUpdateSerializerFavorites
     permission_classes = [IsAuthenticated]
@@ -174,7 +179,10 @@ class UserUpdateAPIViewFavorites(APIView):
         try:
             user = get_object_or_404(CustomUser, user_id=user_id)
             
-            # بررسی اعتبار درخواست و به‌روزرسانی اطلاعات کاربر
+            # Check if the requesting user is the same as the user in the URL
+            if self.request.user != user:
+                raise PermissionDenied("You do not have permission to update this user's favorites.")
+            
             serializer = self.serializer_class(user, data=request.data, partial=True)
             if serializer.is_valid():
                 serializer.save()
