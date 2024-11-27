@@ -46,7 +46,7 @@ class UserLoginSerializer(serializers.Serializer):
 class UserDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['user_id', 'email', 'firstname', 'lastname', 'username', 'is_active', 'is_admin','date_joined', 'nickname', 'phone_number' , 'date_of_birth' ,'gender', 'nationality' , 'profile_picture_path' , 'nickname' , 'country', 'city' ,'favorite_painter' , 'favorite_painting' , 'favorite_painting_style', 'favorite_painting_technique' ,'favorite_painting_to_own','biography','is_gallery ']
+        fields = ['user_id', 'email', 'firstname', 'lastname', 'username', 'is_active', 'is_admin','date_joined', 'nickname', 'phone_number' , 'date_of_birth' ,'gender', 'nationality' , 'profile_picture_path' , 'nickname' , 'country', 'city' ,'favorite_painter' , 'favorite_painting' , 'favorite_painting_style', 'favorite_painting_technique' ,'favorite_painting_to_own','biography','is_gallery']
 
  
 
