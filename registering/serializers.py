@@ -46,7 +46,7 @@ class UserLoginSerializer(serializers.Serializer):
 class UserDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['user_id', 'email', 'firstname', 'lastname', 'username', 'is_active', 'is_admin','date_joined', 'nickname', 'phone_number' , 'date_of_birth' ,'gender', 'nationality' , 'profile_picture' , 'nickname' , 'country', 'city' ,'favorite_painter' , 'favorite_painting' , 'favorite_painting_style', 'favorite_painting_technique' ,'favorite_painting_to_own','biography','is_gallery ']
+        fields = ['user_id', 'email', 'firstname', 'lastname', 'username', 'is_active', 'is_admin','date_joined', 'nickname', 'phone_number' , 'date_of_birth' , 'profile_picture' , 'nickname' , 'country', 'city' ,'favorite_painter' , 'favorite_painting' , 'favorite_painting_style', 'favorite_painting_technique' ,'favorite_painting_to_own','biography','is_gallery ']
 
  
 
@@ -54,7 +54,7 @@ class UserDetailSerializer(serializers.ModelSerializer):
 class UserUpdateSerializerEditProfile(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['firstname', 'lastname', 'nickname' ,'email' , 'phone_number' ,'date_of_birth' ,'country', 'city' ,'gender', 'nationality','is_gallery','profile_picture_path' ]
+        fields = ['firstname', 'lastname', 'nickname' ,'email' , 'phone_number' ,'date_of_birth' ,'country', 'city' ,'is_gallery','profile_picture' ]
 
 
 
@@ -68,9 +68,13 @@ class UserUpdateSerializerFavorites(serializers.ModelSerializer):
 class UserDetailSerializerEditProfile(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['firstname', 'lastname', 'nickname' ,'email' , 'phone_number' ,'date_of_birth' ,'country', 'city' ,'gender', 'nationality','is_gallery','profile_picture_path' ]
+        fields = ['firstname', 'lastname', 'nickname' ,'email' , 'phone_number' ,'date_of_birth' ,'country', 'city' ,'is_gallery','profile_picture' ]
 
- 
+    def update(self, instance, validated_data):
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
+        instance.save()  
+        return instance
 
 class UserDetailSerializerFavorites(serializers.ModelSerializer):
     class Meta:
@@ -83,7 +87,7 @@ class GallerySerializer(serializers.ModelSerializer):
     number_of_paintings = serializers.SerializerMethodField()
     number_of_artists = serializers.SerializerMethodField()
     owner_id = serializers.IntegerField(source='user_id')
-    
+
     class Meta:
         model = CustomUser
         fields = ['gallery_name', 'description', 'cover_image', 'number_of_paintings', 'number_of_artists', 'owner_id']
@@ -94,11 +98,9 @@ class GallerySerializer(serializers.ModelSerializer):
         return None
     
     def get_number_of_paintings(self, obj):
-
         return Painting.objects.filter(artist=obj).count()
-    
+
     def get_number_of_artists(self, obj):
-        
         return Painting.objects.filter(artist=obj).values('artist').distinct().count()
 
 class GalleryCreationSerializer(serializers.ModelSerializer):

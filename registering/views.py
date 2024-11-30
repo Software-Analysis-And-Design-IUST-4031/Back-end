@@ -17,7 +17,7 @@ from rest_framework.generics import RetrieveAPIView, RetrieveUpdateAPIView
 from rest_framework.authtoken.models import Token
 from rest_framework_simplejwt.tokens import RefreshToken
 from .serializers import GalleryCreationSerializer , GallerySerializer
-
+from painting.models import Painting
 
 
 
@@ -139,7 +139,9 @@ class UserUpdateAPIViewEditProfile(APIView):
     def put(self, request, user_id):
         try:
             user = get_object_or_404(CustomUser, user_id=user_id)
-            
+            if 'is_gallery' in request.data:
+           
+                user.is_gallery = bool(request.data['is_gallery'])
             
             serializer = self.serializer_class(user, data=request.data, partial=True)
             if serializer.is_valid():
@@ -174,7 +176,7 @@ class UserUpdateAPIViewFavorites(APIView):
         try:
             user = get_object_or_404(CustomUser, user_id=user_id)
             
-            # بررسی اعتبار درخواست و به‌روزرسانی اطلاعات کاربر
+          
             serializer = self.serializer_class(user, data=request.data, partial=True)
             if serializer.is_valid():
                 serializer.save()
@@ -248,18 +250,50 @@ class CreateGalleryAPIView(APIView):
     
     def post(self, request):
         user = request.user
-        
+        user_id = user.user_id  
+
+       
+        print(f"User ID: {user_id}")
+        if 'is_gallery' in request.data:
+            user.is_gallery = request.data['is_gallery']  # This ensures the is_gallery is updated
+            user.save()
+
         if not user.is_gallery:
             return Response({"error": "Only gallery users can create a gallery."}, status=status.HTTP_403_FORBIDDEN)
         
+        paintings = Painting.objects.filter(artist=user)
+        
+        if not paintings.exists():
+            return Response({"error": "User has no paintings. Gallery cannot be created."}, status=status.HTTP_400_BAD_REQUEST)
+        
+        
+        first_painting = paintings.first()
+        cover_image = first_painting.image
+        
+        
+        number_of_paintings = paintings.count()
+        number_of_artists = paintings.values('artist').distinct().count()
+
         serializer = GalleryCreationSerializer(data=request.data)
         if serializer.is_valid():
             gallery_name = serializer.validated_data['gallery_name']
             description = serializer.validated_data['description']
+
             user.gallery_name = gallery_name
             user.description = description
+            user.cover_painting = first_painting  
+            user.number_of_paintings = number_of_paintings  
+            user.number_of_artists = number_of_artists 
             user.save()
-            return Response({"message": "Gallery created successfully."}, status=status.HTTP_201_CREATED)
+            return Response({
+                "message": "Gallery created successfully.",
+                "gallery_name": gallery_name,
+                "description": description,
+                "cover_image": first_painting.image.url,
+                "number_of_paintings": number_of_paintings,
+                "number_of_artists": number_of_artists
+            }, status=status.HTTP_201_CREATED)
+        
         return Response({"error": "Invalid data", "details": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
     
 
