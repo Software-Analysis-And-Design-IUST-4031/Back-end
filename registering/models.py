@@ -53,10 +53,9 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     date_of_birth = models.DateField(null=True, blank=True)
     country = models.CharField(max_length=100, null=True, blank=True)
     city = models.CharField(max_length=100, null=True, blank=True)
-    gender = models.CharField(max_length=10, choices=[('M', 'Male'), ('F', 'Female')], null=True, blank=True)
-    nationality = models.CharField(max_length=10, null=True, blank=True)
     is_gallery = models.BooleanField(default=False)
-    profile_picture_path = models.CharField(max_length=255, null=True, blank=True, default=None)
+    profile_picture = models.ImageField(upload_to='profile_pictures/', null=True, blank=True)
+    
 
     favorite_painter = models.CharField(max_length=255 , null=True , blank=True)
     favorite_painting = models.CharField(max_length=255, null=True , blank=True)
@@ -65,7 +64,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     favorite_painting_to_own = models.CharField(max_length=255, null=True , blank=True)
     biography = models.TextField(null=True, blank=True)
 
-    gallery_name = models.CharField(max_length=255,blank=True, null=True)
+    gallery_name = models.CharField(max_length=255, blank=True, null=True)
     description = models.TextField(null=True, blank=True)
     cover_painting = models.ForeignKey(
         Painting,
@@ -74,13 +73,10 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         blank=True,
         related_name='galleries_as_cover',
         default=None,
-    ) 
-    
+    )
+    number_of_paintings = models.IntegerField(default=0)
+    number_of_artists = models.IntegerField(default=0)
 
-    
-    
-
-    
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']  
