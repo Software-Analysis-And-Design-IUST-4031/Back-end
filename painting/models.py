@@ -4,6 +4,7 @@ from django.conf import settings
 # from gallery.models import Gallery
 
 
+
 class Painting(models.Model):
     painting_id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=255)
@@ -18,6 +19,21 @@ class Painting(models.Model):
 
 
 
+
+
+
+
+
+class Like(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='likes')
+    painting = models.ForeignKey(Painting, on_delete=models.CASCADE, related_name='likes')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'painting')
+
+    def __str__(self):
+        return f"{self.user.username} likes {self.painting.title}"
 
 
 

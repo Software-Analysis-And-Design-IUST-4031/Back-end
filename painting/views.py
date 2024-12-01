@@ -5,8 +5,8 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from rest_framework.views import APIView
-from .models import Painting
-from .serializers import PaintingDetailSerializer, PaintingListSerializer
+from .models import Painting , Like
+from .serializers import PaintingDetailSerializer, PaintingListSerializer , LikeSerializer
 from registering.models import CustomUser
 
 
@@ -97,5 +97,61 @@ class AddPaintingView(CreateAPIView):
             return Response(response_data, status=status.HTTP_201_CREATED)
         return Response({"error": "Invalid request body", "details": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
+
+
+
+
+
+
+
+
+
+
+class LikePaintingView(CreateAPIView):
+    """
+    View to like a painting by a user.
+    """
+    serializer_class = LikeSerializer
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, painting_id):
+        painting = get_object_or_404(Painting, painting_id=painting_id)
+        user = request.user
+
+        # Check if the user has already liked the painting
+        if Like.objects.filter(user=user, painting=painting).exists():
+            return Response({"error": "You have already liked this painting"}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Create a new like
+        like = Like.objects.create(user=user, painting=painting)
+
+        response_data = {
+            "message": "Painting liked successfully.",
+            "like": LikeSerializer(like).data
+        }
+        return Response(response_data, status=status.HTTP_201_CREATED)
+
+
+
+
+
+
+
+class GetPaintingLikesView(RetrieveAPIView):
+    """
+    View to get the number of likes for a painting.
+    """
+    serializer_class = LikeSerializer
+
+    def get(self, request, painting_id):
+        painting = get_object_or_404(Painting, painting_id=painting_id)
+        likes_count = painting.likes.count()
+
+        response_data = {
+            "painting_id": painting_id,
+            "likes_count": likes_count
+        }
+        return Response(response_data, status=status.HTTP_200_OK)
+    
 
 
