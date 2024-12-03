@@ -8,6 +8,9 @@ from rest_framework.views import APIView
 from .models import Painting , Like
 from .serializers import PaintingDetailSerializer, PaintingListSerializer , LikeSerializer
 from registering.models import CustomUser
+from django.db.models import Count 
+from django.db import models
+
 
 
 class PaintingDetailView(APIView):
@@ -153,5 +156,69 @@ class GetPaintingLikesView(RetrieveAPIView):
         }
         return Response(response_data, status=status.HTTP_200_OK)
     
+
+
+
+
+
+class TopPaintingView(APIView):
+    """
+    View to get the top painting based on the number of likes.
+    """
+    permission_classes = [AllowAny]
+
+    def get(self, request):
+        # Annotate each painting with the count of likes
+        top_painting = Painting.objects.annotate(likes_count=models.Count('likes')).order_by('-likes_count').first()
+
+        if top_painting:
+            serializer = PaintingDetailSerializer(top_painting)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response({"error": "No paintings found"}, status=status.HTTP_404_NOT_FOUND)
+        
+
+
+
+
+
+class SortedPaintingsByLikesView(ListAPIView):
+    """
+    View to list all paintings sorted by the number of likes.
+    """
+    serializer_class = PaintingListSerializer
+    permission_classes = [AllowAny]
+
+    def get_queryset(self):
+        # Annotate each painting with the count of likes and order by likes_count
+        return Painting.objects.annotate(likes_count=models.Count('likes')).order_by('-likes_count')
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        page = request.query_params.get('page', 1)
+        limit = request.query_params.get('limit', 10)
+        
+        paginator = Paginator(queryset, limit)
+        try:
+            paintings = paginator.page(page)
+        except PageNotAnInteger:
+            paintings = paginator.page(1)
+        except EmptyPage:
+            paintings = paginator.page(paginator.num_pages)
+
+        serializer = self.serializer_class(paintings, many=True)
+        response_data = {
+            "paintings": serializer.data,
+            "pagination": {
+                "page": int(page),
+                "limit": int(limit),
+                "totalPages": paginator.num_pages,
+                "totalPaintings": paginator.count
+            }
+        }
+        return Response(response_data, status=status.HTTP_200_OK)
+
+
+
 
 
