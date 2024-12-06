@@ -46,7 +46,7 @@ class UserLoginSerializer(serializers.Serializer):
 class UserDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['user_id', 'email', 'firstname', 'lastname', 'username', 'is_active', 'is_admin','date_joined', 'nickname', 'phone_number' , 'date_of_birth' , 'profile_picture' , 'nickname' , 'country', 'city' ,'favorite_painter' , 'favorite_painting' , 'favorite_painting_style', 'favorite_painting_technique' ,'favorite_painting_to_own','biography']
+        fields = ['user_id', 'email', 'firstname', 'lastname', 'username', 'is_active', 'is_admin','date_joined', 'nickname', 'phone_number' , 'date_of_birth' , 'profile_picture' , 'nickname' , 'country', 'city' ,'favorite_painter' , 'favorite_painting' , 'favorite_painting_style', 'favorite_painting_technique' ,'favorite_painting_to_own','biography', 'Theme' , 'Dark_light_theme']
 
  
 
@@ -54,21 +54,21 @@ class UserDetailSerializer(serializers.ModelSerializer):
 class UserUpdateSerializerEditProfile(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['firstname', 'lastname', 'nickname' ,'email' , 'phone_number' ,'date_of_birth' ,'country', 'city' ,'is_gallery','profile_picture' ]
+        fields = ['firstname', 'lastname', 'nickname' ,'email' , 'phone_number' ,'date_of_birth' ,'country', 'city' ,'is_gallery','profile_picture' , 'Theme' , 'Dark_light_theme' ]
 
 
 
 class UserUpdateSerializerFavorites(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['favorite_painter', 'favorite_painting', 'favorite_painting_style', 'favorite_painting_technique' ,'favorite_painting_to_own' , 'biography' ]
+        fields = ['favorite_painter', 'favorite_painting', 'favorite_painting_style', 'favorite_painting_technique' ,'favorite_painting_to_own' , 'biography' , 'Theme' , 'Dark_light_theme' ]
 
 
 
 class UserDetailSerializerEditProfile(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['firstname', 'lastname', 'nickname' ,'email' , 'phone_number' ,'date_of_birth' ,'country', 'city' ,'is_gallery','profile_picture' ]
+        fields = ['firstname', 'lastname', 'nickname' ,'email' , 'phone_number' ,'date_of_birth' ,'country', 'city' ,'is_gallery','profile_picture' , 'Theme' , 'Dark_light_theme']
 
     def update(self, instance, validated_data):
         for attr, value in validated_data.items():
