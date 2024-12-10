@@ -1,0 +1,2000 @@
+city,iso3
+Tokyo,JPN
+Jakarta,IDN
+Delhi,IND
+Manila,PHL
+São Paulo,BRA
+Seoul,KOR
+Mumbai,IND
+Shanghai,CHN
+Mexico City,MEX
+Guangzhou,CHN
+Cairo,EGY
+Beijing,CHN
+New York,USA
+Kolkāta,IND
+Moscow,RUS
+Bangkok,THA
+Dhaka,BGD
+Buenos Aires,ARG
+Ōsaka,JPN
+Lagos,NGA
+Istanbul,TUR
+Karachi,PAK
+Kinshasa,COD
+Shenzhen,CHN
+Bangalore,IND
+Ho Chi Minh City,VNM
+Tehran,IRN
+Los Angeles,USA
+Rio de Janeiro,BRA
+Chengdu,CHN
+Baoding,CHN
+Chennai,IND
+Lahore,PAK
+London,GBR
+Paris,FRA
+Tianjin,CHN
+Linyi,CHN
+Shijiazhuang,CHN
+Zhengzhou,CHN
+Nanyang,CHN
+Hyderābād,IND
+Wuhan,CHN
+Handan,CHN
+Nagoya,JPN
+Weifang,CHN
+Lima,PER
+Zhoukou,CHN
+Luanda,AGO
+Ganzhou,CHN
+Tongshan,CHN
+Kuala Lumpur,MYS
+Chicago,USA
+Heze,CHN
+Chongqing,CHN
+Hanoi,VNM
+Fuyang,CHN
+Changsha,CHN
+Dongguan,CHN
+Jining,CHN
+Jinan,CHN
+Pune,IND
+Foshan,CHN
+Bogotá,COL
+Ahmedabad,IND
+Nanjing,CHN
+Changchun,CHN
+Tangshan,CHN
+Cangzhou,CHN
+Dar es Salaam,TZA
+Hefei,CHN
+Hong Kong,HKG
+Shaoyang,CHN
+Zhanjiang,CHN
+Shangqiu,CHN
+Nantong,CHN
+Yancheng,CHN
+Nanning,CHN
+Hengyang,CHN
+Zhumadian,CHN
+Shenyang,CHN
+Xingtai,CHN
+Xi’an,CHN
+Santiago,CHL
+Yantai,CHN
+Riyadh,SAU
+Luoyang,CHN
+Kunming,CHN
+Shangrao,CHN
+Hangzhou,CHN
+Bijie,CHN
+Quanzhou,CHN
+Miami,USA
+Wuxi,CHN
+Huanggang,CHN
+Maoming,CHN
+Nanchong,CHN
+Zunyi,CHN
+Qujing,CHN
+Baghdad,IRQ
+Xinyang,CHN
+Jieyang,CHN
+Khartoum,SDN
+Madrid,ESP
+Allahābād,IND
+Yulin,CHN
+Changde,CHN
+Liaocheng,CHN
+Qingdao,CHN
+Dallas,USA
+Nangandao,CHN
+Xiangyang,CHN
+Philadelphia,USA
+Giza,EGY
+Lu’an,CHN
+Zhaotong,CHN
+Yichun,CHN
+Dezhou,CHN
+Nairobi,KEN
+Nanchang,CHN
+Tai’an,CHN
+Dazhou,CHN
+Houston,USA
+Guadalajara,MEX
+Yongzhou,CHN
+Atlanta,USA
+Rangoon,MMR
+Toronto,CAN
+Suihua,CHN
+Saint Petersburg,RUS
+Washington,USA
+Qiqihar,CHN
+Suzhou,CHN
+Shantou,CHN
+Weinan,CHN
+Changzhou,CHN
+Singapore,SGP
+Fuzhou,CHN
+Pudong,CHN
+Belo Horizonte,BRA
+Zhangzhou,CHN
+Yuncheng,CHN
+Suzhou,CHN
+Xianyang,CHN
+Guilin,CHN
+Taizhou,CHN
+Abidjan,CIV
+Huaihua,CHN
+Ji’an,CHN
+Xiaoganzhan,CHN
+Pingdingshan,CHN
+Jiujiang,CHN
+Sūrat,IND
+Guiyang,CHN
+Alexandria,EGY
+Bozhou,CHN
+Sydney,AUS
+Huizhou,CHN
+Huai’an,CHN
+Chenzhou,CHN
+Barcelona,ESP
+Anqing,CHN
+Suqian,CHN
+Boston,USA
+Jiangmen,CHN
+Mianyang,CHN
+Harbin,CHN
+Huanglongsi,CHN
+Melbourne,AUS
+Zibo,CHN
+Dalian,CHN
+Hengshui,CHN
+Yibin,CHN
+Yangzhou,CHN
+Timbío,COL
+Johannesburg,ZAF
+Yiyang,CHN
+Guigang,CHN
+Xinpu,CHN
+Meizhou,CHN
+Casablanca,MAR
+Langfang,CHN
+Zhangjiakou,CHN
+Chifeng,CHN
+Linfen,CHN
+Jiangguanchi,CHN
+Kabul,AFG
+Phoenix,USA
+Luzhou,CHN
+Taiyuan,CHN
+Zhaoqing,CHN
+Xiaoxita,CHN
+Xiamen,CHN
+Fuzhou,CHN
+Liuzhou,CHN
+Zhuzhou,CHN
+Amman,JOR
+Jeddah,SAU
+Chuzhou,CHN
+Loudi,CHN
+Deyang,CHN
+Qingyuan,CHN
+Kano,NGA
+Wuhu,CHN
+Seattle,USA
+Yokohama,JPN
+Binzhou,CHN
+Baojishi,CHN
+Zaozhuang,CHN
+Neijiang,CHN
+Baicheng,CHN
+Berlin,DEU
+Anshan,CHN
+Lanzhou,CHN
+Puyang,CHN
+San Francisco,USA
+Jiaozuo,CHN
+Hechi,CHN
+Montréal,CAN
+Detroit,USA
+Chengde,CHN
+Busan,KOR
+Algiers,DZA
+Hanzhong,CHN
+Shiyan,CHN
+Lucknow,IND
+Siping,CHN
+Yulinshi,CHN
+Changzhi,CHN
+Qinzhou,CHN
+Bazhou,CHN
+Qincheng,CHN
+Zhongshan,CHN
+Suining,CHN
+Leshan,CHN
+San Diego,USA
+Faisalabad,PAK
+Guang’an,CHN
+Tongren,CHN
+Bengbu,CHN
+Santa Cruz,BOL
+Qinhuangdao,CHN
+Tongliao,CHN
+Jinzhou,CHN
+Zhenjiang,CHN
+Ürümqi,CHN
+Heyuan,CHN
+Jaipur,IND
+Xinzhou,CHN
+Wuzhou,CHN
+Addis Ababa,ETH
+Chaoyang,CHN
+Brasília,BRA
+Mashhad,IRN
+Shaoguan,CHN
+Kuwait City,KWT
+Shanwei,CHN
+Quezon City,PHL
+Minneapolis,USA
+Kyiv,UKR
+Sanaa,YEM
+Meishan,CHN
+Guatemala City,GTM
+Incheon,KOR
+Ningde,CHN
+Tampa,USA
+Daqing,CHN
+Putian,CHN
+Bandung,IDN
+Surabaya,IDN
+Salvador,BRA
+Denver,USA
+Rome,ITA
+La Paz,BOL
+Hohhot,CHN
+Xiangtan,CHN
+Pyongyang,PRK
+Taichung,TWN
+Weihai,CHN
+Rizhao,CHN
+Mudanjiang,CHN
+Kaohsiung,TWN
+Guayaquil,ECU
+Tieling,CHN
+Cawnpore,IND
+Dingxi,CHN
+Taipei,TWN
+Nanping,CHN
+Zigong,CHN
+Chaozhou,CHN
+Baotou,CHN
+Gulou,CHN
+Longyan,CHN
+Ankang,CHN
+Baoshan,CHN
+Huludao,CHN
+Antananarivo,MDG
+Yanjiang,CHN
+Chattogram,BGD
+Santo Domingo,DOM
+Sanming,CHN
+Longba,CHN
+Brooklyn,USA
+Yangjiang,CHN
+Jiamusi,CHN
+Ibadan,NGA
+Luohe,CHN
+Lincang,CHN
+Medellín,COL
+Xuanzhou,CHN
+Yunfu,CHN
+Dubai,ARE
+Mirzāpur,IND
+Tashkent,UZB
+Guangyuan,CHN
+Cali,COL
+Huangshi,CHN
+Ouagadougou,BFA
+Daegu,KOR
+Fortaleza,BRA
+Yaoundé,CMR
+Douala,CMR
+Jilin,CHN
+Dandong,CHN
+Lianshan,CHN
+Yingkou,CHN
+Nāgpur,IND
+Omdurman,SDN
+Bekasi,IDN
+Ghāziābād,IND
+Yuxi,CHN
+Brisbane,AUS
+Anshun,CHN
+Depok,IDN
+Shangzhou,CHN
+Huainan,CHN
+Kuaidamao,CHN
+Accra,GHA
+Fukuoka,JPN
+Jincheng,CHN
+Vancouver,CAN
+Tangerang,IDN
+Sanmenxia,CHN
+Laibin,CHN
+Queens,USA
+Qinbaling,CHN
+Xining,CHN
+Ma’anshan,CHN
+Yan’an,CHN
+Baku,AZE
+Gaoping,CHN
+Harare,ZWE
+Havana,CUB
+Phnom Penh,KHM
+Ningbo,CHN
+Mogadishu,SOM
+Puning,CHN
+Medan,IDN
+Huaibei,CHN
+Qingyang,CHN
+Riverside,USA
+Baltimore,USA
+Haiphong,VNM
+Las Vegas,USA
+Chongzuo,CHN
+Rawalpindi,PAK
+Kumasi,GHA
+Portland,USA
+Vadodara,IND
+Hezhou,CHN
+Pingliang,CHN
+San Antonio,USA
+Perth,AUS
+Vishākhapatnam,IND
+Shengli,CHN
+Gujranwala,PAK
+Baicheng,CHN
+Fushun,CHN
+St. Louis,USA
+Bamako,MLI
+Quito,ECU
+Minsk,BLR
+Indore,IND
+Yinchuan,CHN
+Kananga,COD
+Peshawar,PAK
+Sapporo,JPN
+Eşfahān,IRN
+Caracas,VEN
+Pingxiang,CHN
+Aleppo,SYR
+Tijuana,MEX
+Almaty,KAZ
+Vienna,AUT
+Thāne,IND
+Sacramento,USA
+Blantyre,MWI
+Tainan,TWN
+Zhuhai,CHN
+Bucharest,ROU
+Curitiba,BRA
+Multan,PAK
+Xiping,CHN
+Ecatepec,MEX
+Jixi,CHN
+Saidu Sharif,PAK
+Liaoyang,CHN
+Hamburg,DEU
+Meru,KEN
+Brazzaville,COG
+Orlando,USA
+Fuxin,CHN
+Wuwei,CHN
+Manaus,BRA
+Bhopāl,IND
+San Jose,USA
+Warsaw,POL
+Lubumbashi,COD
+Davao,PHL
+Haikou,CHN
+Damascus,SYR
+Shuyangzha,CHN
+Brussels,BEL
+Lusaka,ZMB
+Hyderabad City,PAK
+Budapest,HUN
+Shuozhou,CHN
+Cleveland,USA
+Benxi,CHN
+Baiyin,CHN
+Pittsburgh,USA
+Patna,IND
+Mosul,IRQ
+Caloocan City,PHL
+Austin,USA
+Sanzhou,CHN
+Beihai,CHN
+Mecca,SAU
+Heihe,CHN
+Jingdezhen,CHN
+Conakry,GIN
+Kampala,UGA
+Cincinnati,USA
+Recife,BRA
+Yushan,CHN
+Zhongli,TWN
+Kansas City,USA
+Manhattan,USA
+Bilāspur,IND
+Semarang,IDN
+Ludhiāna,IND
+Novosibirsk,RUS
+Chengtangcun,CHN
+Āgra,IND
+Karaj,IRN
+Wenzhou,CHN
+Indianapolis,USA
+León de los Aldama,MEX
+Puebla,MEX
+Kalyān,IND
+Madurai,IND
+Mbuji-Mayi,COD
+Hebi,CHN
+Shīrāz,IRN
+Jamshedpur,IND
+Columbus,USA
+Tabrīz,IRN
+Maracaibo,VEN
+Kawasaki,JPN
+Aba,NGA
+Palembang,IDN
+Zhangjiajie,CHN
+Kōbe,JPN
+Charlotte,USA
+Changshu,CHN
+Lianjiang,CHN
+Ximeicun,CHN
+Jianguang,CHN
+Yucheng,CHN
+Belém,BRA
+Guiping,CHN
+Leizhou,CHN
+Gwangju,KOR
+Munich,DEU
+Nāsik,IND
+Porto Alegre,BRA
+Valencia,VEN
+Onitsha,NGA
+Abu Dhabi,ARE
+Virginia Beach,USA
+Daejeon,KOR
+Zapopan,MEX
+Yekaterinburg,RUS
+Huazhou,CHN
+Kyōto,JPN
+Shuangyashan,CHN
+Pizhou,CHN
+El Kelaa des Srarhna,MAR
+Kharkiv,UKR
+Yangshe,CHN
+Guyuan,CHN
+Khulna,BGD
+Muscat,OMN
+Bronx,USA
+Gaozhou,CHN
+Chizhou,CHN
+Farīdābād,IND
+Ulaanbaatar,MNG
+Goiânia,BRA
+Fuqing,CHN
+Belgrade,SRB
+Pingdu,CHN
+Milan,ITA
+Aurangābād,IND
+Yutan,CHN
+Milwaukee,USA
+Huangshan,CHN
+Auckland,NZL
+Makassar,IDN
+Santiago,DOM
+Prague,CZE
+Rājkot,IND
+Liangshi,CHN
+Córdoba,ARG
+Guarulhos,BRA
+Al Başrah,IRQ
+Saitama,JPN
+Juárez,MEX
+Montevideo,URY
+Xintai,CHN
+Wusong,CHN
+Meerut,IND
+Yushu,CHN
+Rongcheng,CHN
+Huazhou,CHN
+Yangquan,CHN
+Adelaide,AUS
+Baishan,CHN
+Dayan,CHN
+Haicheng,CHN
+Jiangyin,CHN
+Huaiyin,CHN
+Wuzhong,CHN
+Cacuaco,AGO
+Barranquilla,COL
+Sofia,BGR
+Soweto,ZAF
+Jabalpur,IND
+Rucheng,CHN
+Nizhniy Novgorod,RUS
+Shaoyang,CHN
+Dhanbād,IND
+Comayagüela,HND
+Laiwu,CHN
+Sharjah,ARE
+Jingling,CHN
+Kazan,RUS
+Suwon,KOR
+Yongcheng,CHN
+Calgary,CAN
+Cần Thơ,VNM
+Abuja,NGA
+Mandalay,MMR
+Beidao,CHN
+Xiangshui,CHN
+Dadukou,CHN
+Vila Velha,BRA
+Chelyabinsk,RUS
+Mombasa,KEN
+Providence,USA
+Vārānasi,IND
+Qom,IRN
+Zhangye,CHN
+Hiroshima,JPN
+Maiduguri,NGA
+Maputo,MOZ
+Doha,QAT
+Rosario,ARG
+Pikine,SEN
+Xinyu,CHN
+Ahvāz,IRN
+Jacksonville,USA
+Medina,SAU
+Srīnagar,IND
+Omsk,RUS
+Liaoyuan,CHN
+Cilacap,IDN
+Yingtan,CHN
+Bandar Lampung,IDN
+Samara,RUS
+Guankou,CHN
+Ulsan,KOR
+Dingzhou,CHN
+Campinas,BRA
+Lianyuan,CHN
+Dakar,SEN
+Rongcheng,CHN
+Kaiyuan,CHN
+Nay Pyi Taw,MMR
+Kigali,RWA
+Leiyang,CHN
+Yichun,CHN
+Benin City,NGA
+Birmingham,GBR
+Xiantao,CHN
+Amritsar,IND
+Callao,PER
+Monterrey,MEX
+Alīgarh,IND
+Yingchuan,CHN
+Ciudad Nezahualcóyotl,MEX
+Tripoli,LBY
+Nampo,PRK
+Rostov,RUS
+Tegucigalpa,HND
+Tbilisi,GEO
+Guwāhāti,IND
+Ufa,RUS
+Fès,MAR
+Biên Hòa,VNM
+N’Djamena,TCD
+Ikare,NGA
+Salt Lake City,USA
+Bhilai,IND
+Hāora,IND
+Tamale,GHA
+Xibeijie,CHN
+Copenhagen,DNK
+Nezahualcóyotl,MEX
+Hanchuan,CHN
+Gongzhuling,CHN
+Krasnoyarsk,RUS
+Cologne,DEU
+Yicheng,CHN
+Zhufeng,CHN
+São Gonçalo,BRA
+Nashville,USA
+Yerevan,ARM
+Nur-Sultan,KAZ
+Nouakchott,MRT
+Vereeniging,ZAF
+Richmond,USA
+São Luís,BRA
+Rānchi,IND
+San Pedro Sula,HND
+Taixing,CHN
+Gwalior,IND
+Memphis,USA
+Goyang,KOR
+Bezwāda,IND
+Edmonton,CAN
+Bishkek,KGZ
+Mizhou,CHN
+Tunis,TUN
+Xishan,CHN
+Ezhou,CHN
+Barquisimeto,VEN
+Sendai,JPN
+Hegang,CHN
+Kathmandu,NPL
+Mexicali,MEX
+Voronezh,RUS
+Perm,RUS
+Changwon,KOR
+Zhongwei,CHN
+Shouguang,CHN
+Bogor,IDN
+Raleigh,USA
+Cartagena,COL
+Chandīgarh,IND
+Matola,MOZ
+Jodhpur,IND
+Ogbomoso,NGA
+Shymkent,KAZ
+Niamey,NER
+Taizhou,CHN
+Managua,NIC
+Bagam,IDN
+Shubrā al Khaymah,EGY
+Maceió,BRA
+Monrovia,LBR
+Wafangdian,CHN
+Zhongxiang,CHN
+Odesa,UKR
+Port-au-Prince,HTI
+New Orleans,USA
+Villahermosa,MEX
+Thủ Đức,VNM
+Volgograd,RUS
+Mysore,IND
+Islamabad,PAK
+Xinyi,CHN
+Raipur,IND
+Arequipa,PER
+Port Harcourt,NGA
+Louisville,USA
+Zaoyang,CHN
+Shuizhai,CHN
+Xingyi,CHN
+Kota,IND
+Quetta,PAK
+Ottawa,CAN
+Stockholm,SWE
+Asmara,ERI
+Freetown,SLE
+Vientiane,LAO
+Jerusalem,ISR
+Bangui,CAF
+Panama City,PAN
+Amsterdam,NLD
+Lomé,TGO
+Libreville,GAB
+Zagreb,HRV
+Dushanbe,TJK
+Lilongwe,MWI
+Cotonou,BEN
+Colombo,LKA
+Pretoria,ZAF
+Winnipeg,CAN
+Quebec City,CAN
+Oslo,NOR
+Athens,GRC
+Bujumbura,BDI
+Helsinki,FIN
+Skopje,MKD
+Chisinau,MDA
+Riga,LVA
+Kingston,JAM
+Rabat,MAR
+Vilnius,LTU
+San Salvador,SLV
+Djibouti,DJI
+Dublin,IRL
+The Hague,NLD
+Asunción,PRY
+Lisbon,PRT
+Bratislava,SVK
+Kitchener,CAN
+Tallinn,EST
+Beirut,LBN
+Cape Town,ZAF
+Tirana,ALB
+Wellington,NZL
+Dodoma,TZA
+Halifax,CAN
+Bissau,GNB
+Canberra,AUS
+Juba,SSD
+Yamoussoukro,CIV
+Victoria,CAN
+Maseru,LSO
+Nicosia,CYP
+Windhoek,NAM
+Port Moresby,PNG
+Porto-Novo,BEN
+Sucre,BOL
+San José,CRI
+Ljubljana,SVN
+Sarajevo,BIH
+Nassau,BHS
+Bloemfontein,ZAF
+Fort-de-France,MTQ
+New Delhi,IND
+Gaborone,BWA
+Paramaribo,SUR
+Dili,TLS
+Male,MDV
+Georgetown,GUY
+Gibraltar,GIB
+Saint-Denis,REU
+Malabo,GNQ
+Podgorica,MNE
+Manama,BHR
+Port Louis,MUS
+Willemstad,CUW
+Bern,CHE
+Papeete,PYF
+Luxembourg,LUX
+Reykjavík,ISL
+Praia,CPV
+Sri Jayewardenepura Kotte,LKA
+Bridgetown,BRB
+Moroni,COM
+Thimphu,BTN
+Mbabane,SWZ
+Nouméa,NCL
+Honiara,SLB
+Suva,FJI
+Ankara,TUR
+Castries,LCA
+Cayenne,GUF
+São Tomé,STP
+Port-Vila,VUT
+Hamilton,BMU
+Bandar Seri Begawan,BRN
+Monaco,MCO
+Gitega,BDI
+Port of Spain,TTO
+Apia,WSM
+Tarawa,KIR
+Oranjestad,ABW
+Saint Helier,JEY
+Banjul,GMB
+Mamoudzou,MYT
+Majuro,MHL
+Douglas,IMN
+George Town,CYM
+Victoria,SYC
+Kingstown,VCT
+Andorra la Vella,AND
+Saint John’s,ATG
+Nuku‘alofa,TON
+Ashgabat,TKM
+Nuuk,GRL
+Belmopan,BLZ
+Roseau,DMA
+Basseterre,KNA
+Tórshavn,FRO
+Pago Pago,ASM
+Valletta,MLT
+Gaza,XGZ
+Grand Turk,TCA
+Palikir,FSM
+Funafuti,TUV
+Vaduz,LIE
+Lobamba,SWZ
+Avarua,COK
+Saint George’s,GRD
+San Marino,SMR
+Al Quds,XWB
+Capitol Hill,MNP
+Stanley,FLK
+Vatican City,VAT
+Alofi,NIU
+Basse-Terre,GLP
+Hagåtña,GUM
+Marigot,MAF
+Jamestown,SHN
+Brades,MSR
+Philipsburg,SXM
+Yaren,NRU
+Pristina,XKS
+Gustavia,BLM
+Road Town,VGB
+Ngerulmud,PLW
+Saint-Pierre,SPM
+The Valley,AIA
+Mata-Utu,WLF
+Kingston,NFK
+Longyearbyen,XSV
+Tifariti,MAR
+Adamstown,PCN
+Flying Fish Cove,CXR
+King Edward Point,SGS
+Bareilly,IND
+Quảng Hà,VNM
+Xingcheng,CHN
+Dongtai,CHN
+Al Manşūrah,EGY
+Yingcheng,CHN
+Chiba,JPN
+Pekanbaru,IDN
+Luocheng,CHN
+Dnipro,UKR
+Danyang,CHN
+Natal,BRA
+Nada,CHN
+Zamboanga City,PHL
+Kirkuk,IRQ
+Naples,ITA
+Wuchuan,CHN
+Huilong,CHN
+Oklahoma City,USA
+Morelia,MEX
+Cebu City,PHL
+Shaoxing,CHN
+Coimbatore,IND
+Santo Domingo Este,DOM
+Setagaya,JPN
+Sŏngnam,KOR
+Taishan,CHN
+Fangchenggang,CHN
+Solāpur,IND
+Tangier,MAR
+Anqiu,CHN
+Feicheng,CHN
+Kermānshāh,IRN
+Kitakyūshū,JPN
+Meishan,CHN
+Khartoum North,SDN
+Kisangani,COD
+Aguascalientes,MEX
+Marrakech,MAR
+Donetsk,UKR
+Trujillo,PER
+Taihe,CHN
+Bridgeport,USA
+Trichinopoly,IND
+Xin’an,CHN
+Taihecun,CHN
+Naucalpan de Juárez,MEX
+Owerri,NGA
+Padang,IDN
+Qingzhou,CHN
+Buffalo,USA
+Lichuan,CHN
+Daye,CHN
+Fort Worth,USA
+Hengzhou,CHN
+Campo Grande,BRA
+Zhuanghe,CHN
+Hartford,USA
+Bobo-Dioulasso,BFA
+Ad Dammām,SAU
+Lhasa,CHN
+Jiaozhou,CHN
+Taguig City,PHL
+Mérida,MEX
+Yangchun,CHN
+Bucheon,KOR
+Dengtalu,CHN
+Antipolo,PHL
+Hubli,IND
+Abeokuta,NGA
+Cancún,MEX
+Tucson,USA
+Krasnodar,RUS
+Natal,BRA
+Chihuahua,MEX
+Klang,MYS
+Turin,ITA
+Ar Ramādī,IRQ
+Laiyang,CHN
+Sale,MAR
+Jalandhar,IND
+Kaifeng Chengguanzhen,CHN
+Ikeja,NGA
+Malang,IDN
+Marseille,FRA
+Saltillo,MEX
+Gaomi,CHN
+Ipoh,MYS
+Hai’an,CHN
+Oran,DZA
+Hermosillo,MEX
+Weichanglu,CHN
+Shache,CHN
+Leping,CHN
+Hailun,CHN
+Macheng,CHN
+Akure,NGA
+Ilorin,NGA
+Teresina,BRA
+Yuci,CHN
+Omaha,USA
+Saratov,RUS
+Erbil,IRQ
+Iguaçu,BRA
+El Paso,USA
+Pasig City,PHL
+Denpasar,IDN
+Dehui,CHN
+Bhubaneshwar,IND
+Tongchuan,CHN
+Cheongju,KOR
+Warri,NGA
+Pointe-Noire,COG
+Sakai,JPN
+Rongjiawan,CHN
+Butterworth,MYS
+Renqiu,CHN
+Honolulu,USA
+Xindi,CHN
+Wu’an,CHN
+São Bernardo do Campo,BRA
+Gaoyou,CHN
+Culiacán,MEX
+Hejian,CHN
+Yiyang,CHN
+Puxi,CHN
+Zijinglu,CHN
+João Pessoa,BRA
+McAllen,USA
+Querétaro,MEX
+Abaeté,BRA
+Palermo,COL
+Qingping,CHN
+Valencia,ESP
+Niigata,JPN
+Leeds,GBR
+Morādābād,IND
+Hamamatsu,JPN
+Xiangxiang,CHN
+Chaohucun,CHN
+Fuyang,CHN
+Homs,SYR
+Lubango,AGO
+San Luis Potosí,MEX
+Cencheng,CHN
+Dali,CHN
+Hamhŭng,PRK
+Kraków,POL
+Hempstead,USA
+Frankfurt,DEU
+Al ‘Ayn,ARE
+Songzi,CHN
+Laixi,CHN
+Bahawalpur,PAK
+Zhongba,CHN
+Kaduna,NGA
+Qingnian,CHN
+Albuquerque,USA
+Xinhualu,CHN
+Nerima,JPN
+Guangshui,CHN
+Tlajomulco de Zúñiga,MEX
+Samarinda,IDN
+Pietermaritzburg,ZAF
+Changhua,TWN
+Kolhāpur,IND
+Sizhan,CHN
+Ciudad Guayana,VEN
+Cúcuta,COL
+Licheng,CHN
+Ōta-ku,JPN
+Thiruvananthapuram,IND
+Tyumen,RUS
+Nampula,MOZ
+Zaporizhzhia,UKR
+Chengguan,CHN
+Kumamoto,JPN
+Nehe,CHN
+Birmingham,USA
+Zunhua,CHN
+Valenzuela,PHL
+Orūmīyeh,IRN
+Wugang,CHN
+Osogbo,NGA
+Shuangqiao,CHN
+Comodoro Rivadavia,ARG
+Cagayan de Oro,PHL
+Langzhong,CHN
+Qian’an,CHN
+Lviv,UKR
+Zouping,CHN
+An Najaf,IRQ
+Sagamihara,JPN
+Sarasota,USA
+Mississauga,CAN
+Okayama,JPN
+Anlu,CHN
+Dayton,USA
+Changsha,CHN
+Torreón,MEX
+Shihezi,CHN
+George Town,MYS
+Enugu,NGA
+Soledad,COL
+Jaboatão,BRA
+Yanggok,KOR
+Yatou,CHN
+Santo André,BRA
+Xichang,CHN
+Bhiwandi,IND
+City of Parañaque,PHL
+Dasmariñas,PHL
+Chengxiang,CHN
+Sahāranpur,IND
+Warangal,IND
+Edogawa,JPN
+Osasco,BRA
+Dashiqiao,CHN
+Latakia,SYR
+Rochester,USA
+Fresno,USA
+Banjarmasin,IDN
+Salem,IND
+General Santos,PHL
+Ḩamāh,SYR
+Bacoor,PHL
+Shishi,CHN
+Guadalupe,MEX
+Adachi,JPN
+Qianxi,CHN
+Tolyatti,RUS
+Macau,MAC
+Bauchi,NGA
+Hamilton,CAN
+Łódź,POL
+Miluo Chengguanzhen,CHN
+Gaizhou,CHN
+Mālegaon,IND
+Karbalā’,IRQ
+Leling,CHN
+São José dos Campos,BRA
+Sevilla,ESP
+Jianshe,CHN
+Shizuoka,JPN
+Jingcheng,CHN
+Kochi,IND
+Allentown,USA
+Tasikmalaya,IDN
+Rasht,IRN
+Xinmin,CHN
+Zhongshu,CHN
+Xigazê,CHN
+Gorakhpur,IND
+As Sulaymānīyah,IRQ
+Zaragoza,ESP
+Acapulco de Juárez,MEX
+Bahār,IRN
+Palermo,ITA
+Guankou,CHN
+Tulsa,USA
+Tlaquepaque,MEX
+Mazatlán,MEX
+Songyang,CHN
+Cape Coral,USA
+Ch’ŏngjin,PRK
+Puyang Chengguanzhen,CHN
+Qionghu,CHN
+Ribeirão Prêto,BRA
+Zhaodong,CHN
+Huambo,AGO
+Wenchang,CHN
+Shulan,CHN
+Tlalnepantla,MEX
+Catia La Mar,VEN
+Sargodha,PAK
+Al Hufūf,SAU
+Durango,MEX
+Jalingo,NGA
+Bouaké,CIV
+Sialkot City,PAK
+San Jose del Monte,PHL
+Ansan,KOR
+Lingbao Chengguanzhen,CHN
+Hwasu-dong,KOR
+Huế,VNM
+Shimoga,IND
+Bulawayo,ZWE
+Xiping,CHN
+Sanhe,CHN
+Guntūr,IND
+Concord,USA
+Contagem,BRA
+Tiruppūr,IND
+Ch’ŏnan,KOR
+Tripoli,LBN
+Honchō,JPN
+Düsseldorf,DEU
+Izhevsk,RUS
+Guixi,CHN
+Sorocaba,BRA
+Petaling Jaya,MYS
+Tengyue,CHN
+Wuxue,CHN
+Kikwit,COD
+Colorado Springs,USA
+Qufu,CHN
+Gaobeidian,CHN
+Ruiming,CHN
+Wrocław,POL
+Gold Coast,AUS
+Xinshi,CHN
+Ta‘izz,YEM
+Aracaju,BRA
+Cochabamba,BOL
+Jeonju,KOR
+Jin’e,CHN
+Barnaul,RUS
+Makati City,PHL
+Stuttgart,DEU
+Rotterdam,NLD
+Changping,CHN
+Benghazi,LBY
+Kryvyi Rih,UKR
+Raurkela,IND
+Ḩalwān,EGY
+Charleston,USA
+Chimalhuacán,MEX
+Xinxing,CHN
+Suohe,CHN
+Mangalore,IND
+Zhuangyuan,CHN
+Glasgow,GBR
+Namangan,UZB
+Ulyanovsk,RUS
+Irkutsk,RUS
+Nānded,IND
+Jos,NGA
+Pontianak,IDN
+Villa Nueva,GTM
+Bazhou,CHN
+Springfield,USA
+Turpan,CHN
+Las Piñas City,PHL
+Meihekou,CHN
+Jurong,CHN
+Feira de Santana,BRA
+Khabarovsk,RUS
+Xinji,CHN
+Serang,IDN
+Kandahār,AFG
+Sanya,CHN
+San Miguel de Tucumán,ARG
+Yaroslavl,RUS
+Zhangshu,CHN
+Bağcılar,TUR
+Grand Rapids,USA
+Vladivostok,RUS
+Kuantan,MYS
+Gothenburg,SWE
+Cuttack,IND
+Jambi,IDN
+Cimahi,IDN
+Bacolod,PHL
+Zhuozhou,CHN
+Uberlândia,BRA
+Tianchang,CHN
+Kawaguchi,JPN
+Itabashi,JPN
+Suginami-ku,JPN
+Tuxtla,MEX
+Tumkūr,IND
+Leipzig,DEU
+Balikpapan,IDN
+Qamdo,CHN
+Durban,ZAF
+Chānda,IND
+Kagoshima,JPN
+Al Ḩillah,SAU
+Makhachkala,RUS
+Sihui,CHN
+Mar del Plata,ARG
+Irapuato,MEX
+Brampton,CAN
+Luocheng,CHN
+Pereira,COL
+Mission Viejo,USA
+Dortmund,DEU
+Reynosa,MEX
+Chuxiong,CHN
+Zāhedān,IRN
+Jinhua,CHN
+Albany,USA
+Shah Alam,MYS
+Knoxville,USA
+Cuiabá,BRA
+Shangzhi,CHN
+Essen,DEU
+Botou,CHN
+Bucaramanga,COL
+Anyang,KOR
+Genoa,ITA
+Port Sudan,SDN
+Puente Alto,CHL
+Dehra Dūn,IND
+Aţ Ţā’if,SAU
+Bakersfield,USA
+Wancheng,CHN
+Málaga,ESP
+Hachiōji,JPN
+Ogden,USA
+Xiulin,CHN
+Fu’an,CHN
+Tomsk,RUS
+Tonalá,MEX
+Kumul,CHN
+Bristol,GBR
+Luofeng,CHN
+Lingyuan,CHN
+Irbid,JOR
+Baton Rouge,USA
+Huzhou,CHN
+Wencheng,CHN
+Bremen,DEU
+Ciudad Bolívar,VEN
+Durgāpur,IND
+Orenburg,RUS
+Shenzhou,CHN
+Āsansol,IND
+Akron,USA
+Kuiju,CHN
+New Haven,USA
+Zhenzhou,CHN
+Surakarta,IDN
+Jieshou,CHN
+Benguela,AGO
+Ensenada,MEX
+Dangyang,CHN
+Columbia,USA
+Kemerovo,RUS
+Herāt,AFG
+Dresden,DEU
+Bhāvnagar,IND
+Juiz de Fora,BRA
+Luanzhou,CHN
+Hamadān,IRN
+Novokuznetsk,RUS
+Nellore,IND
+Chiclayo,PER
+Manchester,GBR
+Al Ḩudaydah,YEM
+Amrāvati,IND
+Cabinda,AGO
+Korla,CHN
+Huanghua,CHN
+Muntinlupa City,PHL
+Londrina,BRA
+Tabūk,SAU
+Heroica Matamoros,MEX
+Samarkand,UZB
+Xingcheng,CHN
+Kaiyuan,CHN
+Hannover,DEU
+Valledupar,COL
+Fengcheng,CHN
+Ajmer,IND
+Ghulja,CHN
+Tinnevelly,IND
+City of Calamba,PHL
+Xiangyang,CHN
+Fuding,CHN
+An Nāşirīyah,IRQ
+Al Ḩillah,IRQ
+Ibagué,COL
+Ryazan,RUS
+Kassala,SDN
+Chang’an,CHN
+Kermān,IRN
+Kōtō-ku,JPN
+Poznań,POL
+Aksu,CHN
+Salta,ARG
+Astrakhan,RUS
+Wuhai,CHN
+Mingguang,CHN
+Naberezhnyye Chelny,RUS
+Antwerp,BEL
+Touba,SEN
+Ardabīl,IRN
+Bīkaner,IND
+Lyon,FRA
+Agartala,IND
+Ndola,ZMB
+Himeji,JPN
+Tultitlán de Mariano Escobedo,MEX
+Villavicencio,COL
+Ailan Mubage,CHN
+Bandar ‘Abbās,IRN
+Bắc Ninh,VNM
+Ciudad Apodaca,MEX
+Santa Teresa del Tuy,VEN
+Maipú,CHL
+Penza,RUS
+Soacha,COL
+Port Said,EGY
+Yucheng,CHN
+Meknès,MAR
+Arāk,IRN
+Pohang,KOR
+Longzhou,CHN
+Anda,CHN
+Jinghong,CHN
+Sheffield,GBR
+Utsunomiya,JPN
+Suez,EGY
+Nuremberg,DEU
+Liverpool,GBR
+Mesa,USA
+Surrey,CAN
+Heshan,CHN
+Zhoushan,CHN
+Ujjain,IND
+Jiaji,CHN
+Santa Marta,COL
+Joinvile,BRA
+Beining,CHN
+Hải Dương,VNM
+Carrefour,HTI
+Maturín,VEN
+Homyel’,BLR
+Ananindeua,BRA
+Yanji,CHN
+Yicheng,CHN
+Ulhāsnagar,IND
+Lipetsk,RUS
+Al ‘Amārah,IRQ
+Choloma,HND
+Sevastopol,UKR
+Encheng,CHN
+Aden,YEM
+Kitwe,ZMB
+Matsuyama,JPN
+Jhānsi,IND
+Kashgar,CHN
+Palm Bay,USA
+Pingtung,TWN
+Lapu-Lapu City,PHL
+Montería,COL
+Ichikawa,JPN
+Imus,PHL
+Davangere,IND
+Jammu,IND
+Yiwu,CHN
+Belas,AGO
+Talatona,AGO
+Ile-Ife,NGA
+Kirov,RUS
+Jiaxing,CHN
+Mykolaiv,UKR
+Provo,USA
+Meicheng,CHN
+Niterói,BRA
+Matsudo,JPN
+Sukkur,PAK
+Oujda-Angad,MAR
+Taozhou,CHN
+Higashi-ōsaka,JPN
+Johor Bahru,MYS
+Worcester,USA
+Hongjiang,CHN
+Chimbote,PER
+Duisburg,DEU
+Qaraghandy,KAZ
+Ixtapaluca,MEX
+Dengtacun,CHN
+Zhijiang,CHN
+Chengjiao,CHN
+Beipiao,CHN
+Suoluntun,CHN
+Murrieta,USA
+Kota Bharu,MYS
+Ciudad López Mateos,MEX
+Celaya,MEX
+Vinh,VNM
+Duyun,CHN
+Los Mochis,MEX
+Nyala,SDN
+Larkana,PAK
+Nishinomiya-hama,JPN
+‘Ajmān,ARE
+Cheboksary,RUS
+Yuanping,CHN
+Toulouse,FRA
+Edinburgh,GBR
+Belgaum,IND
+Tula,RUS
+Shahe,CHN
+Serra,BRA
+Gaoping,CHN
+Greenville,USA
+Gulbarga,IND
+Dunhua,CHN
+Brookhaven,USA
+Az Zarqā’,JOR
+Sylhet,BGD
+Wichita,USA
+Toledo,USA
+Kaihua,CHN
+Jāmnagar,IND
+Fuyuan,CHN
+Dhūlia,IND
+Gaya,IND
+Florianópolis,BRA
+Chiniot,PAK
+Jiannan,CHN
+Ōita,JPN
+Kaliningrad,RUS
+Nangong,CHN
+Kurashiki,JPN
+Staten Island,USA
+Küçükçekmece,TUR
+San Juan,ARG
+Vila Velha,BRA
+Mazār-e Sharīf,AFG
+Macapá,BRA
+Shekhupura,PAK
+Des Moines,USA
+Piura,PER
+Mandaluyong City,PHL
+Jiaojiangcun,CHN
+Laohekou,CHN
+Kâğıthane,TUR
+Angeles City,PHL
+Pasay City,PHL
+Beian,CHN
+Fujin,CHN
+Leicester,GBR
+Xiaoyi,CHN
+Lanús,ARG
+Qingzhen,CHN
+Ba‘qūbah,IRQ
+Katsushika-ku,JPN
+Buraydah,SAU
+Gdańsk,POL
+Marikina City,PHL
+Manado,IDN
+Campos,BRA
+Calabar,NGA
+Kanazawa,JPN
+Iloilo,PHL
+Long Beach,USA
+Kuqa,CHN
+Jalgaon,IND
+Cranbourne,AUS
+Port St. Lucie,USA
+Murcia,ESP
+Mauá,BRA
+Fukuyama,JPN
+Tel Aviv-Yafo,ISR
+Xicheng,CHN
+Amagasaki,JPN
+Pyeongtaek,KOR
+Kurnool,IND
+Denton,USA
+Melaka,MYS
+Taoyuan District,TWN
+General Trias,PHL
+Jian’ou,CHN
+Huadian,CHN
+Ţanţā,EGY
+Kota Kinabalu,MYS
+Minzhu,CHN
+Bukavu,COD
+Rājshāhi,BGD
+Balashikha,RUS
+Udaipur,IND
+Kursk,RUS
+Mariupol,UKR
+Eslāmshahr,IRN
+San Nicolás de los Garza,MEX
+Hsinchu,TWN
+Barcelona,VEN
+Constantine,DZA
+Tanbei,CHN
+Ado-Ekiti,NGA
+Madison,USA
+Bellary,IND
+Rodriguez,PHL
+Santiago de Cuba,CUB
+Yongji,CHN
+Reno,USA
+Danjiangkou,CHN
+São José do Rio Prêto,BRA
+Fujisawa,JPN
+Andijon,UZB
+Harrisburg,USA
+Machida,JPN
+Ning’an,CHN
+Little Rock,USA
+Zhangjiakou Shi Xuanhua Qu,CHN
+Zürich,CHE
+Sunch’ŏn,PRK
+Jinchang,CHN
+Kashiwa,JPN
+Guangming,CHN
+Sāngli,IND
+Tuticorin,IND
+Beira,MOZ
+Kupang,IDN
+Jeju,KOR
+Caxias do Sul,BRA
+Santos,BRA
+Manizales,COL
+Stavropol,RUS
+Yogyakarta,IDN
+Calicut,IND
+Veracruz,MEX
+Zanjān,IRN
+Cusco,PER
+Welkom,ZAF
+Ulan-Ude,RUS
+Oakland,USA
+Shinagawa-ku,JPN
+Kāshān,IRN
+Kenitra,MAR
+Uyo,NGA
+Sokoto,NGA
+Masan,KOR
+Sidi Bouzid,TUN
+Porto Velho,BRA
+Sihŭng,KOR
+Xalapa,MEX
+Florencio Varela,ARG
+Uijeongbu,KOR
+Akola,IND
+Aomori,JPN
+Yan’an Beilu,CHN
+Agadir,MAR
+Mogi das Cruzes,BRA
+Durham,USA
+Diadema,BRA
+Likasi,COD
+Buenaventura,COL
+Yazd,IRN
+Laval,CAN
+Toyota,JPN
+Santa Rosa,PHL
+Winston-Salem,USA
+Tver,RUS
+Elazığ,TUR
+Hpa-An,MMR
+Palma,ESP
+Bonita Springs,USA
+Mishan,CHN
+Hailin,CHN
+Seremban,MYS
+Lecheng,CHN
+Zhengjiatun,CHN
+Luhansk,UKR
+Pencheng,CHN
+Magnitogorsk,RUS
+Takamatsu,JPN
+El Obeid,SDN
+Dalai,CHN
+Xingren,CHN
+Kolwezi,COD
+Wenlan,CHN
+Indio,USA
+Palm Coast,USA
+Biñan,PHL
+Arusha,TZA
+Fenyang,CHN
+Paju,KOR
+Mataram,IDN
+Chattanooga,USA
+Kisumu,KEN
+Jhang City,PAK
+Nagqu,CHN
+Jayapura,IDN
+Rio Branco,BRA
+Toyama,JPN
+Fangting,CHN
+Sanandaj,IRN
+Linghai,CHN
+Toyonaka,JPN
+Spokane,USA
+Sochi,RUS
+Bhāgalpur,IND
+Ivanovo,RUS
+Türkmenabat,TKM
+Zaria,NGA
+Bryansk,RUS
+Asyūţ,EGY
+Taiping,CHN
+Mbale,UGA
+Maracay,VEN
+Jiexiu,CHN
+Santa Fe,ARG
+Campina Grande,BRA
+Nagasaki,JPN
+Szczecin,POL
+Syracuse,USA
+Maringá,BRA
+Carapicuíba,BRA
+Qazvīn,IRN
+Quilon,IND
+Jundiaí,BRA
+Hirakata,JPN
+Gifu,JPN
+Lancaster,USA
+Sīkar,IND
+Jiangjiafan,CHN
+Dera Ghazi Khan,PAK
+Mwanza,TZA
+Arlington,USA
+Xushan,CHN
+Miyazaki,JPN
+Yuyao,CHN
+Stockton,USA
+Bhātpāra,IND
+Sandakan,MYS
+Taytay,PHL
+Hejin,CHN
+Thanh Hóa,VNM
+Minamisuita,JPN
+Poughkeepsie,USA
+Yokosuka,JPN
+Nha Trang,VNM
+Belgorod,RUS
+Malabon,PHL
+Yola,NGA
+Lobito,AGO
+Saurimo,AGO
+Olinda,BRA
+Esenler,TUR
+Gujrat,PAK
+Ad Dīwānīyah,IRQ
+Piracicaba,BRA
+Hancheng,CHN
+Karamay,CHN
+Kākināda,IND
+Augusta,USA
+Bhīlwāra,IND
+Tieli,CHN
+Cilegon,IDN
+Nizāmābād,IND
+Bologna,ITA
+Boise,USA
+Esenyurt,TUR
+Tétouan,MAR
+Aqtöbe,KAZ
+Oxnard,USA
+Oyo,NGA
+Tarlac City,PHL
+Okazaki,JPN
+Cainta,PHL
+Ḩā’il,SAU
+Yidu,CHN
+Lianzhou,CHN
+Florence,ITA
+Christchurch,NZL
+Nuevo Laredo,MEX
+Scranton,USA
+Brno,CZE
+London,CAN
+Novi Sad,SRB
+Gusau,NGA
+Modesto,USA
+Pasto,COL
+Kissimmee,USA
+Las Palmas,ESP
+Ichinomiya,JPN
+Pānihāti,IND
+Huancayo,PER
+Aurora,USA
+Betim,BRA
+Sintra,PRT
+Parbhani,IND
+Usulután,SLV
+Youngstown,USA
+Iquitos,PER
+Helixi,CHN
+Manukau City,NZL
+Cumaná,VEN
+Rohtak,IND
+Vinnytsia,UKR
+Lātūr,IND
+Lipa City,PHL
+Mandaue City,PHL
+Bello,COL
+Khorramābād,IRN
+Ambon,IDN
+Butuan,PHL
+Keelung,TWN
+Toyohashi,JPN
+Baguio City,PHL
+La Florida,CHL
+Lengshuijiang,CHN
+Anguo,CHN
+Kita-ku,JPN
+Rājapālaiyam,IND
+Panshi,CHN
+Madan,IRN
+Plovdiv,BGR
+Az Zubayr,IRQ
+Al Qaţīf,SAU
+Takasaki,JPN
+Huichang,CHN
+Vitsyebsk,BLR
+Nagano,JPN
+Bauru,BRA
+Yanjiao,CHN
+Bochum,DEU
+Tecámac,MEX
+Anápolis,BRA
+Coventry,GBR
+Shinjuku,JPN
+Wŏnsan,PRK
+Caerdydd,GBR
+Iligan,PHL
+Cabuyao,PHL
+Nakano,JPN
+Bengkulu,IDN
+Orizaba,MEX
+Blumenau,BRA
+Montes Claros,BRA
+Pétion-Ville,HTI
+Shuanghejiedao,CHN
+Umuahia,NGA
+Surgut,RUS
+Gedaref,SDN
+Palu,IDN
+Pokhara,NPL
+Mahilyow,BLR
+Wudalianchi,CHN
+Sungai Petani,MYS
+Nam Định,VNM
+Vitória,BRA
+Hrodna,BLR
+Vladimir,RUS
+São Vicente,BRA
+Taraz,KAZ
+Cubal,AGO
+Kawagoe,JPN
+Ibb,YEM
+Yong’an,CHN
+Wuppertal,DEU
+Manisa,TUR
+San Fernando,PHL
+Minatitlán,MEX
+Nizhniy Tagil,RUS
+San Pedro,PHL
+Hongzhai,CHN
+Wakayama,JPN
+Bilbao,ESP
+Rahimyar Khan,PAK
+Pavlodar,KAZ
+Gimpo,KOR
+Itaquaquecetuba,BRA
+Nara,JPN
+Van,TUR
+Corrientes,ARG
+Neiva,COL
+Arkhangelsk,RUS
+Batangas,PHL
+Licheng,CHN
+Koshigaya,JPN
+Sinŭiju,PRK
+Cabimas,VEN
+Yueqing,CHN
+Yakeshi,CHN
+Ahmadnagar,IND
+Fayetteville,USA
+Takatsuki,JPN
+Holguín,CUB
+Qoqon,UZB
+Anaheim,USA
+Semey,KAZ
+Varna,BGR
+Yingmen,CHN
+Cariacica,BRA
+Palmira,COL
+Tapachula,MEX
+Konak,TUR
+Bydgoszcz,POL
+Hatay,TUR
+Antofagasta,CHL
+Rājahmundry,IND
+Chita,RUS
+Chitungwiza,ZWE
+Caruaru,BRA
+Utrecht,NLD
+Pensacola,USA
+Victorville,USA
+Tanch’ŏn,PRK
+Tokorozawa,JPN
+Nice,FRA
+Sumqayıt,AZE
+Kūstī,SDN
+Cuddapah,IND
+Simferopol,UKR
+Ōtsu,JPN
+Vitória da Conquista,BRA
+Lancaster,USA
+Makiivka,UKR
+East London,ZAF
+Greensboro,USA
+Uruapan,MEX
+Gómez Palacio,MEX
+Franca,BRA
+Brest,BLR
+Kaluga,RUS
+Corpus Christi,USA
+Muzaffarpur,IND
+Yeosu,KOR
+Lublin,POL
+Alwar,IND
+Brahmapur,IND
+Lianran,CHN
+Buôn Ma Thuột,VNM
+Cuernavaca,MEX
+Beni,COD
+Randburg,ZAF
+Alicante,ESP
+Jitpur,NPL
+Kaesŏng,PRK
+Petrolina,BRA
+Chinju,KOR
+Tangdong,CHN
+Hangu,CHN
+Belfast,GBR
+Iwaki,JPN
+Blida,DZA
+Salamanca,MEX
+Yingzhong,CHN
+Hirosaki,JPN
+Viña del Mar,CHL
+Nazrēt,ETH
+Bielefeld,DEU
+Cuenca,ECU
+Al Fayyūm,EGY
+Fort Wayne,USA
+Ciudad Obregón,MEX
+Wad Medani,SDN
+Ribeirão das Neves,BRA
+Soledad de Graciano Sánchez,MEX
+Bonn,DEU
+Kāmārhāti,IND
+Maebashi,JPN
+Thessaloníki,GRC
+Gəncə,AZE
+Mymensingh,BGD
+Santa Ana,USA
+Flint,USA
+Kendari,IDN
+Thái Nguyên,VNM
+Smolensk,RUS
+Asahikawa,JPN
+Islip,USA
+Dahūk,IRQ
+Wŏnju,KOR
+Mathura,IND
+Nakuru,KEN
+Lafia,NGA
+Koriyama,JPN
+Bamiantong,CHN
+Patiāla,IND
+Taourirt,MAR
+İzmir,TUR
+Vũng Tàu,VNM
+Cabanatuan City,PHL
+Markham,CAN
+Saugor,IND
+Pelotas,BRA
+Roodepoort,ZAF
+Volzhskiy,RUS
+Bijāpur,IND
+Sukabumi,IDN
+Fayetteville,USA
+Ulanhot,CHN
+Yunzhong,CHN
+Cotabato,PHL
+Al Fallūjah,IRQ
+Kōchi,JPN
+Minna,NGA
+Boa Vista,BRA
+Cluj-Napoca,ROU
+Canoas,BRA
+Gwangmyeongni,KOR
+Bari,ITA
+Pucallpa,PER
+Yıldırım,TUR
+Kuching,MYS
+Tepic,MEX
+Caucaia,BRA
+Gonder,ETH
+Uberaba,BRA
+Jackson,USA
+Mekele,ETH
+Santa Rosa,USA
+Gonaïves,HTI
+Guasave,MEX
+Lansing,USA
+Naha,JPN
+Binxian,CHN
+San Juan,PRI
+Lexington,USA
+Hotan,CHN
+Dongyang,CHN
+Ciudad del Este,PRY
+Kaiyuan,CHN
+Temara,MAR
+Uíge,AGO
+Córdoba,ESP
+Camagüey,CUB
+Ann Arbor,USA
+San Salvador de Jujuy,ARG
+Timişoara,ROU
+Al Kūt,IRQ
+Shāhjānpur,IND
+Cherepovets,RUS
+San Miguelito,PAN
+Menongue,AGO
+Jūnāgadh,IND
+Katsina,NGA
+Henderson,USA
+Poltava,UKR
+Maroua,CMR
+Kaech’ŏn,PRK
+Asan,KOR
+Tehuacán,MEX
+Coatzacoalcos,MEX
+Nukus,UZB
+Huntsville,USA
+Öskemen,KAZ
+Nantes,FRA
+Zalantun,CHN
+Trichūr,IND
+Binangonan,PHL
+Cirebon,IDN
+Münster,DEU
+Az Zaqāzīq,EGY
+Boaco,NIC
+Cà Mau,VNM
+Toshima,JPN
+Vologda,RUS
+Saransk,RUS

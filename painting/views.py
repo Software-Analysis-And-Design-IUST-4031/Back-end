@@ -190,7 +190,7 @@ class SortedPaintingsByLikesView(ListAPIView):
     permission_classes = [AllowAny]
 
     def get_queryset(self):
-        # Annotate each painting with the count of likes and order by likes_count
+        
         return Painting.objects.annotate(likes_count=models.Count('likes')).order_by('-likes_count')
 
     def list(self, request, *args, **kwargs):

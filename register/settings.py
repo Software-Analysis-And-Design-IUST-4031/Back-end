@@ -45,9 +45,11 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_framework_simplejwt',
     'corsheaders',
-    
-    
+    'utils',
+    'django_countries',
 ]
+    
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -106,16 +108,7 @@ WSGI_APPLICATION = 'register.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Tahlil403',
-        'USER' : 'postgres',
-        'PASSWORD' : 'aida-tahlil',
-        'HOST': 'localhost',
-        
-    }
-}
+
 
 # DATABASES = {
 #     'default': {
@@ -127,6 +120,17 @@ DATABASES = {
         
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'Tahlil403',
+        'USER' : 'postgres',
+        'PASSWORD' : 'aida-tahlil',
+        'HOST': 'localhost',
+        
+    }
+}
 
 
 # Password validation
