@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'utils',
     'django_countries',
+    'blog',
 ]
     
 

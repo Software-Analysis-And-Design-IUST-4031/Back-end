@@ -55,8 +55,8 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     city = models.CharField(max_length=100, null=True, blank=True)
     is_gallery = models.BooleanField(default=False)
     profile_picture = models.ImageField(upload_to='profile_pictures/', null=True, blank=True)
-    Theme = models.CharField(max_length=255, null=True, blank=True)
-    Dark_light_theme = models.CharField(max_length=255, null=True, blank=True)
+    # Theme = models.CharField(max_length=255, null=True, blank=True)
+    # Dark_light_theme = models.CharField(max_length=255, null=True, blank=True)
     
 
     favorite_painter = models.CharField(max_length=255 , null=True , blank=True)

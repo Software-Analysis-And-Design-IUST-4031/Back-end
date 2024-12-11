@@ -22,13 +22,11 @@ class CityListAPIView(APIView):
     """
 
     def get(self, request, country_iso3):
-        # Get the country using its ISO3 code
         try:
             country = Country.objects.get(iso3_code=country_iso3)
         except Country.DoesNotExist:
             return Response({"detail": "Country not found."}, status=status.HTTP_404_NOT_FOUND)
 
-        # Retrieve all cities for the given country
         cities = City.objects.filter(country=country)
         serializer = CitySerializer(cities, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
