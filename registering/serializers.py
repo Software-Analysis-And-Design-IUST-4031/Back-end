@@ -3,6 +3,7 @@ from .models import CustomUser
 from painting.models import Painting
 from django.db.models import Count
 
+
 class UserRegistrationSerializer(serializers.ModelSerializer):
     confirm_password = serializers.CharField(write_only=True, required=True)
 
@@ -52,10 +53,13 @@ class UserDetailSerializer(serializers.ModelSerializer):
 
 
 class UserUpdateSerializerEditProfile(serializers.ModelSerializer):
+    
+
     class Meta:
         model = CustomUser
-        fields = ['firstname', 'lastname', 'nickname' ,'email' , 'phone_number' ,'date_of_birth' ,'country', 'city' ,'is_gallery','profile_picture' , 'Theme' , 'Dark_light_theme']
+        fields = ['firstname', 'lastname', 'username', 'email', 'country', 'city', 'profile_picture']
 
+    
 
 
 class UserUpdateSerializerFavorites(serializers.ModelSerializer):

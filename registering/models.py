@@ -6,6 +6,7 @@ from painting.models import Painting
 
 
 
+
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
         if not email:
@@ -78,6 +79,8 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     )
     number_of_paintings = models.IntegerField(default=0)
     number_of_artists = models.IntegerField(default=0)
+
+    
 
 
     USERNAME_FIELD = 'username'

@@ -21,6 +21,7 @@ from painting.models import Painting
 
 
 
+
 class UserRegistrationAPIView(APIView):
     serializer_class = UserRegistrationSerializer
     permission_classes = (AllowAny,)
@@ -138,13 +139,31 @@ class UserUpdateAPIViewEditProfile(APIView):
 
     def put(self, request, user_id):
         try:
+            # Get the user or return 404 if not found
             user = get_object_or_404(CustomUser, user_id=user_id)
+
+            # Update the 'is_gallery' field if it is provided
             if 'is_gallery' in request.data:
-           
                 user.is_gallery = bool(request.data['is_gallery'])
-            
+
+            # Handle the 'country' field if provided
+            if 'country' in request.data:
+                country_name = request.data['country']
+                country = get_object_or_404(Country, name=country_name)
+                user.country = country
+
+            # Handle the 'city' field if provided
+            if 'city' in request.data:
+                city_name = request.data['city']
+                city = get_object_or_404(City, name=city_name)
+                user.city = city
+
+            # Serialize the updated user data
             serializer = self.serializer_class(user, data=request.data, partial=True)
+
+            # Check if the serializer is valid
             if serializer.is_valid():
+                # Save the updated user profile
                 serializer.save()
                 return Response(
                     {"message": "User profile updated successfully.", "user": serializer.data},
@@ -165,6 +184,7 @@ class UserUpdateAPIViewEditProfile(APIView):
                 {"error": "Internal server error", "details": str(e)},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
+        
 
 
 
@@ -305,3 +325,40 @@ class ListGalleriesAPIView(APIView):
         galleries = CustomUser.objects.filter(is_gallery=True)
         serializer = GallerySerializer(galleries, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+
+
+
+class UserLocationUpdateAPIView(APIView):
+    """
+    API view to update a user's country and city.
+    """
+
+    permission_classes = [IsAuthenticated] 
+    def post(self, request):
+        country_iso3 = request.data.get('country_iso3')
+        city_id = request.data.get('city_id')
+        if not country_iso3 or not city_id:
+            return Response({"detail": "Both country and city must be selected."}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+           
+            country = Country.objects.get(iso3_code=country_iso3)
+        except Country.DoesNotExist:
+            return Response({"detail": "Country not found."}, status=status.HTTP_404_NOT_FOUND)
+
+        try:
+            # Fetch the city based on its ID and ensure it belongs to the selected country
+            city = City.objects.get(id=city_id, country=country)
+        except City.DoesNotExist:
+            return Response({"detail": "City not found for the selected country."}, status=status.HTTP_404_NOT_FOUND)
+
+        # Get the current user
+        user = request.user
+
+        # Update the user's country and city fields
+        user.country = country
+        user.city = city
+        user.save()
+
+        return Response({"detail": "User country and city updated successfully."}, status=status.HTTP_200_OK)
