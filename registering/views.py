@@ -139,31 +139,13 @@ class UserUpdateAPIViewEditProfile(APIView):
 
     def put(self, request, user_id):
         try:
-            # Get the user or return 404 if not found
             user = get_object_or_404(CustomUser, user_id=user_id)
-
-            # Update the 'is_gallery' field if it is provided
             if 'is_gallery' in request.data:
+           
                 user.is_gallery = bool(request.data['is_gallery'])
-
-            # Handle the 'country' field if provided
-            if 'country' in request.data:
-                country_name = request.data['country']
-                country = get_object_or_404(Country, name=country_name)
-                user.country = country
-
-            # Handle the 'city' field if provided
-            if 'city' in request.data:
-                city_name = request.data['city']
-                city = get_object_or_404(City, name=city_name)
-                user.city = city
-
-            # Serialize the updated user data
+            
             serializer = self.serializer_class(user, data=request.data, partial=True)
-
-            # Check if the serializer is valid
             if serializer.is_valid():
-                # Save the updated user profile
                 serializer.save()
                 return Response(
                     {"message": "User profile updated successfully.", "user": serializer.data},
@@ -184,7 +166,7 @@ class UserUpdateAPIViewEditProfile(APIView):
                 {"error": "Internal server error", "details": str(e)},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
-        
+
 
 
 

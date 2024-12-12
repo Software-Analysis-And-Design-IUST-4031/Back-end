@@ -111,27 +111,27 @@ WSGI_APPLICATION = 'register.wsgi.application'
 
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Tahlil403',
-        'USER' : 'root',
-        'PASSWORD' : '8hHqNdzVWmodVrLiTb6YeKSt',
-        'HOST': 'uvaxztras',
-        
-    }
-}
-
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
 #         'NAME': 'Tahlil403',
-#         'USER' : 'postgres',
-#         'PASSWORD' : 'aida-tahlil',
-#         'HOST': 'localhost',
-#         'PORT': '5432',
+#         'USER' : 'root',
+#         'PASSWORD' : '8hHqNdzVWmodVrLiTb6YeKSt',
+#         'HOST': 'uvaxztras',
+        
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'Tahlil403',
+        'USER' : 'postgres',
+        'PASSWORD' : 'aida-tahlil',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
 
 
 # Password validation
