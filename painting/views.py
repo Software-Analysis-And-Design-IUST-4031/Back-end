@@ -107,9 +107,6 @@ class AddPaintingView(CreateAPIView):
 
 
 
-
-
-
 class LikePaintingView(CreateAPIView):
     """
     View to like a painting by a user.

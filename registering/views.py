@@ -41,6 +41,8 @@ class UserRegistrationAPIView(APIView):
 
 
 
+
+
 class UserLoginAPIView(APIView):
     serializer_class = UserLoginSerializer
     permission_classes = (AllowAny,)
@@ -50,8 +52,6 @@ class UserLoginAPIView(APIView):
         if serializer.is_valid(raise_exception=True):
             username = serializer.validated_data.get('username')
             password = serializer.validated_data.get('password')
-
-            # CustomUser = get_user_model()
 
             user_model = get_user_model()
 
@@ -63,14 +63,15 @@ class UserLoginAPIView(APIView):
 
             refresh = RefreshToken.for_user(user_instance)
             access_token = str(refresh.access_token)
+
+        
             return Response({
                 'message': 'Login successful.',
                 'access': access_token,
                 'refresh': str(refresh),
+                'user_id': user_instance.user_id,  
             }, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
 
 
 

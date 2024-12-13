@@ -1,8 +1,8 @@
 from django.urls import path
-from .views import PaintingDetailView, UserPaintingsView, AddPaintingView , LikePaintingView ,  GetPaintingLikesView , TopPaintingView , SortedPaintingsByLikesView
+from .views import PaintingDetailView, UserPaintingsView, AddPaintingView ,LikePaintingView ,  GetPaintingLikesView , TopPaintingView , SortedPaintingsByLikesView
 
 urlpatterns = [
-    path('<int:painting_id>/', PaintingDetailView.as_view()),
+    path('paintings/<int:painting_id>/', PaintingDetailView.as_view()),
     path('user/<int:user_id>/paintings/', UserPaintingsView.as_view()),
     path('user/<int:user_id>/paintings/add/', AddPaintingView.as_view()),
     path('paintings/<int:painting_id>/like/', LikePaintingView.as_view(), name='like_painting'),
