@@ -25,6 +25,11 @@ urlpatterns = [
     # path('api/', include('sign.urls')),
     path('api/', include('registering.urls')),
     path('api/painting/',include('painting.urls')),
+<<<<<<< Updated upstream
+=======
+    path('api/blogs/', include('blog.urls')),
+    path('api/country/',include('utils.urls')),
+>>>>>>> Stashed changes
     # path('api/gallery/', include('gallery.urls')),
 ]
 

@@ -46,7 +46,11 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'corsheaders',
     'utils',
+<<<<<<< Updated upstream
     'django_countries',
+=======
+    'blog',
+>>>>>>> Stashed changes
 ]
     
 
@@ -110,27 +114,33 @@ WSGI_APPLICATION = 'register.wsgi.application'
 
 
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'Tahlil403',
-#         'USER' : 'root',
-#         'PASSWORD' : '8hHqNdzVWmodVrLiTb6YeKSt',
-#         'HOST': 'uvaxztras',
-        
-#     }
-# }
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'Tahlil403',
+<<<<<<< Updated upstream
         'USER' : 'postgres',
         'PASSWORD' : 'aida-tahlil',
         'HOST': 'localhost',
+=======
+        'USER' : 'root',
+        'PASSWORD' : '8hHqNdzVWmodVrLiTb6YeKSt',
+        'HOST': 'uvaxztras',
+>>>>>>> Stashed changes
         
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'Tahlil403',
+#         'USER' : 'postgres',
+#         'PASSWORD' : 'aida-tahlil',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
 
 
 # Password validation

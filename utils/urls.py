@@ -1,8 +1,8 @@
-# urls.py
 from django.urls import path
-from utils import views
+from .views import GetCountriesView, GetCitiesByCountryView, SaveUserSelectionView
 
 urlpatterns = [
-    path('api/countries/', views.CountryListAPIView.as_view(), name='country-list'),
-    path('api/cities/<str:country_iso3>/', views.CityListAPIView.as_view(), name='city-list'),
+    path('countries/', GetCountriesView.as_view(), name='get_countries'),
+    path('cities/<str:country_name>/', GetCitiesByCountryView.as_view(), name='get_cities_by_country'),
+    path('save-user-selection/', SaveUserSelectionView.as_view(), name='save_user_selection'),
 ]
