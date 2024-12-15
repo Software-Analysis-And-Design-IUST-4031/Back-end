@@ -234,6 +234,7 @@ class SortedPaintingsByLikesView(ListAPIView):
 
 
 
+
 class UserLikesSumView(ListAPIView):
     serializer_class = UserLikesSumSerializer
     pagination_class = PageNumberPagination
@@ -246,7 +247,7 @@ class UserLikesSumView(ListAPIView):
             total_likes=Count('id')
         ).values('total_likes')
 
-      
+       
         user_likes_subquery = Painting.objects.filter(
             artist=OuterRef('pk')
         ).annotate(
@@ -255,6 +256,7 @@ class UserLikesSumView(ListAPIView):
             total_likes=Sum('painting_likes')
         ).values('total_likes')
 
+     
         queryset = CustomUser.objects.annotate(
             total_likes=Subquery(user_likes_subquery, output_field=models.IntegerField())
         ).exclude(total_likes=None).order_by('-total_likes')
@@ -264,9 +266,10 @@ class UserLikesSumView(ListAPIView):
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset()
         page = self.paginate_queryset(queryset)
+
+       
         if page is not None:
             serializer = self.get_serializer(page, many=True)
-            
             response_data = {
                 "users": serializer.data,
                 "pagination": {
@@ -278,8 +281,18 @@ class UserLikesSumView(ListAPIView):
             }
             return Response(response_data, status=status.HTTP_200_OK)
 
+       
         serializer = self.get_serializer(queryset, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        response_data = {
+            "users": serializer.data,
+            "pagination": {
+                "page": 1,  
+                "limit": 10,  
+                "totalPages": 1, 
+                "totalUsers": len(queryset)  
+            }
+        }
+        return Response(response_data, status=status.HTTP_200_OK)
 
 
 
@@ -385,6 +398,61 @@ class UserLikesSumView(ListAPIView):
 
 
 
+
+
+
+
+
+
+
+
+
+# class UserLikesSumView(ListAPIView):
+#     serializer_class = UserLikesSumSerializer
+#     pagination_class = PageNumberPagination
+
+#     def get_queryset(self):
+       
+#         painting_likes_subquery = Like.objects.filter(
+#             painting=OuterRef('pk')
+#         ).values('painting').annotate(
+#             total_likes=Count('id')
+#         ).values('total_likes')
+
+      
+#         user_likes_subquery = Painting.objects.filter(
+#             artist=OuterRef('pk')
+#         ).annotate(
+#             painting_likes=Subquery(painting_likes_subquery, output_field=models.IntegerField())
+#         ).values('artist').annotate(
+#             total_likes=Sum('painting_likes')
+#         ).values('total_likes')
+
+#         queryset = CustomUser.objects.annotate(
+#             total_likes=Subquery(user_likes_subquery, output_field=models.IntegerField())
+#         ).exclude(total_likes=None).order_by('-total_likes')
+
+#         return queryset
+
+#     def list(self, request, *args, **kwargs):
+#         queryset = self.get_queryset()
+#         page = self.paginate_queryset(queryset)
+#         if page is not None:
+#             serializer = self.get_serializer(page, many=True)
+            
+#             response_data = {
+#                 "users": serializer.data,
+#                 "pagination": {
+#                     "page": self.paginator.page.number,
+#                     "limit": self.paginator.page_size,
+#                     "totalPages": self.paginator.page.paginator.num_pages,
+#                     "totalUsers": self.paginator.page.paginator.count
+#                 }
+#             }
+#             return Response(response_data, status=status.HTTP_200_OK)
+
+#         serializer = self.get_serializer(queryset, many=True)
+#         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 
