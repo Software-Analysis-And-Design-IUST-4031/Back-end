@@ -230,15 +230,15 @@ class SortedPaintingsByLikesView(ListAPIView):
 
 
 
+
+
 class UserLikesSumView(ListAPIView):
     """
     View to list users based on the sum of likes of all their paintings.
     """
     serializer_class = UserLikesSumSerializer
-    pagination_class = PageNumberPagination
 
     def get_queryset(self):
-        
         queryset = CustomUser.objects.annotate(
             total_likes=Sum('paintings__likes')  
         ).exclude(total_likes=None).order_by('-total_likes')
@@ -246,14 +246,70 @@ class UserLikesSumView(ListAPIView):
 
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset()
-        page = self.paginate_queryset(queryset)
-        if page is not None:
-            serializer = self.get_serializer(page, many=True)
-            return self.get_paginated_response(serializer.data)
+        page = request.query_params.get('page', 1)  
+        limit = request.query_params.get('limit', 10) 
 
-        serializer = self.get_serializer(queryset, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        paginator = Paginator(queryset, limit)  
 
+        try:
+            users = paginator.page(page)  
+        except PageNotAnInteger:
+            users = paginator.page(1)  
+        except EmptyPage:
+            users = paginator.page(paginator.num_pages)  
+
+        serializer = self.get_serializer(users, many=True)
+
+        response_data = {
+            "users": serializer.data,
+            "pagination": {
+                "page": int(page),
+                "limit": int(limit),
+                "totalPages": paginator.num_pages,
+                "totalUsers": paginator.count
+            }
+        }
+        return Response(response_data, status=status.HTTP_200_OK)
+
+
+
+
+
+
+
+
+# class UserLikesSumView(ListAPIView):
+#     """
+#     View to list users based on the sum of likes of all their paintings.
+#     """
+#     serializer_class = UserLikesSumSerializer
+#     pagination_class = PageNumberPagination
+
+#     def get_queryset(self):
+#         queryset = CustomUser.objects.annotate(
+#             total_likes=Sum('paintings__likes')  
+#         ).exclude(total_likes=None).order_by('-total_likes')
+#         return queryset
+
+#     def list(self, request, *args, **kwargs):
+#         queryset = self.get_queryset()
+#         page = self.paginate_queryset(queryset)
+#         if page is not None:
+#             serializer = self.get_serializer(page, many=True)
+            
+#             response_data = {
+#                 "users": serializer.data,
+#                 "pagination": {
+#                     "page": self.paginator.page.number,
+#                     "limit": self.paginator.page_size,
+#                     "totalPages": self.paginator.page.paginator.num_pages,
+#                     "totalUsers": self.paginator.page.paginator.count
+#                 }
+#             }
+#             return Response(response_data, status=status.HTTP_200_OK)
+
+#         serializer = self.get_serializer(queryset, many=True)
+#         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 
