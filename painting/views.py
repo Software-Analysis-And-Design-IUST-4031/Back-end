@@ -6,10 +6,17 @@ from rest_framework import status
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from rest_framework.views import APIView
 from .models import Painting , Like
-from .serializers import PaintingDetailSerializer, PaintingListSerializer , LikeSerializer
+from .serializers import PaintingDetailSerializer, PaintingListSerializer , LikeSerializer ,UserLikesSumSerializer
 from registering.models import CustomUser
 from django.db.models import Count 
 from django.db import models
+from rest_framework.pagination import PageNumberPagination
+from .serializers import UserLikesSumSerializer
+from django.db.models import Sum
+
+
+
+
 
 
 
@@ -217,6 +224,43 @@ class SortedPaintingsByLikesView(ListAPIView):
             }
         }
         return Response(response_data, status=status.HTTP_200_OK)
+
+
+
+
+
+
+class UserLikesSumView(ListAPIView):
+    """
+    View to list users based on the sum of likes of all their paintings.
+    """
+    serializer_class = UserLikesSumSerializer
+    pagination_class = PageNumberPagination
+
+    def get_queryset(self):
+        
+        queryset = CustomUser.objects.annotate(
+            total_likes=Sum('paintings__likes')  
+        ).exclude(total_likes=None).order_by('-total_likes')
+        return queryset
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+
+
+
+
+
+
 
 
 
