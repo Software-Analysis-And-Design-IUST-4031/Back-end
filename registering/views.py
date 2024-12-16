@@ -24,6 +24,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from registering.filters import CustomUserFilter
 from rest_framework.filters import SearchFilter
 from rest_framework.filters import OrderingFilter
+from rest_framework.viewsets import ModelViewSet
 
 
 
@@ -350,4 +351,22 @@ class UserSearchListAPIView(generics.ListAPIView):
 
 
 
-    
+class UserSearchAdvancedListAPIView(generics.ListAPIView):
+    queryset = CustomUser.objects.all().order_by('firstname')  
+    serializer_class = UserSearchSerializer
+    pagination_class = CustomPagination
+    filter_backends = [SearchFilter, OrderingFilter, DjangoFilterBackend]
+    search_fields = [
+        'firstname', 'lastname', 'username', 'email', 'phone_number',
+        'country', 'city', 'favorite_painter', 'favorite_painting',
+        'favorite_painting_style', 'favorite_painting_technique',
+        'favorite_painting_to_own', 'biography', 'gallery_name', 'description','nickname','date_of_birth'
+    ]
+    ordering_fields = ['firstname', 'lastname', 'date_joined']  
+    filterset_fields = ['is_active', 'is_staff']  
+
+
+
+
+
+
