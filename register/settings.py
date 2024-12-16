@@ -46,11 +46,8 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'corsheaders',
     'utils',
-<<<<<<< Updated upstream
-    'django_countries',
-=======
     'blog',
->>>>>>> Stashed changes
+    'django_countries',
 ]
     
 
@@ -118,15 +115,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'Tahlil403',
-<<<<<<< Updated upstream
-        'USER' : 'postgres',
-        'PASSWORD' : 'aida-tahlil',
-        'HOST': 'localhost',
-=======
         'USER' : 'root',
         'PASSWORD' : '8hHqNdzVWmodVrLiTb6YeKSt',
         'HOST': 'uvaxztras',
->>>>>>> Stashed changes
         
     }
 }

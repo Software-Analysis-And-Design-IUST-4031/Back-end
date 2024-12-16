@@ -1,19 +1,5 @@
 # serializers.py
 from rest_framework import serializers
-<<<<<<< Updated upstream
-from utils.models import Country, City
-
-class CountrySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Country
-        fields = ['iso3_code', 'name']
-
-
-class CitySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = City
-        fields = ['name', 'country']
-=======
 from .models import City
 
 class UserSelectionSerializer(serializers.Serializer):
@@ -29,4 +15,3 @@ class UserSelectionSerializer(serializers.Serializer):
             raise serializers.ValidationError("The specified city does not exist in the given country.")
         
         return data
->>>>>>> Stashed changes
