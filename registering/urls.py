@@ -11,6 +11,8 @@ from registering.views import (
     UserDetailAPIViewFavorites,
     CreateGalleryAPIView,
     ListGalleriesAPIView,
+    UserSearchListAPIView,
+    UserSearchAdvancedListAPIView
 
 )
 
@@ -32,6 +34,9 @@ urlpatterns = [
     path('user/<int:user_id>/detailFavorites/', UserDetailAPIViewFavorites.as_view()), 
     path('gallery/create/', CreateGalleryAPIView.as_view(), name='create-gallery'),
     path('galleries/', ListGalleriesAPIView.as_view(), name='list-galleries'),
+    path('users/search/', UserSearchListAPIView.as_view(), name='user-list-search'),
+    path('users/search/advanced/', UserSearchAdvancedListAPIView.as_view(), name='user-list-search-advanced'),
+
 ]
 
 

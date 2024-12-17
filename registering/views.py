@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from registering.serializers import UserRegistrationSerializer, UserLoginSerializer , UserDetailSerializer , UserUpdateSerializerEditProfile,UserUpdateSerializerFavorites,UserDetailSerializerEditProfile,UserDetailSerializerFavorites
+from registering.serializers import UserRegistrationSerializer, UserLoginSerializer , UserDetailSerializer , UserUpdateSerializerEditProfile,UserUpdateSerializerFavorites,UserDetailSerializerEditProfile,UserDetailSerializerFavorites,UserSearchSerializer
 from rest_framework.views import APIView
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import AllowAny, IsAuthenticated
@@ -18,6 +18,13 @@ from rest_framework.authtoken.models import Token
 from rest_framework_simplejwt.tokens import RefreshToken
 from .serializers import GalleryCreationSerializer , GallerySerializer
 from painting.models import Painting
+from rest_framework import generics
+from rest_framework.pagination import PageNumberPagination
+from django_filters.rest_framework import DjangoFilterBackend
+from registering.filters import CustomUserFilter
+from rest_framework.filters import SearchFilter
+from rest_framework.filters import OrderingFilter
+from rest_framework.viewsets import ModelViewSet
 
 
 
@@ -305,3 +312,61 @@ class ListGalleriesAPIView(APIView):
         galleries = CustomUser.objects.filter(is_gallery=True)
         serializer = GallerySerializer(galleries, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+
+
+
+
+
+class CustomPagination(PageNumberPagination):
+    page_size = 10
+    page_size_query_param = 'page_size'
+    max_page_size = 100
+
+
+
+
+
+
+
+class UserSearchListAPIView(generics.ListAPIView):
+    queryset = CustomUser.objects.all()
+    serializer_class = UserSearchSerializer
+    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
+    filterset_class = CustomUserFilter
+    search_fields = [
+        'firstname', 'lastname', 'username', 'email', 'phone_number',
+        'country', 'city', 'favorite_painter', 'favorite_painting',
+        'favorite_painting_style', 'favorite_painting_technique',
+        'favorite_painting_to_own', 'biography', 'gallery_name', 'description','nickname','date_of_birth'
+    ]
+    ordering_fields = ['firstname', 'lastname', 'date_joined']
+    ordering = ['firstname']  # Default sorting
+    pagination_class = CustomPagination
+
+
+
+
+
+
+
+class UserSearchAdvancedListAPIView(generics.ListAPIView):
+    queryset = CustomUser.objects.all().order_by('firstname')  
+    serializer_class = UserSearchSerializer
+    pagination_class = CustomPagination
+    filter_backends = [SearchFilter, OrderingFilter, DjangoFilterBackend]
+    search_fields = [
+        'firstname', 'lastname', 'username', 'email', 'phone_number',
+        'country', 'city', 'favorite_painter', 'favorite_painting',
+        'favorite_painting_style', 'favorite_painting_technique',
+        'favorite_painting_to_own', 'biography', 'gallery_name', 'description','nickname','date_of_birth'
+    ]
+    ordering_fields = ['firstname', 'lastname', 'date_joined']  
+    filterset_fields = ['is_active', 'is_staff']  
+
+
+
+
+
+
