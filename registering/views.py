@@ -50,8 +50,6 @@ class UserLoginAPIView(APIView):
             username = serializer.validated_data.get('username')
             password = serializer.validated_data.get('password')
 
-            # CustomUser = get_user_model()
-
             user_model = get_user_model()
 
             user_instance = authenticate(username=username, password=password)
@@ -63,6 +61,7 @@ class UserLoginAPIView(APIView):
             refresh = RefreshToken.for_user(user_instance)
             access_token = str(refresh.access_token)
             return Response({
+                'user_id': user_instance.id,
                 'message': 'Login successful.',
                 'access': access_token,
                 'refresh': str(refresh),
