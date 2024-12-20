@@ -54,13 +54,7 @@ class UserRegistrationAPIView(APIView):
 
 
 
-<<<<<<< HEAD
-
-
-class UserLoginAPIView(APIView):   
-=======
 class UserLoginAPIView(APIView):
->>>>>>> fb_blog_comment
     serializer_class = UserLoginSerializer
     permission_classes = (AllowAny,)
     def post(self, request):       
@@ -77,13 +71,8 @@ class UserLoginAPIView(APIView):
                 raise AuthenticationFailed('This account is inactive.')
             refresh = RefreshToken.for_user(user_instance)          
             access_token = str(refresh.access_token)
-<<<<<<< HEAD
-        
-            return Response({                
-=======
             return Response({
-                'user_id': user_instance.id,
->>>>>>> fb_blog_comment
+                'user_id': user_instance.user_id,
                 'message': 'Login successful.',
                 'access': access_token,               
                 'refresh': str(refresh),
