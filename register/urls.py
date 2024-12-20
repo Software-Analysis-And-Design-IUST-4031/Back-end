@@ -25,6 +25,11 @@ urlpatterns = [
     # path('api/', include('sign.urls')),
     path('api/', include('registering.urls')),
     path('api/painting/',include('painting.urls')),
+<<<<<<< HEAD
+=======
+    path('api/blogs/', include('blog.urls')),
+    path('api/country/',include('utils.urls')),
+>>>>>>> fb_blog_comment
     # path('api/gallery/', include('gallery.urls')),
 ]
 
