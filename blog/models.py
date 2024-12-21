@@ -6,15 +6,15 @@ class Blog(models.Model):
     title = models.CharField(max_length=255)
     content = models.TextField()
     image = models.ImageField(upload_to='blog_images/', blank=True, null=True)
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='blogs')
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='blogs' , null=True,blank=True) 
     created_at = models.DateTimeField(default=now)
 
     def __str__(self):
         return self.title
 
 class Comment(models.Model):
-    blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name='comments')
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='comments')
+    blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name='comments' ,null=True,blank=True)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='comments' ,null=True,blank=True)
     content = models.TextField()
     created_at = models.DateTimeField(default=now)
     parent = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='replies')
@@ -25,5 +25,9 @@ class Comment(models.Model):
     def is_reply(self):
         return self.parent is not None
     
+
+    
+
+
 
     

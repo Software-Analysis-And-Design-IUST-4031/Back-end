@@ -8,47 +8,53 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("painting", "0001_initial"),
+        ("blog", "0001_initial"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.AddField(
-            model_name="like",
-            name="painting",
+            model_name="blog",
+            name="author",
             field=models.ForeignKey(
                 blank=True,
                 null=True,
                 on_delete=django.db.models.deletion.CASCADE,
-                related_name="likes",
-                to="painting.painting",
-            ),
-        ),
-        migrations.AddField(
-            model_name="like",
-            name="user",
-            field=models.ForeignKey(
-                blank=True,
-                null=True,
-                on_delete=django.db.models.deletion.CASCADE,
-                related_name="likes",
+                related_name="blogs",
                 to=settings.AUTH_USER_MODEL,
             ),
         ),
         migrations.AddField(
-            model_name="painting",
-            name="artist",
+            model_name="comment",
+            name="author",
             field=models.ForeignKey(
                 blank=True,
-                default=None,
                 null=True,
                 on_delete=django.db.models.deletion.CASCADE,
-                related_name="paintings",
+                related_name="comments",
                 to=settings.AUTH_USER_MODEL,
             ),
         ),
-        migrations.AlterUniqueTogether(
-            name="like",
-            unique_together={("user", "painting")},
+        migrations.AddField(
+            model_name="comment",
+            name="blog",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="comments",
+                to="blog.blog",
+            ),
+        ),
+        migrations.AddField(
+            model_name="comment",
+            name="parent",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="replies",
+                to="blog.comment",
+            ),
         ),
     ]
