@@ -6,7 +6,7 @@ from rest_framework import status
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from rest_framework.views import APIView
 from .models import Painting , Like
-from .serializers import PaintingDetailSerializer, PaintingListSerializer , LikeSerializer , UserLikesSumView
+from .serializers import PaintingDetailSerializer, PaintingListSerializer , LikeSerializer , UserLikesSumSerializer
 from registering.models import CustomUser
 from django.db.models import Count 
 from django.db import models

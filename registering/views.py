@@ -1,9 +1,9 @@
 from django.shortcuts import render
-<<<<<<< HEAD
+
 from registering.serializers import UserRegistrationSerializer, UserLoginSerializer , UserDetailSerializer , UserUpdateSerializerEditProfile,UserUpdateSerializerFavorites,UserDetailSerializerEditProfile,UserDetailSerializerFavorites,UserSearchSerializer
-=======
+
 from registering.serializers import UserRegistrationSerializer, UserLoginSerializer , UserDetailSerializer , UserUpdateSerializerEditProfile,UserUpdateSerializerFavorites,UserDetailSerializerEditProfile,UserDetailSerializerFavorites
->>>>>>> fb_blog_comment
+
 from rest_framework.views import APIView
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import AllowAny, IsAuthenticated
@@ -22,7 +22,7 @@ from rest_framework.authtoken.models import Token
 from rest_framework_simplejwt.tokens import RefreshToken
 from .serializers import GalleryCreationSerializer , GallerySerializer
 from painting.models import Painting
-<<<<<<< HEAD
+
 from rest_framework import generics
 from rest_framework.pagination import PageNumberPagination
 from django_filters.rest_framework import DjangoFilterBackend
@@ -30,8 +30,7 @@ from registering.filters import CustomUserFilter
 from rest_framework.filters import SearchFilter
 from rest_framework.filters import OrderingFilter
 from rest_framework.viewsets import ModelViewSet
-=======
->>>>>>> fb_blog_comment
+
 
 
 
@@ -85,11 +84,10 @@ class UserLoginAPIView(APIView):
 
 
 
-<<<<<<< HEAD
 
 
-=======
->>>>>>> fb_blog_comment
+
+
 class UserViewAPI(APIView):
     authentication_classes = (TokenAuthentication,)
     permission_classes = (AllowAny,)
@@ -354,7 +352,7 @@ class ListGalleriesAPIView(APIView):
     def get(self, request):
         galleries = CustomUser.objects.filter(is_gallery=True)
         serializer = GallerySerializer(galleries, many=True)
-<<<<<<< HEAD
+
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
@@ -408,12 +406,8 @@ class UserSearchAdvancedListAPIView(generics.ListAPIView):
     ]
     ordering_fields = ['firstname', 'lastname', 'date_joined']  
     filterset_fields = ['is_active', 'is_staff']  
+    # return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 
 
-
-
-=======
-        return Response(serializer.data, status=status.HTTP_200_OK)
->>>>>>> fb_blog_comment

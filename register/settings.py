@@ -45,15 +45,11 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_framework_simplejwt',
     'corsheaders',
-<<<<<<< HEAD
     'django_filters',
-    
-    
-=======
     'utils',
     'blog',
     'django_countries',
->>>>>>> fb_blog_comment
+
 ]
     
 
