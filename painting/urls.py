@@ -15,6 +15,7 @@ urlpatterns = [
     path('paintings/<int:painting_id>/Unlike/', UnLikePaintingView.as_view(), name='Unlike_painting'),
     path('paintings/<int:painting_id>/likes/', GetPaintingLikesView.as_view(), name='get_painting_likes'),
     path('paintings/top/', TopPaintingView.as_view(), name='top_painting'),
+    path('user/top-painters/', UserLikesSumView.as_view(), name='user-likes-sum'),   
     path('paintings/sorted-by-likes/', SortedPaintingsByLikesView.as_view(), name='sorted_paintings_by_likes'),
 ]
 

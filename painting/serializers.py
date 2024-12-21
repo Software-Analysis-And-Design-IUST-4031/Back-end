@@ -1,6 +1,9 @@
 from rest_framework import serializers
 from .models import Painting
 from .models import Like
+from registering.models import CustomUser
+
+
 
 class PaintingDetailSerializer(serializers.ModelSerializer):
     class Meta:
@@ -20,6 +23,10 @@ class LikeSerializer(serializers.ModelSerializer):
         fields = ['user', 'painting', 'created_at']
 
 
-
+class UserLikesSumSerializer(serializers.ModelSerializer):
+    total_likes = serializers.IntegerField()  
+    class Meta:
+        model = CustomUser
+        fields = ['user_id', 'username', 'profile_picture', 'total_likes']
 
 
