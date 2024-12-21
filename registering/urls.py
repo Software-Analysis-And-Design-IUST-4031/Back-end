@@ -16,6 +16,7 @@ from registering.views import (
     GetUsernameByUserIdAPIView,
     GetUserIdByUsernameAPIView
 
+
 )
 
 
@@ -40,7 +41,6 @@ urlpatterns = [
     path('galleries/', ListGalleriesAPIView.as_view(), name='list-galleries'),
     path('users/search/', UserSearchListAPIView.as_view(), name='user-list-search'),
     path('users/search/advanced/', UserSearchAdvancedListAPIView.as_view(), name='user-list-search-advanced'),
-
 ]
 
 

@@ -45,10 +45,18 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_framework_simplejwt',
     'corsheaders',
+<<<<<<< HEAD
     'django_filters',
     
     
+=======
+    'utils',
+    'blog',
+    'django_countries',
+>>>>>>> fb_blog_comment
 ]
+    
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -107,13 +115,15 @@ WSGI_APPLICATION = 'register.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'Tahlil403',
-        'USER' : 'postgres',
-        'PASSWORD' : 'aida-tahlil',
-        'HOST': 'localhost',
+        'USER' : 'root',
+        'PASSWORD' : '8hHqNdzVWmodVrLiTb6YeKSt',
+        'HOST': 'uvaxztras',
         
     }
 }
@@ -122,10 +132,10 @@ DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
 #         'NAME': 'Tahlil403',
-#         'USER' : 'root',
-#         'PASSWORD' : '8hHqNdzVWmodVrLiTb6YeKSt',
-#         'HOST': 'uvaxztras',
-        
+#         'USER' : 'postgres',
+#         'PASSWORD' : 'aida-tahlil',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
 #     }
 # }
 
