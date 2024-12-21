@@ -12,7 +12,9 @@ from registering.views import (
     CreateGalleryAPIView,
     ListGalleriesAPIView,
     UserSearchListAPIView,
-    UserSearchAdvancedListAPIView
+    UserSearchAdvancedListAPIView,
+    GetUsernameByUserIdAPIView,
+    GetUserIdByUsernameAPIView
 
 )
 
@@ -27,6 +29,8 @@ urlpatterns = [
 	path('user/login/', UserLoginAPIView.as_view()),
 	path('user/', UserViewAPI.as_view()),
 	path('user/logout/', UserLogoutViewAPI.as_view()),
+    path('get-username/<int:user_id>/', GetUsernameByUserIdAPIView.as_view(), name='get-username-by-user-id'),
+    path('get-user-id/<str:username>/', GetUserIdByUsernameAPIView.as_view(), name='get-user-id-by-username'),
     path('user/<int:user_id>/detail/', UserDetailAPIView.as_view()), 
     path('user/<int:user_id>/updateEditProfile/', UserUpdateAPIViewEditProfile.as_view()),
     path('user/<int:user_id>/updateFavorites/',  UserUpdateAPIViewFavorites.as_view()),
@@ -38,6 +42,9 @@ urlpatterns = [
     path('users/search/advanced/', UserSearchAdvancedListAPIView.as_view(), name='user-list-search-advanced'),
 
 ]
+
+
+
 
 
 

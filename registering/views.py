@@ -117,6 +117,40 @@ class UserLogoutViewAPI(APIView):
 
 
 
+
+class GetUsernameByUserIdAPIView(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request, user_id):
+        try:
+            user = get_object_or_404(CustomUser, user_id=user_id)
+            return Response({"username": user.username}, status=status.HTTP_200_OK)
+        except CustomUser.DoesNotExist:
+            return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            return Response({"error": "Internal server error", "details": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+
+
+
+class GetUserIdByUsernameAPIView(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request, username):
+        try:
+            user = get_object_or_404(CustomUser, username=username)
+            return Response({"user_id": user.user_id}, status=status.HTTP_200_OK)
+        except CustomUser.DoesNotExist:
+            return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            return Response({"error": "Internal server error", "details": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+
+
+
+
 class UserDetailAPIView(APIView):
     serializer_class = UserDetailSerializer
     permission_classes = [AllowAny]
