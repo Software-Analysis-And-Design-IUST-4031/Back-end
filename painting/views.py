@@ -14,6 +14,8 @@ from rest_framework.pagination import PageNumberPagination
 from .serializers import UserLikesSumSerializer
 from django.db.models import Sum , F , Q
 from django.db.models import Sum, OuterRef, Subquery
+from rest_framework.generics import DestroyAPIView
+
 
 
 
@@ -115,6 +117,52 @@ class AddPaintingView(CreateAPIView):
 
 
 
+class DeletePaintingView(DestroyAPIView):
+    """
+    View to delete a painting.
+    """
+    queryset = Painting.objects.all()
+    serializer_class = PaintingDetailSerializer
+    permission_classes = [IsAuthenticated]
+
+    def delete(self, request, *args, **kwargs):
+        instance = self.get_object()
+        
+      
+        if instance.artist != request.user:
+            return Response({"error": "You do not have permission to delete this painting."}, status=status.HTTP_403_FORBIDDEN)
+        
+        instance.delete()
+        return Response({"message": "Painting deleted successfully."}, status=status.HTTP_204_NO_CONTENT)
+    
+
+
+
+class DeletePaintingView2(APIView):
+    """
+    View to delete a painting for a specific user.
+    """
+    permission_classes = [IsAuthenticated]
+
+    def delete(self, request, user_id, painting_id):
+        
+        user = get_object_or_404(CustomUser, user_id=user_id)
+        painting = get_object_or_404(Painting, painting_id=painting_id, artist=user)
+
+        
+        if painting.artist != request.user:
+            return Response({"error": "You do not have permission to delete this painting."}, status=status.HTTP_403_FORBIDDEN)
+
+      
+        painting.delete()
+        return Response({"message": "Painting deleted successfully."}, status=status.HTTP_204_NO_CONTENT)
+
+
+
+
+
+
+
 
 
 
@@ -129,11 +177,11 @@ class LikePaintingView(CreateAPIView):
         painting = get_object_or_404(Painting, painting_id=painting_id)
         user = request.user
 
-        # Check if the user has already liked the painting
+        
         if Like.objects.filter(user=user, painting=painting).exists():
             return Response({"error": "You have already liked this painting"}, status=status.HTTP_400_BAD_REQUEST)
 
-        # Create a new like
+       
         like = Like.objects.create(user=user, painting=painting)
 
         response_data = {
