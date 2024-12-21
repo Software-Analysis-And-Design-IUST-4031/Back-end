@@ -95,7 +95,11 @@ class AddPaintingView(CreateAPIView):
     permission_classes = [IsAuthenticated]
 
     def post(self, request, user_id):
+
+        if request.user.user_id != int(user_id):
+            return Response({"error": "You do not have permission to add a painting for this user."}, status=status.HTTP_403_FORBIDDEN)
         user = get_object_or_404(CustomUser, user_id=user_id)
+        
         
         data = request.data.copy()
         data.update(request.FILES)
@@ -191,6 +195,33 @@ class LikePaintingView(CreateAPIView):
         return Response(response_data, status=status.HTTP_201_CREATED)
 
 
+
+
+class UnLikePaintingView(CreateAPIView):
+    """
+    View to like or unlike a painting by a user.
+    """
+    serializer_class = LikeSerializer
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, painting_id):  
+        painting = get_object_or_404(Painting, painting_id=painting_id) 
+        user = request.user
+
+        
+        like = Like.objects.filter(user=user, painting=painting).first()
+        if like:
+            
+            like.delete()
+            return Response({"message": "Painting unliked successfully."}, status=status.HTTP_200_OK)
+        else:
+            
+            like = Like.objects.create(user=user, painting=painting)
+            response_data = {
+                "message": "Painting liked successfully.",
+                "like": LikeSerializer(like).data
+            }
+            return Response(response_data, status=status.HTTP_201_CREATED)
 
 
 
