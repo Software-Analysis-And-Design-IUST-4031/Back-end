@@ -180,6 +180,9 @@ class UserDetailAPIView(APIView):
 
 
 
+
+
+
 class UserUpdateAPIViewEditProfile(APIView):
     serializer_class = UserUpdateSerializerEditProfile
     permission_classes = [IsAuthenticated]
@@ -187,15 +190,24 @@ class UserUpdateAPIViewEditProfile(APIView):
     def put(self, request, user_id):
         try:
             user = get_object_or_404(CustomUser, user_id=user_id)
+            
+            if 'biography' in request.data:
+                user.description = request.data['biography']
+            
+            if 'firstname' in request.data:
+                user.gallery_name = request.data['firstname']
+            
             if 'is_gallery' in request.data:
-           
                 user.is_gallery = bool(request.data['is_gallery'])
             
             serializer = self.serializer_class(user, data=request.data, partial=True)
             if serializer.is_valid():
                 serializer.save()
+                
+                
+                detail_serializer = UserDetailSerializerEditProfile(user)
                 return Response(
-                    {"message": "User profile updated successfully.", "user": serializer.data},
+                    {"message": "User profile updated successfully.", "user": detail_serializer.data},
                     status=status.HTTP_200_OK
                 )
             else:
@@ -213,6 +225,11 @@ class UserUpdateAPIViewEditProfile(APIView):
                 {"error": "Internal server error", "details": str(e)},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
+
+
+
+
+
 
 
 
