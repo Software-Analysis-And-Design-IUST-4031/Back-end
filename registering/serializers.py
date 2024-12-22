@@ -2,6 +2,7 @@ from rest_framework import serializers
 from .models import CustomUser
 from painting.models import Painting
 from django.db.models import Count
+from painting.serializers import PaintingListSerializer
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
     confirm_password = serializers.CharField(write_only=True, required=True)
@@ -51,10 +52,19 @@ class UserDetailSerializer(serializers.ModelSerializer):
  
 
 
+# class UserUpdateSerializerEditProfile(serializers.ModelSerializer):
+#     class Meta:
+#         model = CustomUser
+#         fields = ['firstname', 'lastname', 'nickname' ,'email' , 'phone_number' ,'date_of_birth' ,'country', 'city' ,'is_gallery','profile_picture' , 'Theme' , 'Dark_light_theme','gallery_name','description']
+
+
+
 class UserUpdateSerializerEditProfile(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['firstname', 'lastname', 'nickname' ,'email' , 'phone_number' ,'date_of_birth' ,'country', 'city' ,'is_gallery','profile_picture' , 'Theme' , 'Dark_light_theme','gallery_name','description']
+        fields = ['firstname', 'lastname', 'nickname' ,'email' , 'phone_number' ,'date_of_birth' ,'country', 'city' ,'is_gallery','profile_picture' , 'Theme' , 'Dark_light_theme','gallery_name','description','biography']
+
+
 
 
 
@@ -65,16 +75,42 @@ class UserUpdateSerializerFavorites(serializers.ModelSerializer):
 
 
 
+
+
+# class UserDetailSerializerEditProfile(serializers.ModelSerializer):
+#     class Meta:
+#         model = CustomUser
+#         fields = ['firstname', 'lastname', 'nickname' ,'email' , 'phone_number' ,'date_of_birth' ,'country', 'city' ,'is_gallery','profile_picture' , 'Theme' , 'Dark_light_theme','gallery_name','description','cover_painting']
+
+#     def update(self, instance, validated_data):
+#         for attr, value in validated_data.items():
+#             setattr(instance, attr, value)
+#         instance.save()  
+#         return instance
+
+
+
+
+
 class UserDetailSerializerEditProfile(serializers.ModelSerializer):
+    # cover_painting = serializers.SerializerMethodField()
+
     class Meta:
         model = CustomUser
-        fields = ['firstname', 'lastname', 'nickname' ,'email' , 'phone_number' ,'date_of_birth' ,'country', 'city' ,'is_gallery','profile_picture' , 'Theme' , 'Dark_light_theme','gallery_name','description','cover_painting']
+        fields = ['firstname', 'lastname', 'nickname', 'email', 'phone_number', 'date_of_birth', 'country', 'city', 'is_gallery', 'profile_picture', 'Theme', 'Dark_light_theme', 'gallery_name', 'description', 'biography', 'cover_painting']
 
-    def update(self, instance, validated_data):
-        for attr, value in validated_data.items():
-            setattr(instance, attr, value)
-        instance.save()  
-        return instance
+    # def get_cover_painting(self, obj):
+      
+    #     latest_painting = Painting.objects.filter(artist=obj).order_by('-creation_date').first()
+    #     if latest_painting:
+           
+    #         return latest_painting.image.url
+    #     return None
+
+
+
+
+
 
 class UserDetailSerializerFavorites(serializers.ModelSerializer):
     class Meta:
