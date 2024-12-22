@@ -132,9 +132,14 @@ class GallerySerializer(serializers.ModelSerializer):
         fields = ['gallery_name', 'description', 'cover_image', 'number_of_paintings', 'number_of_artists', 'owner_id']
 
     def get_cover_image(self, obj):
-        if obj.cover_painting:
-            return obj.cover_painting.image.url
-        return None
+        paintings = Painting.objects.filter(artist=obj)
+        
+        if paintings.exists():
+        
+            random_painting = random.choice(paintings)
+            return random_painting.image.url
+        
+        return None 
     
     def get_number_of_paintings(self, obj):
         return Painting.objects.filter(artist=obj).count()
