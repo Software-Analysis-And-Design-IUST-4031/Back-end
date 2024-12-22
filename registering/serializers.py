@@ -3,7 +3,7 @@ from .models import CustomUser
 from painting.models import Painting
 from django.db.models import Count
 from painting.serializers import PaintingDetailSerializer  
-
+import random
 
 
 
@@ -85,12 +85,21 @@ class UserUpdateSerializerFavorites(serializers.ModelSerializer):
 
 
 class UserDetailSerializerEditProfile(serializers.ModelSerializer):
-    # cover_painting = serializers.SerializerMethodField()
+    cover_painting = serializers.SerializerMethodField()
 
     class Meta:
         model = CustomUser
         fields = ['firstname', 'lastname', 'nickname', 'email', 'phone_number', 'date_of_birth', 'country', 'city', 'is_gallery', 'profile_picture', 'Theme', 'Dark_light_theme', 'gallery_name', 'description', 'biography', 'cover_painting']
-
+    def get_cover_painting(self, obj):
+        # لیست نقاشی‌های موجود برای این کاربر
+        paintings = Painting.objects.filter(artist=obj)
+        
+        if paintings.exists():
+            # انتخاب تصادفی یک نقاشی از بین نقاشی‌ها
+            random_painting = random.choice(paintings)
+            return random_painting.image.url
+        
+        return None 
     # def get_cover_painting(self, obj):
       
     #     latest_painting = Painting.objects.filter(artist=obj).order_by('-creation_date').first()
