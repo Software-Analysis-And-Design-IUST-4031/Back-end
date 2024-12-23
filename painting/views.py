@@ -382,5 +382,37 @@ class UserLikesSumView(ListAPIView):
 
 
 
+class CheckUserLikedPaintingView(APIView):
+    """
+    View to check if a specific user has liked a specific painting.
+    """
+    permission_classes = [AllowAny]
+
+    def get(self, request, user_id, painting_id):
+        user = get_object_or_404(CustomUser, user_id=user_id)
+        painting = get_object_or_404(Painting, painting_id=painting_id)
+
+      
+        liked = Like.objects.filter(user=user, painting=painting).exists()
+
+        response_data = {
+            "user_id": user_id,
+            "painting_id": painting_id,
+            "liked": liked
+        }
+        return Response(response_data, status=status.HTTP_200_OK)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
