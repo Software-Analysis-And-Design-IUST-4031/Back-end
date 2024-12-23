@@ -33,7 +33,7 @@ class ChatListCreateView(APIView):
 
         participants = [request.user]
         for participant in participants_data:
-            user = get_object_or_404(User, id=participant)
+            user = get_object_or_404(User, user_id=participant)
             participants.append(user)
 
         chat = Chat.objects.create()
@@ -41,8 +41,8 @@ class ChatListCreateView(APIView):
         chat.save()
 
         serializer = ChatSerializer(chat)
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-
+        return Response({"message": "Chat created!", "chat": serializer.data}, status=status.HTTP_201_CREATED)
+    
 class ChatDetailView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
