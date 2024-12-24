@@ -403,7 +403,7 @@ class ListGalleriesAPIView(APIView):
 
     def get(self, request):
         galleries = CustomUser.objects.filter(is_gallery=True)
-        serializer = GallerySerializer(galleries, many=True)
+        serializer = GallerySerializer(galleries, many=True, exclude=('cover_image'))
 
         return Response(serializer.data, status=status.HTTP_200_OK)
 
