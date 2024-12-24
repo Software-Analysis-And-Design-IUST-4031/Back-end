@@ -4,6 +4,8 @@ from painting.models import Painting
 from django.db.models import Count
 from painting.serializers import PaintingListSerializer
 import random
+
+
 class UserRegistrationSerializer(serializers.ModelSerializer):
     confirm_password = serializers.CharField(write_only=True, required=True)
 
@@ -47,7 +49,12 @@ class UserLoginSerializer(serializers.Serializer):
 class UserDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['user_id', 'email', 'firstname', 'lastname', 'username', 'is_active', 'is_admin','date_joined', 'nickname', 'phone_number' , 'date_of_birth' , 'profile_picture' , 'nickname' , 'country', 'city' ,'favorite_painter' , 'favorite_painting' , 'favorite_painting_style', 'favorite_painting_technique' ,'favorite_painting_to_own','biography', 'Theme' , 'Dark_light_theme','gallery_name','description','cover_painting','is_gallery']
+        fields = ['user_id', 'email', 'firstname', 'lastname', 'username', 
+                  'is_active', 'is_admin','date_joined','nickname', 'phone_number'
+                    , 'date_of_birth' , 'profile_picture' , 'nickname' , 'country',
+                      'city' ,'favorite_painter' , 'favorite_painting' , 'favorite_painting_style',
+                        'favorite_painting_technique' ,'favorite_painting_to_own','biography',
+                          'Theme' , 'Dark_light_theme','gallery_name','description','cover_painting','is_gallery']
 
  
 
@@ -63,7 +70,10 @@ class UserUpdateSerializerEditProfile(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         fields = ['firstname', 'lastname', 'nickname' ,'email' , 'phone_number' ,'date_of_birth' ,'country', 'city' ,'is_gallery','profile_picture' , 'Theme' , 'Dark_light_theme','gallery_name','description','biography']
-
+        def get_profile_picture_url(self, obj):
+            if obj.profile_picture:
+                return obj.profile_picture.url
+            return None
 
 
 
