@@ -34,8 +34,8 @@ class Painting(models.Model):
 
 
 class Like(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='likes')
-    painting = models.ForeignKey(Painting, on_delete=models.CASCADE, related_name='likes')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='likes', null=True, blank=True)
+    painting = models.ForeignKey(Painting, on_delete=models.CASCADE, related_name='likes', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
