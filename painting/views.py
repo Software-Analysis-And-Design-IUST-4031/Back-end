@@ -15,7 +15,11 @@ from .serializers import UserLikesSumSerializer
 from django.db.models import Sum , F , Q
 from django.db.models import Sum, OuterRef, Subquery
 from rest_framework.generics import DestroyAPIView
-
+from rest_framework import generics
+from django_filters.rest_framework import DjangoFilterBackend
+from .models import Painting
+from .serializers import PaintingListSerializer
+from .filters import PaintingFilter
 
 
 
@@ -401,6 +405,32 @@ class CheckUserLikedPaintingView(APIView):
             "liked": liked
         }
         return Response(response_data, status=status.HTTP_200_OK)
+
+
+
+
+
+
+
+
+
+
+
+class PaintingSearchView(generics.ListAPIView):
+    queryset = Painting.objects.all()
+    serializer_class = PaintingListSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = PaintingFilter
+
+
+
+
+
+
+
+
+
+
 
 
 

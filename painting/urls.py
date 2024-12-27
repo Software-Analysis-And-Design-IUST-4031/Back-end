@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import PaintingDetailView, UserPaintingsView, AddPaintingView , LikePaintingView ,  GetPaintingLikesView , TopPaintingView , SortedPaintingsByLikesView , UserLikesSumView , DeletePaintingView , DeletePaintingView2 , UnLikePaintingView , CheckUserLikedPaintingView
+from .views import PaintingDetailView, UserPaintingsView, AddPaintingView , LikePaintingView ,  GetPaintingLikesView , TopPaintingView , SortedPaintingsByLikesView , UserLikesSumView , DeletePaintingView , DeletePaintingView2 , UnLikePaintingView , CheckUserLikedPaintingView , PaintingSearchView
 
 
 
@@ -18,6 +18,7 @@ urlpatterns = [
     path('user/top-painters/', UserLikesSumView.as_view(), name='user-likes-sum'),   
     path('paintings/sorted-by-likes/', SortedPaintingsByLikesView.as_view(), name='sorted_paintings_by_likes'),
     path('user/<int:user_id>/paintings/<int:painting_id>/liked/', CheckUserLikedPaintingView.as_view(), name='check_user_liked_painting'),
+    path('paintings/search/', PaintingSearchView.as_view(), name='painting-search'),
 ]
 
 
