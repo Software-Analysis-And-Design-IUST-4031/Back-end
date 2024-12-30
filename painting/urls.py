@@ -1,12 +1,13 @@
 from django.urls import path
 
-from .views import PaintingDetailView, UserPaintingsView, AddPaintingView , LikePaintingView ,  GetPaintingLikesView , TopPaintingView , SortedPaintingsByLikesView , UserLikesSumView , DeletePaintingView , DeletePaintingView2 , UnLikePaintingView , CheckUserLikedPaintingView , PaintingSearchView
+from .views import PaintingDetailView, UserPaintingsView, AddPaintingView , LikePaintingView ,  GetPaintingLikesView , TopPaintingView , SortedPaintingsByLikesView , UserLikesSumView , DeletePaintingView , DeletePaintingView2 , UnLikePaintingView , CheckUserLikedPaintingView , PaintingSearchView , PaintingDetailWithAuthorView
 
 
 
 
 urlpatterns = [
     path('<int:painting_id>/', PaintingDetailView.as_view()),
+    path('<int:painting_id>/with-author/', PaintingDetailWithAuthorView.as_view()),
     path('user/<int:user_id>/paintings/', UserPaintingsView.as_view()),
     path('user/<int:user_id>/paintings/add/', AddPaintingView.as_view()),
     path('paintings/<int:pk>/delete/', DeletePaintingView.as_view(), name='delete-painting'),

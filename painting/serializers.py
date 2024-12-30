@@ -30,3 +30,25 @@ class UserLikesSumSerializer(serializers.ModelSerializer):
         fields = ['user_id', 'username', 'profile_picture', 'total_likes']
 
 
+
+
+class PaintingDetailSerializer2(serializers.ModelSerializer):
+    username = serializers.SerializerMethodField()
+    author = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Painting
+        fields = ['painting_id', 'title', 'description', 'image', 'creation_date', 'artist', 'price', 'material', 'style', 'year', 'vertical_depth', 'horizontal_depth', 'username', 'author']
+        read_only_fields = ['artist', 'creation_date']
+
+    def get_username(self, obj):
+        return obj.artist.username
+
+    def get_author(self, obj):
+        return f"{obj.artist.firstname} {obj.artist.lastname}"
+
+
+
+
+
+
