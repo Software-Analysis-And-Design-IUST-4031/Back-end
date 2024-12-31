@@ -320,10 +320,10 @@ class ListGalleriesAPIView(APIView):
         galleries = CustomUser.objects.filter(is_gallery=True)
         serializer = GallerySerializer(galleries, many=True)
 
-        for gallery in serializer.data:
-            if not gallery.get('profile_picture'):
-                gallery['profile_picture'] = None  
-            gallery.pop('cover_image', None)
+        # for gallery in serializer.data:
+        #     if not gallery.get('profile_picture'):
+        #         gallery['profile_picture'] = None  
+        #     gallery.pop('cover_image', None)
 
         return Response(serializer.data, status=status.HTTP_200_OK)
 
