@@ -144,14 +144,16 @@ class UserDetailSerializerFavorites(serializers.ModelSerializer):
  
 
 class GallerySerializer(serializers.ModelSerializer):
-    # cover_image = serializers.SerializerMethodField()
     number_of_paintings = serializers.SerializerMethodField()
     number_of_artists = serializers.SerializerMethodField()
     owner_id = serializers.IntegerField(source='user_id')
+    cover_image = serializers.SerializerMethodField()
 
     class Meta:
         model = CustomUser
-        fields = ['gallery_name', 'description', 'number_of_paintings', 'number_of_artists', 'owner_id']
+        fields = ['gallery_name', 'description', 
+                  'number_of_paintings', 'number_of_artists',
+                    'owner_id', 'cover_image']
 
     # def get_cover_image(self, obj):
     #     if obj.cover_painting:
@@ -159,13 +161,11 @@ class GallerySerializer(serializers.ModelSerializer):
     #     return None
 
     def get_cover_image(self, obj):
-        paintings = Painting.objects.filter(artist=obj)
+        paintings = Painting.objects.filter(artist=obj)  # Assuming 'artist' links Painting to CustomUser
         
         if paintings.exists():
-        
             random_painting = random.choice(paintings)
-            return random_painting.image.url
-        
+            return random_painting.image.url  # Assuming 'image' is an ImageField
         return None 
     
     def get_number_of_paintings(self, obj):
