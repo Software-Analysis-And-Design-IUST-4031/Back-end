@@ -144,7 +144,7 @@ class UserDetailSerializerFavorites(serializers.ModelSerializer):
  
 
 class GallerySerializer(serializers.ModelSerializer):
-    # cover_image = serializers.SerializerMethodField()
+    cover_image = serializers.SerializerMethodField()
     number_of_paintings = serializers.SerializerMethodField()
     number_of_artists = serializers.SerializerMethodField()
     owner_id = serializers.IntegerField(source='user_id')
