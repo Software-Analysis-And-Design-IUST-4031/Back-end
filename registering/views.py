@@ -252,56 +252,56 @@ class UserDetailAPIViewFavorites(APIView):
             )
 
 
-class CreateGalleryAPIView(APIView):
-    permission_classes = [IsAuthenticated]
+# class CreateGalleryAPIView(APIView):
+#     permission_classes = [IsAuthenticated]
     
-    def post(self, request):
-        user = request.user
-        user_id = user.user_id  
+#     def post(self, request):
+#         user = request.user
+#         user_id = user.user_id  
 
        
-        print(f"User ID: {user_id}")
-        if 'is_gallery' in request.data:
-            user.is_gallery = request.data['is_gallery']  # This ensures the is_gallery is updated
-            user.save()
+#         print(f"User ID: {user_id}")
+#         if 'is_gallery' in request.data:
+#             user.is_gallery = request.data['is_gallery']  
+#             user.save()
 
-        if not user.is_gallery:
-            return Response({"error": "Only gallery users can create a gallery."}, status=status.HTTP_403_FORBIDDEN)
+#         if not user.is_gallery:
+#             return Response({"error": "Only gallery users can create a gallery."}, status=status.HTTP_403_FORBIDDEN)
         
-        paintings = Painting.objects.filter(artist=user)
+#         paintings = Painting.objects.filter(artist=user)
         
-        if not paintings.exists():
-            return Response({"error": "User has no paintings. Gallery cannot be created."}, status=status.HTTP_400_BAD_REQUEST)
-        
-        
-        first_painting = paintings.first()
-        cover_image = first_painting.image
+#         if not paintings.exists():
+#             return Response({"error": "User has no paintings. Gallery cannot be created."}, status=status.HTTP_400_BAD_REQUEST)
         
         
-        number_of_paintings = paintings.count()
-        number_of_artists = paintings.values('artist').distinct().count()
+#         first_painting = paintings.first()
+#         cover_image = first_painting.image
+        
+        
+#         number_of_paintings = paintings.count()
+#         number_of_artists = paintings.values('artist').distinct().count()
 
-        serializer = GalleryCreationSerializer(data=request.data)
-        if serializer.is_valid():
-            gallery_name = serializer.validated_data['gallery_name']
-            description = serializer.validated_data['description']
+#         serializer = GalleryCreationSerializer(data=request.data)
+#         if serializer.is_valid():
+#             gallery_name = serializer.validated_data['gallery_name']
+#             description = serializer.validated_data['description']
 
-            user.gallery_name = gallery_name
-            user.description = description
-            user.cover_painting = first_painting  
-            user.number_of_paintings = number_of_paintings  
-            user.number_of_artists = number_of_artists 
-            user.save()
-            return Response({
-                "message": "Gallery created successfully.",
-                "gallery_name": gallery_name,
-                "description": description,
-                "cover_image": first_painting.image.url,
-                "number_of_paintings": number_of_paintings,
-                "number_of_artists": number_of_artists
-            }, status=status.HTTP_201_CREATED)
+#             user.gallery_name = gallery_name
+#             user.description = description
+#             user.cover_painting = first_painting  
+#             user.number_of_paintings = number_of_paintings  
+#             user.number_of_artists = number_of_artists 
+#             user.save()
+#             return Response({
+#                 "message": "Gallery created successfully.",
+#                 "gallery_name": gallery_name,
+#                 "description": description,
+#                 "cover_image": first_painting.image.url,
+#                 "number_of_paintings": number_of_paintings,
+#                 "number_of_artists": number_of_artists
+#             }, status=status.HTTP_201_CREATED)
         
-        return Response({"error": "Invalid data", "details": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+#         return Response({"error": "Invalid data", "details": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
     
 
 
@@ -312,10 +312,6 @@ class ListGalleriesAPIView(APIView):
         galleries = CustomUser.objects.filter(is_gallery=True)
         serializer = GallerySerializer(galleries, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
-
-
-
-
 
 
 

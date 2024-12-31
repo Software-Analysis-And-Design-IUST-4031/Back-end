@@ -3,7 +3,7 @@ from .models import Message, Chat
 
 class MessageSerializer(serializers.ModelSerializer):
     sender = serializers.StringRelatedField(read_only=True)
-    timestamp = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S")
+    timestamp = serializers.DateTimeField(format='%m/%d/%Y %I:%M %p')
 
     class Meta:
         model = Message
