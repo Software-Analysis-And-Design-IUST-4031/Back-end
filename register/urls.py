@@ -29,6 +29,7 @@ urlpatterns = [
     path('api/country/',include('utils.urls')),
 
     # path('api/gallery/', include('gallery.urls')),
+    path('api/chat/', include('chat.urls')),
 ]
 
 
