@@ -6,7 +6,7 @@ from rest_framework import status
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from rest_framework.views import APIView
 from .models import Painting , Like
-from .serializers import PaintingDetailSerializer, PaintingListSerializer , LikeSerializer , UserLikesSumSerializer
+from .serializers import PaintingDetailSerializer, PaintingListSerializer , LikeSerializer , UserLikesSumSerializer , PaintingDetailSerializer2
 from registering.models import CustomUser
 from django.db.models import Count 
 from django.db import models
@@ -15,9 +15,32 @@ from .serializers import UserLikesSumSerializer
 from django.db.models import Sum , F , Q
 from django.db.models import Sum, OuterRef, Subquery
 from rest_framework.generics import DestroyAPIView
+from .filters import PaintingFilter
 
 
 
+from django.shortcuts import get_object_or_404
+from rest_framework.generics import RetrieveAPIView, ListAPIView, CreateAPIView
+from rest_framework.permissions import AllowAny ,  IsAuthenticated
+from rest_framework.response import Response
+from rest_framework import status
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from rest_framework.views import APIView
+from .models import Painting , Like
+from .serializers import PaintingDetailSerializer, PaintingListSerializer , LikeSerializer , UserLikesSumSerializer , PaintingDetailSerializer2
+from registering.models import CustomUser
+from django.db.models import Count 
+from django.db import models
+from rest_framework.pagination import PageNumberPagination
+from .serializers import UserLikesSumSerializer
+from django.db.models import Sum , F , Q
+from django.db.models import Sum, OuterRef, Subquery
+from rest_framework.generics import DestroyAPIView
+from rest_framework import generics
+from django_filters.rest_framework import DjangoFilterBackend
+from .models import Painting
+from .serializers import PaintingListSerializer
+from .filters import PaintingFilter
 
 
 
@@ -407,6 +430,34 @@ class CheckUserLikedPaintingView(APIView):
 
 
 
+
+class PaintingSearchView(generics.ListAPIView):
+    queryset = Painting.objects.all()
+    serializer_class = PaintingListSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = PaintingFilter
+
+
+
+
+
+
+class PaintingDetailWithAuthorView(APIView):
+    """
+    View to retrieve details of a specific painting including the author's username and name.
+    """
+    serializer_class = PaintingDetailSerializer2
+    permission_classes = [AllowAny]
+
+    def get(self, request, painting_id):
+        try:
+            painting = get_object_or_404(Painting, painting_id=painting_id)
+            serializer = self.serializer_class(painting)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except Painting.DoesNotExist:
+            return Response({"error": "Painting not found"}, status=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            return Response({"error": "Internal server error", "details": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 
