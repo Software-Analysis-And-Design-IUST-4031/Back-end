@@ -144,6 +144,7 @@ class UserDetailSerializerFavorites(serializers.ModelSerializer):
  
 
 class GallerySerializer(serializers.ModelSerializer):
+    cover_image = serializers.SerializerMethodField()
     number_of_paintings = serializers.SerializerMethodField()
     number_of_artists = serializers.SerializerMethodField()
     owner_id = serializers.IntegerField(source='user_id')
@@ -155,10 +156,6 @@ class GallerySerializer(serializers.ModelSerializer):
                   'number_of_paintings', 'number_of_artists',
                     'owner_id', 'cover_image']
 
-    # def get_cover_image(self, obj):
-    #     if obj.cover_painting:
-    #         return obj.cover_painting.image.url
-    #     return None
 
     def get_cover_image(self, obj):
         paintings = Painting.objects.filter(artist=obj)  # Assuming 'artist' links Painting to CustomUser
