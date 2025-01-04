@@ -4,7 +4,7 @@ from django.conf import settings
 
 class City(models.Model):
     country = models.CharField(max_length=100, default="Iran", db_index=True)  
-    name = models.CharField(max_length=100,default=None, db_index=True)   
+    name = models.CharField(max_length=100,default=None, db_index=True, unique=True)   
     
     def __str__(self):
         return f"{self.name}, {self.country}"
