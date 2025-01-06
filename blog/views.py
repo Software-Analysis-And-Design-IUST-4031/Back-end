@@ -1,9 +1,9 @@
 from django.shortcuts import render
-from rest_framework.permissions import IsAuthenticated, AllowAny
-from rest_framework.generics import ListCreateAPIView, CreateAPIView
+from rest_framework.permissions import IsAuthenticated, AllowAny, IsAuthenticatedOrReadOnly
+from rest_framework.generics import ListCreateAPIView, CreateAPIView, RetrieveUpdateDestroyAPIView
 from .models import Blog, Comment
 from .serializers import BlogSerializer, CommentSerializer
-from rest_framework.exceptions import ValidationError
+from rest_framework.exceptions import ValidationError, PermissionDenied
 
 class BlogListCreateView(ListCreateAPIView):
     queryset = Blog.objects.all().order_by('-created_at')
@@ -16,6 +16,25 @@ class BlogListCreateView(ListCreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
+
+
+class BlogDetailUpdateDeleteView(RetrieveUpdateDestroyAPIView):
+    queryset = Blog.objects.all()
+    serializer_class = BlogSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
+
+    def perform_update(self, serializer):
+        if self.get_object().author != self.request.user:
+            raise PermissionDenied("You are not allowed to edit this blog.")
+        serializer.save()
+
+    def perform_destroy(self, instance):
+        if instance.author != self.request.user:
+            raise PermissionDenied("You are not allowed to delete this blog.")
+        instance.delete()
+
+
+
 
 class CommentCreateView(CreateAPIView):
     serializer_class = CommentSerializer
