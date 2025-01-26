@@ -20,17 +20,17 @@ class Painting(models.Model):
     material = models.CharField(max_length=255, null=True, blank=True)
     
 
-
-
-
     def __str__(self):
         return self.title
 
 
 
-
-
-
+class Saved(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    painting = models.ForeignKey(Painting, on_delete=models.CASCADE)
+    saved_at = models.DateTimeField(auto_now_add=True)
+    class Meta:
+        unique_together = ('user', 'painting')
 
 
 class Like(models.Model):

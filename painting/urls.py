@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import PaintingDetailView, UserPaintingsView, AddPaintingView , LikePaintingView ,  GetPaintingLikesView , TopPaintingView , SortedPaintingsByLikesView , UserLikesSumView , DeletePaintingView , DeletePaintingView2 , UnLikePaintingView , CheckUserLikedPaintingView , PaintingDetailWithAuthorView , PaintingSearchView
+from .views import PaintingDetailView, UserPaintingsView,AddPaintingView , LikePaintingView, GetPaintingLikesView , TopPaintingView , SortedPaintingsByLikesView , UserLikesSumView , DeletePaintingView , DeletePaintingView2 , UnLikePaintingView , CheckUserLikedPaintingView , PaintingDetailWithAuthorView , PaintingSearchView, SavePaintingView, UnsavePaintingView, SavedPaintingsView
 
 
 
@@ -20,6 +20,9 @@ urlpatterns = [
     path('paintings/sorted-by-likes/', SortedPaintingsByLikesView.as_view(), name='sorted_paintings_by_likes'),
     path('user/<int:user_id>/paintings/<int:painting_id>/liked/', CheckUserLikedPaintingView.as_view(), name='check_user_liked_painting'),
     path('paintings/search/', PaintingSearchView.as_view(), name='painting-search'),
+     path('paintings/save/<int:painting_id>/', SavePaintingView.as_view(), name='save_painting'),
+    path('paintings/unsave/<int:painting_id>/', UnsavePaintingView.as_view(), name='unsave_painting'),
+    path('paintings/saved/', SavedPaintingsView.as_view(), name='saved_paintings'),
 ]
 
 

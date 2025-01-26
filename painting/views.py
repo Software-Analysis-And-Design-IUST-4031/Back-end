@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from rest_framework.views import APIView
-from .models import Painting , Like
+from .models import Painting , Like, Saved
 from .serializers import PaintingDetailSerializer, PaintingListSerializer , LikeSerializer , UserLikesSumSerializer , PaintingDetailSerializer2
 from registering.models import CustomUser
 from django.db.models import Count 
@@ -461,4 +461,48 @@ class PaintingDetailWithAuthorView(APIView):
 
 
 
+class SavePaintingView(APIView):
+    permission_classes = [IsAuthenticated]  # Ensure the user is authenticated
 
+    def post(self, request, painting_id):
+        try:
+            painting = Painting.objects.get(id=painting_id)
+        except Painting.DoesNotExist:
+            return Response({"error": "Painting not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        # Check if the painting is already saved
+        if Saved.objects.filter(user=request.user, painting=painting).exists():
+            return Response({"message": "Painting is already saved"}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Save the painting
+        Saved.objects.create(user=request.user, painting=painting)
+
+        return Response({"message": "Painting saved successfully"}, status=status.HTTP_201_CREATED)
+
+
+class UnsavePaintingView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def delete(self, request, painting_id):
+        try:
+            painting = Painting.objects.get(id=painting_id)
+        except Painting.DoesNotExist:
+            return Response({"error": "Painting not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        # Check if the painting is saved by the user
+        saved_record = Saved.objects.filter(user=request.user, painting=painting).first()
+        if not saved_record:
+            return Response({"message": "Painting is not in your saved list"}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Delete the saved painting
+        saved_record.delete()
+
+        return Response({"message": "Painting unsaved successfully"}, status=status.HTTP_204_NO_CONTENT)
+
+
+class SavedPaintingsView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        saved_paintings = Saved.objects.filter(user=request.user).values('painting__id', 'painting__title', 'painting__image')
+        return Response(saved_paintings, status=status.HTTP_200_OK)
