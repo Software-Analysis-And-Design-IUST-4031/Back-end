@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Painting
+from .models import Painting, Transaction
 from .models import Like
 from registering.models import CustomUser
 
@@ -47,4 +47,7 @@ class PaintingDetailSerializer2(serializers.ModelSerializer):
         return f"{obj.artist.firstname} {obj.artist.lastname}"
     
 
-    
+class TransactionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Transaction
+        fields = ['id', 'user', 'amount', 'transaction_type', 'painting', 'created_at']

@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from rest_framework.views import APIView
-from .models import Painting , Like, Saved
+from .models import Painting, Like, Saved, Transaction
 from .serializers import PaintingDetailSerializer, PaintingListSerializer , LikeSerializer , UserLikesSumSerializer , PaintingDetailSerializer2
 from registering.models import CustomUser
 from django.db.models import Count 
@@ -39,9 +39,9 @@ from rest_framework.generics import DestroyAPIView
 from rest_framework import generics
 from django_filters.rest_framework import DjangoFilterBackend
 from .models import Painting
-from .serializers import PaintingListSerializer
+from .serializers import PaintingListSerializer, TransactionSerializer
 from .filters import PaintingFilter
-
+from rest_framework.decorators import api_view
 
 
 
@@ -108,9 +108,6 @@ class UserPaintingsView(ListAPIView):
 
 
 
-
-
-
 class AddPaintingView(CreateAPIView):
     """
     View to add a new painting.
@@ -137,9 +134,6 @@ class AddPaintingView(CreateAPIView):
             }
             return Response(response_data, status=status.HTTP_201_CREATED)
         return Response({"error": "Invalid request body", "details": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
-
-
-
 
 
 
@@ -184,11 +178,6 @@ class DeletePaintingView2(APIView):
       
         painting.delete()
         return Response({"message": "Painting deleted successfully."}, status=status.HTTP_204_NO_CONTENT)
-
-
-
-
-
 
 
 
@@ -506,3 +495,43 @@ class SavedPaintingsView(APIView):
     def get(self, request):
         saved_paintings = Saved.objects.filter(user=request.user).values('painting__id', 'painting__title', 'painting__image')
         return Response(saved_paintings, status=status.HTTP_200_OK)
+
+
+
+class DepositCoinsView(APIView):
+    def post(self, request):
+        user = request.user
+        amount = request.data.get('amount')
+
+        if not amount or amount <= 0:
+            return Response({"detail": "Invalid amount."}, status=status.HTTP_400_BAD_REQUEST)
+
+        user.coin += amount
+        user.save()
+
+        transaction = Transaction.objects.create(user=user, amount=amount, transaction_type='deposit')
+
+        return Response(TransactionSerializer(transaction).data, status=status.HTTP_201_CREATED)
+
+
+class PurchasePaintingView(APIView):
+    def post(self, request):
+        user = request.user
+        painting_id = request.data.get('painting_id')
+        
+        try:
+            painting = Painting.objects.get(id=painting_id)
+        except Painting.DoesNotExist:
+            return Response({"detail": "Painting not found."}, status=status.HTTP_404_NOT_FOUND)
+        
+        amount = painting.price
+
+        if user.coin < amount:
+            return Response({"detail": "Insufficient coins."}, status=status.HTTP_400_BAD_REQUEST)
+
+        user.coin -= amount
+        user.save()
+
+        transaction = Transaction.objects.create(user=user, amount=amount, transaction_type='purchase', painting=painting)
+
+        return Response(TransactionSerializer(transaction).data, status=status.HTTP_201_CREATED)

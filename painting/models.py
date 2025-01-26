@@ -44,7 +44,15 @@ class Like(models.Model):
     def __str__(self):
         return f"{self.user.username} likes {self.painting.title}"
 
+class Transaction(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    amount = models.IntegerField()  
+    transaction_type = models.CharField(max_length=50, choices=[('deposit', 'Deposit'), ('purchase', 'Purchase')])
+    painting = models.ForeignKey(Painting, null=True, blank=True, on_delete=models.SET_NULL)
+    created_at = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return f"{self.transaction_type} by {self.user.username} on {self.created_at}"
 
 
 
