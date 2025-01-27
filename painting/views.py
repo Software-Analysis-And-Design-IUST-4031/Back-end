@@ -461,6 +461,7 @@ class SavedPaintingsView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request, user_id):
+        
         user = get_object_or_404(settings.AUTH_USER_MODEL, id=user_id)
 
         saved_paintings = Saved.objects.filter(user=user).values('painting__id', 'painting__title', 'painting__image')
