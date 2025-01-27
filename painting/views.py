@@ -16,7 +16,7 @@ from django.db.models import Sum , F , Q
 from django.db.models import Sum, OuterRef, Subquery
 from rest_framework.generics import DestroyAPIView
 from .filters import PaintingFilter
-
+from django.conf import settings
 
 
 from django.shortcuts import get_object_or_404
@@ -49,22 +49,18 @@ from rest_framework.decorators import api_view
 
 class PaintingDetailView(APIView):
     """
-    View to retrieve details of a specific painting.
+    View to retrieve details of a specific painting, including its availability and buyer if sold.
     """
     serializer_class = PaintingDetailSerializer
     permission_classes = [AllowAny]
 
     def get(self, request, painting_id):
-        try:
-            painting = get_object_or_404(Painting, painting_id=painting_id)
-            serializer = self.serializer_class(painting)
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        except Painting.DoesNotExist:
-            return Response({"error": "Painting not found"}, status=status.HTTP_404_NOT_FOUND)
-        except Exception as e:
-            return Response({"error": "Internal server error", "details": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
-
+        painting = get_object_or_404(Painting, id=painting_id)
+        
+        serializer = self.serializer_class(painting)
+    
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
 
 
 class UserPaintingsView(ListAPIView):
@@ -182,7 +178,6 @@ class DeletePaintingView2(APIView):
 
 
 
-
 class LikePaintingView(CreateAPIView):
     """
     View to like a painting by a user.
@@ -238,8 +233,6 @@ class UnLikePaintingView(CreateAPIView):
 
 
 
-
-
 class GetPaintingLikesView(RetrieveAPIView):
     """
     View to get the number of likes for a painting.
@@ -258,9 +251,6 @@ class GetPaintingLikesView(RetrieveAPIView):
     
 
 
-
-
-
 class TopPaintingView(APIView):
     """
     View to get the top painting based on the number of likes.
@@ -277,8 +267,6 @@ class TopPaintingView(APIView):
         else:
             return Response({"error": "No paintings found"}, status=status.HTTP_404_NOT_FOUND)
         
-
-
 
 
 
@@ -317,13 +305,6 @@ class SortedPaintingsByLikesView(ListAPIView):
             }
         }
         return Response(response_data, status=status.HTTP_200_OK)
-
-
-
-
-
-
-
 
 
 
@@ -388,12 +369,6 @@ class UserLikesSumView(ListAPIView):
 
 
 
-
-
-
-
-
-
 class CheckUserLikedPaintingView(APIView):
     """
     View to check if a specific user has liked a specific painting.
@@ -416,19 +391,11 @@ class CheckUserLikedPaintingView(APIView):
 
 
 
-
-
-
-
 class PaintingSearchView(generics.ListAPIView):
     queryset = Painting.objects.all()
     serializer_class = PaintingListSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_class = PaintingFilter
-
-
-
-
 
 
 class PaintingDetailWithAuthorView(APIView):
@@ -451,39 +418,40 @@ class PaintingDetailWithAuthorView(APIView):
 
 
 class SavePaintingView(APIView):
-    permission_classes = [IsAuthenticated]  # Ensure the user is authenticated
+    permission_classes = [IsAuthenticated]
 
-    def post(self, request, painting_id):
+    def post(self, request, user_id, painting_id):
+        
+        user = get_object_or_404(settings.AUTH_USER_MODEL, id=user_id)
+
         try:
             painting = Painting.objects.get(id=painting_id)
         except Painting.DoesNotExist:
             return Response({"error": "Painting not found"}, status=status.HTTP_404_NOT_FOUND)
 
-        # Check if the painting is already saved
-        if Saved.objects.filter(user=request.user, painting=painting).exists():
+        if Saved.objects.filter(user=user, painting=painting).exists():
             return Response({"message": "Painting is already saved"}, status=status.HTTP_400_BAD_REQUEST)
 
-        # Save the painting
-        Saved.objects.create(user=request.user, painting=painting)
+        Saved.objects.create(user=user, painting=painting)
 
         return Response({"message": "Painting saved successfully"}, status=status.HTTP_201_CREATED)
-
+    
 
 class UnsavePaintingView(APIView):
     permission_classes = [IsAuthenticated]
 
-    def delete(self, request, painting_id):
+    def delete(self, request, user_id, painting_id):
+        user = get_object_or_404(settings.AUTH_USER_MODEL, id=user_id)
+
         try:
             painting = Painting.objects.get(id=painting_id)
         except Painting.DoesNotExist:
             return Response({"error": "Painting not found"}, status=status.HTTP_404_NOT_FOUND)
 
-        # Check if the painting is saved by the user
-        saved_record = Saved.objects.filter(user=request.user, painting=painting).first()
+        saved_record = Saved.objects.filter(user=user, painting=painting).first()
         if not saved_record:
             return Response({"message": "Painting is not in your saved list"}, status=status.HTTP_400_BAD_REQUEST)
 
-        # Delete the saved painting
         saved_record.delete()
 
         return Response({"message": "Painting unsaved successfully"}, status=status.HTTP_204_NO_CONTENT)
@@ -492,8 +460,11 @@ class UnsavePaintingView(APIView):
 class SavedPaintingsView(APIView):
     permission_classes = [IsAuthenticated]
 
-    def get(self, request):
-        saved_paintings = Saved.objects.filter(user=request.user).values('painting__id', 'painting__title', 'painting__image')
+    def get(self, request, user_id):
+        user = get_object_or_404(settings.AUTH_USER_MODEL, id=user_id)
+
+        saved_paintings = Saved.objects.filter(user=user).values('painting__id', 'painting__title', 'painting__image')
+
         return Response(saved_paintings, status=status.HTTP_200_OK)
 
 
@@ -524,6 +495,9 @@ class PurchasePaintingView(APIView):
         except Painting.DoesNotExist:
             return Response({"detail": "Painting not found."}, status=status.HTTP_404_NOT_FOUND)
         
+        if not painting.availability:
+            return Response({"detail": "This painting is already sold."}, status=status.HTTP_400_BAD_REQUEST)
+
         amount = painting.price
 
         if user.coin < amount:
@@ -531,6 +505,8 @@ class PurchasePaintingView(APIView):
 
         user.coin -= amount
         user.save()
+
+        painting.mark_as_sold(user.username)
 
         transaction = Transaction.objects.create(user=user, amount=amount, transaction_type='purchase', painting=painting)
 

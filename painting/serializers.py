@@ -8,7 +8,7 @@ from registering.models import CustomUser
 class PaintingDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Painting
-        fields = ['painting_id', 'title', 'description','image', 'creation_date', 'artist' , 'price', 'material' , 'style' , 'year' , 'vertical_depth' , 'horizontal_depth']
+        fields = ['painting_id', 'title', 'description','image', 'creation_date', 'artist' , 'price', 'material' , 'style' , 'year' , 'vertical_depth' , 'horizontal_depth', 'availability', 'buyer']
         read_only_fields = ['artist', 'creation_date'] 
 
 class PaintingListSerializer(serializers.ModelSerializer):

@@ -20,10 +20,10 @@ urlpatterns = [
     path('paintings/sorted-by-likes/', SortedPaintingsByLikesView.as_view(), name='sorted_paintings_by_likes'),
     path('user/<int:user_id>/paintings/<int:painting_id>/liked/', CheckUserLikedPaintingView.as_view(), name='check_user_liked_painting'),
     path('paintings/search/', PaintingSearchView.as_view(), name='painting-search'),
-     path('paintings/save/<int:painting_id>/', SavePaintingView.as_view(), name='save_painting'),
-    path('paintings/unsave/<int:painting_id>/', UnsavePaintingView.as_view(), name='unsave_painting'),
-    path('paintings/saved/', SavedPaintingsView.as_view(), name='saved_paintings'),
-   path('paintings/deposit/', DepositCoinsView.as_view(), name='deposit_coins'),
+    path('save/<int:user_id>/<int:painting_id>/', SavePaintingView.as_view(), name='save_painting'),
+    path('unsave/<int:user_id>/<int:painting_id>/', UnsavePaintingView.as_view(), name='unsave_painting'),
+    path('saved/<int:user_id>/', SavedPaintingsView.as_view(), name='saved_paintings'),
+    path('paintings/deposit/', DepositCoinsView.as_view(), name='deposit_coins'),
     path('paintings/purchase/', PurchasePaintingView.as_view(), name='purchase_painting'),
 ]
 
