@@ -69,7 +69,7 @@ class UserDetailSerializer(serializers.ModelSerializer):
 class UserUpdateSerializerEditProfile(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['firstname', 'lastname', 'nickname' ,'email' , 'phone_number' ,'date_of_birth' ,'country', 'city' ,'is_gallery','profile_picture' , 'Theme' , 'Dark_light_theme','gallery_name','description','biography']
+        fields = ['firstname', 'lastname', 'nickname' ,'email' , 'phone_number' ,'date_of_birth' ,'country', 'city' ,'is_gallery','profile_picture' , 'Theme' , 'Dark_light_theme','gallery_name','description','biography','coin']
         def get_profile_picture_url(self, obj):
             if obj.profile_picture:
                 return obj.profile_picture.url
@@ -81,7 +81,7 @@ class UserUpdateSerializerEditProfile(serializers.ModelSerializer):
 class UserUpdateSerializerFavorites(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['favorite_painter', 'favorite_painting', 'favorite_painting_style', 'favorite_painting_technique' ,'favorite_painting_to_own' , 'biography' , 'Theme' , 'Dark_light_theme' ]
+        fields = ['favorite_painter', 'favorite_painting', 'favorite_painting_style', 'favorite_painting_technique' ,'favorite_painting_to_own' , 'biography' , 'Theme' , 'Dark_light_theme','coin']
 
 
 
