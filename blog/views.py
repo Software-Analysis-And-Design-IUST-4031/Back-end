@@ -4,6 +4,7 @@ from rest_framework.generics import ListCreateAPIView, CreateAPIView, RetrieveUp
 from .models import Blog, Comment
 from .serializers import BlogSerializer, CommentSerializer
 from rest_framework.exceptions import ValidationError, PermissionDenied
+from rest_framework.generics import ListAPIView
 
 class BlogListCreateView(ListCreateAPIView):
     queryset = Blog.objects.all().order_by('-created_at')
@@ -56,3 +57,9 @@ class CommentCreateView(CreateAPIView):
 
         serializer.save(author=self.request.user, blog_id=blog_id, parent=parent_comment)
 
+class BlogCommentListView(ListAPIView):
+    serializer_class = CommentSerializer
+
+    def get_queryset(self):
+        blog_id = self.kwargs['blog_id']
+        return Comment.objects.filter(blog_id=blog_id).order_by('-created_at')
